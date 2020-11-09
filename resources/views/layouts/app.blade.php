@@ -202,22 +202,22 @@
         function konfirmasi() {
 
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Simpan Data?',
+                text: "pastikan data terisi dengan benar",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, save it!'
+                confirmButtonText: 'Simpan',
+                cancelButtonText: 'Batal'
             }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                        title: "Saved!",
-                        text: "Your imaginary file has been deleted.",
-                        type: "success",
+                        title: "Berhasil!",
+                        text: "Data anda berhasil tersimpan",
+                        type: "success"
                             //timer: 3000
-                }, 
-                function(){
+                }).then(function(){
                     window.location = "/users/download/new";
                 })
                 } 
@@ -307,21 +307,21 @@
             })
         }
         function konfirmasi1() {
-
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Simpan Data?',
+                text: "pastikan data terisi dengan benar",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, save it!'
+                confirmButtonText: 'Simpan',
+                cancelButtonText: 'Batal'
             }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                            title: "Saved!",
-                            text: "Your imaginary file has been deleted.",
-                            type: "success",
+            if (result.isConfirmed) {
+                Swal.fire({
+                        title: "Berhasil!",
+                        text: "Data anda berhasil tersimpan",
+                        type: "success",
                                 //timer: 3000
                         }).then(function(){
                             window.location = "/users/download/old";

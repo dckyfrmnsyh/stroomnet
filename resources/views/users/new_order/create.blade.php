@@ -30,7 +30,7 @@
                                                 <label class="col-md-5 col-form-label">Originating</label>
                                                 <div class="col-md-6">
                                                     <input type="text" class="form-control"
-                                                        placeholder="Isikan Originating" id="originating"
+                                                        placeholder="" id="originating"
                                                         name="originating"><small class="form-text text-muted">*jika
                                                         kosong isi (-)</small>
                                                 </div>
@@ -40,7 +40,7 @@
                                                 <label class="col-md-5 col-form-label">Terminating</label>
                                                 <div class="col-md-6">
                                                     <input type="text" class="form-control"
-                                                        placeholder="Isikan Terminating" id="terminating"
+                                                        placeholder="" id="terminating"
                                                         name="terminating">
                                                     <small class="form-text text-muted">*jika kosong isi (-)</small>
                                                 </div>
@@ -58,10 +58,17 @@
 
                                             <div class="form-group row">
                                                 <label class="col-md-5 col-form-label">Kapasitas</label>
-                                                <div class="col-md-6 ">
-                                                    <input type="text" class="form-control" placeholder=""
+                                                <div class="col-md-3 ">
+                                                    <input type="number" class="form-control" placeholder=""
                                                         id="kapasitas" name="kapasitas">
-                                                    <small class="form-text text-muted">Ex. 100 Gbps</small>
+                                                    <small class="form-text text-muted">Ex. 1 Gbps</small>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <select name="satuan_kapasitas" class="form-control">
+                                                        <option value="Mbps">Mbps</option>
+                                                        <option value="Gbps">Gbps</option>
+                                                    </select>
+                                                    
                                                 </div>
                                             </div>
 

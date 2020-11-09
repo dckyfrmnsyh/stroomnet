@@ -44,7 +44,7 @@ class AdminController extends Controller
 
         $allOrder = Order::all();
         $allOldorder = Oldorder::all();
-        return view('admin.index',compact('tabel','all','total_client','total_client_new',
+        return view('admin.index',compact('tabel','total_client','total_client_new',
         'total_client_upgrade','total_client_downgrade','total_client_relokasi',
         'total_order','allOrder','allOldorder'));
     }

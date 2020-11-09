@@ -17,15 +17,16 @@
         </div>
     </div>
     <div class="row align-items-center justify-content-md-center">
-
+        @foreach($customer as $c_new)
         <div class="col-md-auto">
-            <a href="/users/download/newBAKBB/" class="btn btn-warning btn-lg float-left"
+            <a href="/users/download/newBAKBB/{{ $c_new->id }}" class="btn btn-warning btn-lg float-left"
                 style="margin:5px"><i class="fa fa-download"></i> BAKBB
             </a>
-            <a href="/users/download/FB/" class="btn btn-primary btn-lg float-right"
+            <a href="/users/download/FB/{{ $c_new->id }}" class="btn btn-primary btn-lg float-right"
                 style="margin:5px"><i class="fa fa-download"></i> FB
             </a>
         </div>
+        @endforeach
     </div>
     <div class="row align-items-center justify-content-md-center">
         <div class="col-md-auto" style="margin-top:20px;">

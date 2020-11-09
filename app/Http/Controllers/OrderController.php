@@ -54,12 +54,14 @@ class OrderController extends Controller
         $customer = DB::table('customers')->where('id', $customer_id)->first();
 
         $request->session()->put('product', $customer_id);
+        $kapasitas = $request->kapasitas ." ". $request->satuan_kapasitas;
+
 
         Order::insert([
             'originating' => $request->originating,
             'terminating' => $request->terminating,
             'nama_product' => $request->nama_product,
-            'kapasitas' => $request->kapasitas,
+            'kapasitas' => $kapasitas,
             'biaya_langganan' => $request->biaya_langganan,
             'biaya_instalasi' => $request->biaya_instalasi,
             'customer_id' => $customer_id,
@@ -97,12 +99,12 @@ class OrderController extends Controller
         $customer = DB::table('customers')->where('id', $customer_id)->first();
 
         $request->session()->put('product', $customer_id);
-
+        $kapasitas = $request->kapasitas ." ". $request->satuan_kapasitas;
         Order::insert([
             'originating' => $request->originating,
             'terminating' => $request->terminating,
             'nama_product' => $request->nama_product,
-            'kapasitas' => $request->kapasitas,
+            'kapasitas' => $kapasitas,
             'biaya_langganan' => $request->biaya_langganan,
             'biaya_instalasi' => $request->biaya_instalasi,
             'customer_id' => $customer_id,
@@ -115,12 +117,13 @@ class OrderController extends Controller
         $customer = DB::table('customers')->where('id', $customer_id)->first();
 
         $request->session()->put('product', $customer_id);
+        $kapasitas = $request->kapasitas ." ". $request->satuan_kapasitas;
 
         Oldorder::insert([
             'originating' => $request->originating,
             'terminating' => $request->terminating,
             'nama_product' => $request->nama_product,
-            'kapasitas' => $request->kapasitas,
+            'kapasitas' => $kapasitas,
             'biaya_langganan' => $request->biaya_langganan,
             'biaya_instalasi' => $request->biaya_instalasi,
             'customer_id' => $customer_id,
