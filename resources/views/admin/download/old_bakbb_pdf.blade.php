@@ -90,7 +90,7 @@
                 <td></td>
             </tr>
             <tr>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No. Perjanjian PIHAK PERTAMA</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No. Perjanjian PIHAK KEDUA</td>
                 <td>:</td>
                 <td></td>
             </tr>
@@ -287,10 +287,7 @@
 
         </table>
         <div style="font-size: 8pt">
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Bahwa PIHAK KEDUA sepakat untuk menggunakan layanan dari PIHAK PERTAMA, sesuai dengan ketentuan di bawah
-                ini:
-                <br>
+            <p>
                 <table style="justify-content: right;width: 95%" border="0">
                     <tr>
                         <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Syarat dan Kondisi:</b><br></td>
