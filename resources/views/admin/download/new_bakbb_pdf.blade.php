@@ -11,8 +11,16 @@
         .content {
             font-family: Arial, Helvetica, sans-serif;
         }
-        .breakNow { 
-            page-break-inside:avoid; page-break-after:always; 
+
+        body {
+            margin-bottom: -50px;
+        }
+
+        .breakNow {
+            page-break-inside: avoid;
+            page-break-after: always;
+            margin-top: 50px;
+
         }
 
     </style>
@@ -20,7 +28,7 @@
 
 <body style="font-family: Arial">
 
-<?php 
+    <?php 
 
 
 	function penyebut($nilai) {
@@ -65,7 +73,7 @@
         <div>
             <center>
                 <h3 class="judul" style="font-size: 10pt;margin-left:20px;margin-bottom:-7px;">
-                BERITA ACARA KESEPAKATAN BIAYA BERLANGGANAN
+                    BERITA ACARA KESEPAKATAN BIAYA BERLANGGANAN
                 </h3>
             </center>
         </div>
@@ -94,8 +102,12 @@
         </table>
         @foreach($customer as $c)
         <p style="font-size: 8pt; margin-left:20px;">
-            Pada hari {{Date::parse($c->tgl_hari_ini)->format('l')}} ,tanggal {{Date::parse($c->tgl_hari_ini)->format('d')}} bulan {{Date::parse($c->tgl_hari_ini)->format('F')}} tahun <?php echo terbilang(Date::parse($c->tgl_hari_ini)->format('Y')); ?> ( {{Date::parse($c->tgl_hari_ini)->format('d')}}-{{Date::parse($c->tgl_hari_ini)->format('m')}}-{{Date::parse($c->tgl_hari_ini)->format('Y')}}), telah dilakukan
-            kesepakatan biaya berlangganan  permintaan layanan baru atas Jaringan Telekomunikasi oleh dan antara
+            Pada hari {{Date::parse($c->tgl_hari_ini)->format('l')}} ,tanggal
+            {{Date::parse($c->tgl_hari_ini)->format('d')}} bulan {{Date::parse($c->tgl_hari_ini)->format('F')}} tahun
+            <?php echo terbilang(Date::parse($c->tgl_hari_ini)->format('Y')); ?> (
+            {{Date::parse($c->tgl_hari_ini)->format('d')}}-{{Date::parse($c->tgl_hari_ini)->format('m')}}-{{Date::parse($c->tgl_hari_ini)->format('Y')}}),
+            telah dilakukan
+            kesepakatan biaya berlangganan permintaan layanan baru atas Jaringan Telekomunikasi oleh dan antara
         </p>
         @endforeach
         <table style="font-size: 8pt">
@@ -120,7 +132,8 @@
                 <td>Gedung PLN Jalan KH. Abdul Rochim No.1 Kuningan Barat, Mampang Jakarta Selatan 12710</td>
             </tr>
             <tr>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nomor Telepon & Faksimile</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nomor Telepon & Faksimile
+                </td>
                 <td style="padding-left: 7pt;">:</td>
                 <td>Telp (021) 5253019, Fax(021) 5253659</td>
             </tr>
@@ -149,18 +162,22 @@
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Alamat Kantor</td>
                 <td style="padding-left: 7pt;">:</td>
                 @foreach($customer as $c)
-                <td style="text-transform: capitalize;">{{$c->alamat_kantor}}, {{ ucfirst(strtolower($c->desa)) }}, {{ ucfirst(strtolower($c->kecamatan)) }}, {{ ucfirst(strtolower($c->kota)) }}, {{ ucfirst(strtolower($c->provinsi)) }}&nbsp;{{$c->kode_pos}}</td>
+                <td style="text-transform: capitalize;">{{$c->alamat_kantor}}, {{ ucfirst(strtolower($c->desa)) }},
+                    {{ ucfirst(strtolower($c->kecamatan)) }}, {{ ucfirst(strtolower($c->kota)) }},
+                    {{ ucfirst(strtolower($c->provinsi)) }}&nbsp;{{$c->kode_pos}}</td>
                 @endforeach
             </tr>
             <tr>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nomor Telepon & Faksimile</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nomor Telepon & Faksimile
+                </td>
                 <td style="padding-left: 7pt;">:</td>
                 @foreach($customer as $c)
                 <td>{{$c->no_telp}} & {{$c->no_fax}}</td>
                 @endforeach
             </tr>
         </table>
-        <div style="font-size: 8pt;margin-left:20px; margin-top: 10px;margin-bottom: 10px">Bahwa PIHAK KEDUA sepakat untuk menggunakan layanan dari PIHAK PERTAMA, sesuai dengan ketentuan di bawah ini:</div>
+        <div style="font-size: 8pt;margin-left:20px; margin-top: 10px;margin-bottom: 10px">Bahwa PIHAK KEDUA sepakat
+            untuk menggunakan layanan dari PIHAK PERTAMA, sesuai dengan ketentuan di bawah ini:</div>
         <table border="1" style="border-collapse: collapse; font-size: 7pt; width: 100%; margin-left:20px">
             <tr>
                 <th style="height: 50px;">No</th>
@@ -179,14 +196,14 @@
                 @foreach($c->order as $o)
                 <?php $no++ ?>
                 <tr>
-                    <td style="height: 20px;">{{ $no }}</td>
-                    <td>{{$o->originating}}</td>
-                    <td>{{$o->terminating}}</td>
-                    <td>{{$o->nama_product}}</td>
-                    <td>{{$o->kapasitas}}</td>
-                    <td>@currency($o->biaya_langganan)</td>
-                    <td>@currency($o->biaya_instalasi)</td>
-                    <td>Fiber Optic/<br>Ethernet</td>
+                    <td style="height: 20px;">&nbsp;{{ $no }}</td>
+                    <td>&nbsp;{{$o->originating}}</td>
+                    <td>&nbsp;{{$o->terminating}}</td>
+                    <td>&nbsp;{{$o->nama_product}}</td>
+                    <td>&nbsp;{{$o->kapasitas}}</td>
+                    <td>&nbsp;@currency($o->biaya_langganan)</td>
+                    <td>&nbsp;@currency($o->biaya_instalasi)</td>
+                    <td>&nbsp;Fiber Optic/<br>&nbsp;Ethernet</td>
                     <?php $total_langganan += $o->biaya_langganan ?>
                     <?php $total_instalasi += $o->biaya_instalasi ?>
                 </tr>
@@ -225,10 +242,12 @@
                 <td colspan="3"><b>Nomor Rekening </b></td>
                 <td>&nbsp;</td>
                 <td colspan="3" style="text-align: center;">
-                    <b>
-                        Virtual Account :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-                        BANK MANDIRI KCP PLN KANTOR PUSAT, Jakarta
-                    </b>
+                    <b>Virtual Account :</b><br>
+                    <div style="text-align: center;">
+                        <b>
+                            BANK MANDIRI KCP PLN KANTOR PUSAT, Jakarta
+                        </b>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -236,18 +255,20 @@
                 <td colspan="3"><b>Alamat Penagihan </b></td>
                 <td>&nbsp;</td>
                 @foreach($customer as $c)
-                <th colspan="3">{{$c->alamat_kantor}}, {{ ucfirst(strtolower($c->desa)) }}, {{ ucfirst(strtolower($c->kecamatan)) }}, {{ ucfirst(strtolower($c->kota)) }}, {{ ucfirst(strtolower($c->provinsi)) }}&nbsp;{{$c->kode_pos}}</th>
+                <th colspan="3">{{$c->alamat_kantor}}, {{ ucfirst(strtolower($c->desa)) }},
+                    {{ ucfirst(strtolower($c->kecamatan)) }}, {{ ucfirst(strtolower($c->kota)) }},
+                    {{ ucfirst(strtolower($c->provinsi)) }}&nbsp;{{$c->kode_pos}}</th>
                 @endforeach
             </tr>
 
         </table>
         <div style="font-size: 8pt">
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                
+
                 <table style="justify-content: right;" border="0">
                     <tr>
                         <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Syarat dan Kondisi:</b><br></td>
-                    </tr>   
+                    </tr>
                     <tr>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;</td>
                         <td>Seluruh biaya belum termasuk PPN dan pajak-pajak lainnya serta biaya di lokasi gedung
@@ -271,13 +292,24 @@
                             PIHAK KEDUA;</td>
                     </tr>
                 </table>
-                <br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Demikian Berita Acara Kesepakatan Biaya Berlangganan ini dibuat dalam rangkap 2 (dua), asli dan
-                mempunyai kekuatan hukum yang sama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setelah ditandatangani dan merupakan bagian tidak terpisahkan dari
-                Perjanjian antara PIHAK PERTAMA dan PIHAK KEDUA.
-
             </p>
         </div>
+                <?php
+                    if($no >= 5 ){
+                        echo'<div class="breakNow">';
+                    }
+                ?>
+
+        <table style="font-size: 8pt;width: 95%; margin-left: 20px; margin-top: 5px;">
+            <tr>
+                <td>
+                    Demikian Berita Acara Kesepakatan Biaya Berlangganan ini dibuat dalam rangkap 2 (dua), asli dan
+                    mempunyai kekuatan hukum yang sama setelah ditandatangani dan merupakan bagian tidak terpisahkan
+                    dari
+                    Perjanjian antara PIHAK PERTAMA dan PIHAK KEDUA.
+                </td>
+            </tr>
+        </table>
         <table style="width: 100%; font-size: 9pt">
             <tr>
                 <td>&nbsp;</td>
@@ -313,7 +345,7 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-            </tr> 
+            </tr>
             <tr>
                 <th>(Agus Widya Santoso)</th>
                 <th>&nbsp;</th>

@@ -7,9 +7,9 @@
     <meta http-eqiuv="X-UA-Compatible" content="ie=edge">
     <title>Form Berlangganan</title>
 </head>
-<body style="font-family: Calibri; background-color: white">
+<body style="font-family: Calibri; background-color: white;">
     <div>
-        <img src="./images/a.png" style="float: right; width: 15%;">
+        <img src="./images/a.png" style="float: right; width: 15%;margin-top:-15px;padding-right:30px;">
     </div>
     <br><br><br><br><br><br><br>
     <!-- tampilan 80% -->
@@ -187,7 +187,7 @@
             </table>
         </div>
         <!-- 8 -->
-        <table style="width: 100%;page-break-before:  always;" bgcolor="black">
+        <table style="width: 100%;page-break-before:  always; margin-top:20px;" bgcolor="black">
             <tr>
                 <td><p style="color: white;text-align: center;font-size: 11pt;">PENANGGUNG JAWAB KEUANGAN</p></td>
             </tr>    
