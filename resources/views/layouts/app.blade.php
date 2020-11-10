@@ -215,7 +215,7 @@
                 Swal.fire({
                         title: "Berhasil!",
                         text: "Data anda berhasil tersimpan",
-                        type: "success"
+                        icon: "success"
                             //timer: 3000
                 }).then(function(){
                     window.location = "/users/download/new";
@@ -236,13 +236,14 @@
         function edit() {
             var idx = $('#edit').data("id");
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Apakah anda yakin?',
+                text: "Data akan terhapus dan anda harus mengisi lagi dari awal!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Hapus!',
+                cancelButtonText: 'Batal'
             }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -255,9 +256,9 @@
                     {
                         
                         Swal.fire({
-                            title: "Deleted!",
-                            text: "Your imaginary file has been deleted.",
-                            type: "success",
+                            title: "Terhapus!",
+                            text: "Data sudah terhapus",
+                            icon: "success",
                                 //timer: 3000
                         }).then(function(){
                             window.location = "/users";
@@ -265,7 +266,7 @@
                     }
                 })
                 } else {
-                    Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
+                    Swal.fire("Batal", "Data anda aman :)", "error");
                 }
             })
         }
@@ -273,13 +274,14 @@
             var id = $('#edit1').data("id");
 
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Apakah anda yakin?',
+                text: "Data akan terhapus dan anda harus mengisi lagi dari awal!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Hapus!',
+                cancelButtonText: 'Batal'
             }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -292,9 +294,9 @@
                     {
                         
                         Swal.fire({
-                            title: "Deleted!",
-                            text: "Your imaginary file has been deleted.",
-                            type: "success",
+                            title: "Terhapus!",
+                            text: "Data sudah terhapus",
+                            icon: "success",
                                 //timer: 3000
                         }).then(function(){
                             window.location = "/users";
@@ -302,7 +304,7 @@
                     }
                 });
                 } else {
-                    Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
+                    Swal.fire("Batal", "Data anda aman :)", "error");
                 }
             })
         }
@@ -319,14 +321,14 @@
             }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                        title: "Berhasil!",
-                        text: "Data anda berhasil tersimpan",
-                        type: "success",
-                                //timer: 3000
-                        }).then(function(){
-                            window.location = "/users/download/old";
-                        })
-                }
+                    title: "Berhasil!",
+                    text: "Data anda berhasil tersimpan",
+                    icon: "success",
+                            //timer: 3000
+                }).then(function(){
+                        window.location = "/users/download/old";
+                })
+            }
             })
         }
 
