@@ -50,6 +50,10 @@ Auth::routes(['register' => true]);
     Route::get('/Admin/pdf/old/{id}', 'PDFController@oldbakbb');
     Route::get('/Admin/pdf/fb/{id}', 'PDFController@fb');
 
+    // *show pdf
+    Route::get('/Admin/dashboard/order/show/{id}', 'PDFController@show');
+    Route::get('/Admin/dashboard/order/show_old/{id}', 'PDFController@show_old');
+
 // ##route new user## //
     // *customer
     Route::get('/users/new/customer/create', 'CustomerController@create')->name('customer.create');

@@ -19,8 +19,6 @@
                                     <th>Nama Customer</th>
                                     <th>Tipe</th>
                                     <th>Tanggal Pemesanan</th>
-                                    <th>Layanan Lama</th>
-                                    <th>Layanan Baru</th>
                                     <th>Print</th>
                                     <th>Action</th>
                                 </tr>
@@ -36,23 +34,17 @@
                                     <td>{{Date::parse($downlist->tgl_hari_ini)->format('l, d F Y')}}
                                     </td>
                                     <td>
-                                        @foreach($downlist->oldorder as $item)
-                                        {{$item->nama_product}},
-                                        @endforeach
-                                    </td>
-                                    <td>
-                                        @foreach($downlist->order as $item)
-                                        {{$item->nama_product}},
-                                        @endforeach
-                                    </td>
-                                    <td>
-                                    <a href="/Admin/pdf/old/{{$downlist->id}}" class="btn btn-warning btn-sm"><i
+                                    <a href="/Admin/pdf/old/{{$downlist->id}}" class="btn btn-outline-success btn-sm"><i
                                                 class="fa fa-download"></i> BAKBB
                                                 </a>
-                                        <a href="/Admin/pdf/fb/{{$downlist->id}}" class="btn btn-primary btn-sm"><i
+                                        <a href="/Admin/pdf/fb/{{$downlist->id}}" class="btn btn-outline-primary btn-sm"><i
                                                 class="fa fa-download"></i> FB</a>
                                     </td>
                                     <td>
+                                        <a href="/Admin/dashboard/order/show_old/{{ $downlist->id }}" type="button"
+                                            class="btn btn-warning btn-sm">
+                                            <i class="fa fa-eye"></i> Show
+                                        </a>
                                         <a href="/Admin/dashboard/order/delete/{{ $downlist->id }}" type="button"
                                             class="btn btn-danger btn-sm">
                                             <i class="fa fa-trash"></i> Delete

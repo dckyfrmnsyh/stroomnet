@@ -16,11 +16,10 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nama Customer</th>
+                                    <th>Nama Instansi</th>
                                     <th>Penanggung Jawab</th>
                                     <th>Tipe</th>
                                     <th>Tanggal Pemesanan</th>
-                                    <th>Layanan</th>
                                     <th>Print</th>
                                     <th>Action</th>
                                 </tr>
@@ -37,19 +36,18 @@
                                     <td>{{Date::parse($new->tgl_hari_ini)->format('l, d F Y')}}
                                     </td>
                                     <td>
-                                        @foreach($new->order as $item)
-                                        {{$item->nama_product}},
-                                        @endforeach
-                                    </td>
-                                    <td>
-                                        <a href="/Admin/pdf/new/{{$new->id}}" class="btn btn-warning btn-sm"><i
+                                        <a href="/Admin/pdf/new/{{$new->id}}" class="btn btn-outline-success btn-sm"><i
                                                 class="fa fa-download"></i> BAKBB
                                                 </a>
-                                        <a href="/Admin/pdf/fb/{{$new->id}}" class="btn btn-primary btn-sm"><i
+                                        <a href="/Admin/pdf/fb/{{$new->id}}" class="btn btn-outline-primary btn-sm"><i
                                                 class="fa fa-download"></i> FB
                                                 </a>
                                     </td>
                                     <td>
+                                        <a href="/Admin/dashboard/order/show/{{ $new->id }}" type="button"
+                                            class="btn btn-warning btn-sm">
+                                            <i class="fa fa-eye"></i> Show
+                                        </a>
                                         <a href="/Admin/dashboard/order/delete/{{ $new->id }}" type="button"
                                             class="btn btn-danger btn-sm">
                                             <i class="fa fa-trash"></i> Delete

@@ -1,9 +1,12 @@
-<div>
+<div class="contents">
+
+    <div>
         <img src="{{asset('images/a.png')}}" style="float: right; width: 15%;">
     </div>
     <br><br><br><br><br><br><br>
     <!-- tampilan 80% -->
-    <div style="font-family: Calibri, Helvetica, sans-serif;width: 90% ; margin-right: auto; margin-left: auto; margin-top: -60px ">
+    <div
+        style="font-family: Calibri, Helvetica, sans-serif;width: 90% ; margin-right: auto; margin-left: auto; margin-top: -60px ">
         <!-- 1 -->
         <div>
             <center>
@@ -11,14 +14,17 @@
                 <p style="font-size: 11pt">
                     Gedung PLN Jl. KH Abdul Rochim Kuningan Barat 1 Mampang Prapatan Jakarta Selatan<br>
                     Telp : +62 -21 - 525 3019, Fax. 62-21-525 3659</p>
-            </center>    
+            </center>
         </div>
         <!-- 2 -->
         <table style="width: 100%; " bgcolor="black">
             <tr>
-                <td><p style="color: white;text-align: center;font-size: 11pt">FORMULIR BERLANGGANAN <br> Jasa Telekomunikasi ICON+</p></td>
-            </tr>    
-        </table> 
+                <td>
+                    <p style="color: white;text-align: center;font-size: 11pt">FORMULIR BERLANGGANAN <br> Jasa
+                        Telekomunikasi ICON+</p>
+                </td>
+            </tr>
+        </table>
         <!-- 3 -->
         <div style="font-size:11pt; padding-bottom: 20px; padding-top: 5px">
             <table border="0" style="width: 100%">
@@ -27,7 +33,7 @@
                     <td style="width: 1%">:</td>
                     <td colspan="2" style="padding-left: 15px; width: 68%"></td>
                 </tr>
-                <tr >
+                <tr>
                     <td>TANGGAL</td>
                     <td>:</td>
                     @foreach($customer as $c)
@@ -39,8 +45,10 @@
         <!-- 4 -->
         <table style="width: 100%; " bgcolor="black">
             <tr>
-                <td><p style="color: white;text-align: center; font-size: 11pt">INFORMASI PERUSAHAAN</p></td>
-            </tr>    
+                <td>
+                    <p style="color: white;text-align: center; font-size: 11pt">INFORMASI PERUSAHAAN</p>
+                </td>
+            </tr>
         </table>
         <!-- 5 -->
         <div style="font-size:11pt;padding-bottom: 20px; padding-top: 5px">
@@ -77,14 +85,16 @@
                     <td>ALAMAT</td>
                     <td>:</td>
                     @foreach($customer as $c)
-                    <td colspan="2" style="padding-left: 15px; width: 68%;">{{$c->alamat_kantor}}, {{ucfirst(strtolower($c->desa))}}, </td>
+                    <td colspan="2" style="padding-left: 15px; width: 68%;">{{$c->alamat_kantor}},
+                        {{ucfirst(strtolower($c->desa))}}, </td>
                     @endforeach
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     @foreach($customer as $c)
-                    <td style="padding-left: 15px;">{{ucfirst(strtolower($c->kecamatan))}}, {{ucfirst(strtolower($c->kota))}}, <br> {{ucfirst(strtolower($c->provinsi))}}</td>
+                    <td style="padding-left: 15px;">{{ucfirst(strtolower($c->kecamatan))}},
+                        {{ucfirst(strtolower($c->kota))}}, <br> {{ucfirst(strtolower($c->provinsi))}}</td>
                     <td style="float: right;"><br> KODEPOS : {{$c->kode_pos}}</td>
                     @endforeach
                 </tr>
@@ -121,8 +131,10 @@
         <!-- 6 -->
         <table style="width: 100%; " bgcolor="black">
             <tr>
-                <td><p style="color: white;text-align: center; font-size: 11pt">PENANGGUNG JAWAB PERUSAHAAN</p></td>
-            </tr>    
+                <td>
+                    <p style="color: white;text-align: center; font-size: 11pt">PENANGGUNG JAWAB PERUSAHAAN</p>
+                </td>
+            </tr>
         </table>
         <!-- 7 -->
         <div style="font-size:11pt;padding-bottom: 20px; padding-top: 5px">
@@ -138,7 +150,8 @@
                     <td>TEMPAT, TGL LAHIR</td>
                     <td>:</td>
                     @foreach($customer as $c)
-                    <td colspan="2" style="padding-left: 15px; width: 68%">{{$c->tempat_lahir}},{{Date::parse($c->tgl_lahir)->format('d F Y')}}</td>
+                    <td colspan="2" style="padding-left: 15px; width: 68%">
+                        {{$c->tempat_lahir}},{{Date::parse($c->tgl_lahir)->format('d F Y')}}</td>
                     @endforeach
                 </tr>
                 <tr>
@@ -179,8 +192,10 @@
         <!-- 8 -->
         <table style="width: 100%;page-break-before:  always;" bgcolor="black">
             <tr>
-                <td><p style="color: white;text-align: center;font-size: 11pt;">PENANGGUNG JAWAB KEUANGAN</p></td>
-            </tr>    
+                <td>
+                    <p style="color: white;text-align: center;font-size: 11pt;">PENANGGUNG JAWAB KEUANGAN</p>
+                </td>
+            </tr>
         </table>
         <!-- 9 -->
         <div style="font-size:11pt;padding-bottom: 20px; padding-top: 5px">
@@ -225,8 +240,10 @@
         <!-- 10 -->
         <table style="width: 100%; " bgcolor="black">
             <tr>
-                <td><p style="color: white;text-align: center; font-size: 11pt">PENANGGUNG JAWAB TEKNIS</p></td>
-            </tr>    
+                <td>
+                    <p style="color: white;text-align: center; font-size: 11pt">PENANGGUNG JAWAB TEKNIS</p>
+                </td>
+            </tr>
         </table>
         <!-- 11 -->
         <div style="font-size:11pt;padding-bottom: 20px; padding-top: 5px">
@@ -270,7 +287,12 @@
         </div>
         <!-- 12 -->
         <div style="font-size:11pt;padding-bottom: 20px; padding-top: 5px; ">
-            Dengan ini kami menyatakan bahwa data-data dan informasi yang kami berikan di atas adalah benar adanya. Kami telah memahami ketentuan dan syarat-syarat berlangganan Jasa Telekomunikasi berikut lampiran-lampirannya yang merupakan satu kesatuan yang tak terpisah dengan Formulir Berlangganan ini. Dengan menandatangani Formulir Berlangganan ini maka dengan ini pula kami menyatakan menerima dan menyetujui pemberlakukan Ketentuan Berlangganan Jasa Telekomunikasi dimaksud terhadap kepelangganan ini tanpa kecuali.
+            Dengan ini kami menyatakan bahwa data-data dan informasi yang kami berikan di atas adalah benar adanya. Kami
+            telah memahami ketentuan dan syarat-syarat berlangganan Jasa Telekomunikasi berikut lampiran-lampirannya
+            yang
+            merupakan satu kesatuan yang tak terpisah dengan Formulir Berlangganan ini. Dengan menandatangani Formulir
+            Berlangganan ini maka dengan ini pula kami menyatakan menerima dan menyetujui pemberlakukan Ketentuan
+            Berlangganan Jasa Telekomunikasi dimaksud terhadap kepelangganan ini tanpa kecuali.
         </div>
         <!-- 13 -->
         <table style="width: 100%; border-collapse: collapse;font-size:10pt " border="1">
@@ -281,14 +303,15 @@
                 <td style="padding-left: 10pt; padding-bottom: 15pt; padding-top: 15pt ">Tanda Tangan / Signature :</td>
             </tr>
             <tr>
-            @foreach($customer as $c)
-                <td style="padding-left: 10pt">Manager Penjualan dan Pemasaran : Wahyu Toni Hermawan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Tanggal  :{{Date::parse($c->tgl_hari_ini)->format('d F Y')}}</td>
+                @foreach($customer as $c)
+                <td style="padding-left: 10pt">Manager Penjualan dan Pemasaran : Wahyu Toni Hermawan
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Tanggal :{{Date::parse($c->tgl_hari_ini)->format('d F Y')}}</td>
                 @endforeach
             </tr>
             <tr>
                 <td style="padding-left: 10pt">Kelengkapan Dokumen<br>
-                    <table >
+                    <table>
                         <tr>
                             <td style="padding-right: 10pt">
                                 <div style="width: 40px; height: 20px; border: 1px solid green;"></div>
@@ -301,7 +324,7 @@
                             </td>
                             <td style="padding-left: 25pt">NPWP</td>
                         </tr>
-                        <tr >
+                        <tr>
                             <td style="padding-right: 10pt">
                                 <div style="width: 40px; height: 20px; border: 1px solid green;"></div>
                             </td>
@@ -365,7 +388,9 @@
                 @endforeach
             </tr>
         </table>
-        
+
 
     </div>
     <!-- end of tampilan 80% -->
+
+</div>

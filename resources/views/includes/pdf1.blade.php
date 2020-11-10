@@ -36,11 +36,8 @@ function terbilang($nilai) {
 ?>
 
 <div class="content">
-    <div style="float: right; color: grey; font-size: 8pt;margin-top: -15px; margin-bottom: 200px">Lampiran 1
+    <div style="float: right; color: grey; font-size: 8pt;margin-top: -50px; ">Lampiran 1
     </div>
-    <br>
-    <br>
-
     <div>
         <center>
             <h3 class="judul" style="font-size: 10pt;margin-left:20px;margin-bottom:-7px;">

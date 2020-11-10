@@ -30,4 +30,13 @@ class PDFController extends Controller
 
         return $pdf->setPaper('A4')->stream('FORMULIR BERLANGGAN', array("Attachment"=>false));
     }
+
+    public function show($id){
+        $customer = Customer::where('id',$id)->get();
+        return view('admin.show.show',compact('customer'));
+    }
+    public function show_old($id){
+        $customer = Customer::where('id',$id)->get();
+        return view('admin.show.show_old',compact('customer'));
+    }
 }

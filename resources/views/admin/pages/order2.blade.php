@@ -16,11 +16,9 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nama Customer</th>
+                                    <th>Nama Instansi</th>
                                     <th>Tipe</th>
                                     <th>Tanggal Pemesanan</th>
-                                    <th>Layanan Lama</th>
-                                    <th>Layanan Baru</th>
                                     <th>Print</th>
                                     <th>Action</th>
                                 </tr>
@@ -36,23 +34,17 @@
                                     <td>{{Date::parse($orderlist->tgl_hari_ini)->format('l, d F Y')}}
                                     </td>
                                     <td>
-                                        @foreach($orderlist->oldorder as $item)
-                                        {{$item->nama_product}},
-                                        @endforeach
-                                    </td>
-                                    <td>
-                                        @foreach($orderlist->order as $item)
-                                        {{$item->nama_product}},
-                                        @endforeach
-                                    </td>
-                                    <td>
-                                    <a href="/Admin/pdf/old/{{$orderlist->id}}" class="btn btn-warning btn-sm"><i
+                                    <a href="/Admin/pdf/old/{{$orderlist->id}}" class="btn btn-outline-success btn-sm"><i
                                                 class="fa fa-download"></i> BAKBB
                                             </a>
-                                        <a href="/Admin/pdf/fb/{{$orderlist->id}}" class="btn btn-primary btn-sm"><i
+                                        <a href="/Admin/pdf/fb/{{$orderlist->id}}" class="btn btn-outline-primary btn-sm"><i
                                                 class="fa fa-download"></i> FB</a>
                                     </td>
                                     <td>
+                                        <a href="/Admin/dashboard/order/show_old/{{ $orderlist->id }}" type="button"
+                                            class="btn btn-warning btn-sm">
+                                            <i class="fa fa-eye"></i> Show
+                                        </a>
                                         <a href="/Admin/dashboard/order/delete/{{ $orderlist->id }}" type="button"
                                             class="btn btn-danger btn-sm">
                                             <i class="fa fa-trash"></i> Delete

@@ -39,11 +39,11 @@
         <div class="col-md-auto" style="margin-top:10px;">
             <div id="myDIV" style="display:none;">
                 <div id="tag1"
-                style="height: 100%;width: 800px;margin-left: auto;margin-right: auto;background-color: white;box-shadow: 3px 5px 3px 5px #a3a3a3;margin-top: 20px;">
+                style="padding:5%;height: 100%;width: 800px;margin-left: auto;margin-right: auto;background-color: white;box-shadow: 3px 5px 3px 5px #a3a3a3;margin-top: 20px;">
                 @include('includes.pdf1')
                 </div>
                 <div id="tag1"
-                style="height: 100%;width: 800px;margin-left: auto;margin-right: auto;background-color: white;box-shadow: 3px 5px 3px 5px #a3a3a3;margin-top: 20px;">
+                style="padding:5%;height: 100%;width: 800px;margin-left: auto;margin-right: auto;background-color: white;box-shadow: 3px 5px 3px 5px #a3a3a3;margin-top: 20px;">
                 @include('includes.pdf3')
                 </div>
 
@@ -53,9 +53,11 @@
     <?php $id = 1 ?>
     <div class="row align-items-center justify-content-md-center">
         <div class="col-md-auto" style="margin-top:100px;">
-            <a id="edit" data-id="" onClick="edit()" class="btn btn-primary btn-lg float-left"
+        @foreach($customer as $c_new)
+            <a id="edit" data-id="{{ $c_new->id }}" onClick="edit()" class="btn btn-primary btn-lg float-left"
                 style="margin:5px;visibility:hidden;"><i class="fa fa-edit"></i> Edit
             </a>
+        @endforeach
         </div>
         <div class="col-md-auto" style="margin-top:100px;">
             <a id="done" href="/users/thankyou" class="btn btn-success btn-lg float-left"
