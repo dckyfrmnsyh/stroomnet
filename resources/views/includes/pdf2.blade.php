@@ -71,7 +71,7 @@ function terbilang($nilai) {
         <td></td>
     </tr>
     <tr>
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No. Perjanjian PIHAK PERTAMA</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No. Perjanjian PIHAK KEDUA</td>
         <td>:</td>
         <td></td>
     </tr>
@@ -268,10 +268,7 @@ function terbilang($nilai) {
 
 </table>
 <div style="font-size: 8pt">
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        Bahwa PIHAK KEDUA sepakat untuk menggunakan layanan dari PIHAK PERTAMA, sesuai dengan ketentuan di bawah
-        ini:
-        <br>
+    <p>
         <table style="justify-content: right;width: 95%" border="0">
             <tr>
                 <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Syarat dan Kondisi:</b><br></td>
@@ -313,7 +310,7 @@ function terbilang($nilai) {
 
     </p>
 </div>
-<table style="text-align:center;margin-left:10px; width: 100%; font-size: 9pt">
+<table style="width: 100%; font-size: 9pt">
     <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>

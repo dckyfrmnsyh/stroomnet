@@ -54,7 +54,7 @@
 		return $hasil;
 	}
 	
-	?>
+?>
 
     <div class="content">
         <div style="float: right; color: grey; font-size: 8pt;margin-top: -15px; margin-bottom: 200px">Lampiran 1
