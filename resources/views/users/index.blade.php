@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layanan Stroomnet</title>
+    <title>ICON+</title>
+
+    <link rel="apple-touch-icon" href="{{asset('./images/a.png/')}}">
+    <link rel="shortcut icon" href="{{asset('./images/a.png/')}}">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

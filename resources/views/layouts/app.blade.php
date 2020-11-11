@@ -8,7 +8,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>ICON+</title>
+
+    <link rel="apple-touch-icon" href="{{asset('./images/a.png/')}}">
+    <link rel="shortcut icon" href="{{asset('./images/a.png/')}}">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

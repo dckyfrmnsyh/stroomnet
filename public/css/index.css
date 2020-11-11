@@ -262,6 +262,7 @@ footer .bawah{
     .nav-link{
         color: #fff !important;
         text-align: center;
+        text-shadow: 1px 1px black;
     }
     #intro .intro_text h2 {
         font-size: 55px;
