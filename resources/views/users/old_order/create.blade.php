@@ -31,9 +31,9 @@
                                             <div class="form-group row">
                                                 <label class="col-md-5 col-form-label">Originating</label>
                                                 <div class="col-md-6">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="" id="originating"
-                                                        name="originating" required><small class="form-text text-muted">*jika
+                                                    <input type="text" class="form-control" placeholder=""
+                                                        id="originating" name="originating" required><small
+                                                        class="form-text text-muted">*jika
                                                         kosong isi (-)</small>
                                                 </div>
                                             </div>
@@ -41,9 +41,8 @@
                                             <div class="form-group row">
                                                 <label class="col-md-5 col-form-label">Terminating</label>
                                                 <div class="col-md-6">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="" id="terminating"
-                                                        name="terminating" required>
+                                                    <input type="text" class="form-control" placeholder=""
+                                                        id="terminating" name="terminating" required>
                                                     <small class="form-text text-muted">*jika kosong isi (-)</small>
                                                 </div>
                                             </div>
@@ -58,19 +57,19 @@
 
                                             </div>
 
-                                           <div class="form-group row">
+                                            <div class="form-group row">
                                                 <label class="col-md-5 col-form-label">Kapasitas</label>
                                                 <div class="col-md-3 ">
                                                     <input type="number" class="form-control" placeholder=""
                                                         id="kapasitas" name="kapasitas" required>
-                                                    <small class="form-text text-muted">Ex. 1 Gbps</small>
+                                                    <small class="form-text text-muted">Ex. 1 Gbps/ 2 Unit</small>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <select name="satuan_kapasitas" class="form-control">
                                                         <option value="Mbps">Mbps</option>
                                                         <option value="Gbps">Gbps</option>
+                                                        <option value="Unit">Unit</option>
                                                     </select>
-                                                    
                                                 </div>
                                             </div>
 
@@ -118,9 +117,9 @@
                                             <div class="form-group row">
                                                 <label class="col-md-5 col-form-label">Originating</label>
                                                 <div class="col-md-6">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="" id="originating"
-                                                        name="originating" required><small class="form-text text-muted">*jika
+                                                    <input type="text" class="form-control" placeholder=""
+                                                        id="originating" name="originating" required><small
+                                                        class="form-text text-muted">*jika
                                                         kosong isi (-)</small>
                                                 </div>
                                             </div>
@@ -128,9 +127,8 @@
                                             <div class="form-group row">
                                                 <label class="col-md-5 col-form-label">Terminating</label>
                                                 <div class="col-md-6">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="" id="terminating"
-                                                        name="terminating" required>
+                                                    <input type="text" class="form-control" placeholder=""
+                                                        id="terminating" name="terminating" required>
                                                     <small class="form-text text-muted">*jika kosong isi (-)</small>
                                                 </div>
                                             </div>
@@ -150,14 +148,14 @@
                                                 <div class="col-md-3 ">
                                                     <input type="number" class="form-control" placeholder=""
                                                         id="kapasitas" name="kapasitas" required>
-                                                    <small class="form-text text-muted">Ex. 1 Gbps</small>
+                                                    <small class="form-text text-muted">Ex. 1 Gbps/ 2 Unit</small>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <select name="satuan_kapasitas" class="form-control">
                                                         <option value="Mbps">Mbps</option>
                                                         <option value="Gbps">Gbps</option>
+                                                        <option value="Unit">Unit</option>
                                                     </select>
-                                                    
                                                 </div>
                                             </div>
 
@@ -297,24 +295,24 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card"  style="text-align:center;">
+                <div class="card" style="text-align:center;">
                     <div class="card-header">
                         <h2>Tambah Tanggal Penagihan</h2>
                     </div>
                     <form action="{{ route('penagihan.store') }}" method="post">
                         {{ csrf_field() }}
-                        <div class="card-body"> 
+                        <div class="card-body">
                             <div class="form-group row">
                                 <div class="col-md">
-                                    <input type="date" class="form-control" id="tgl_penagihan"
-                                        name="tgl_penagihan" required>
+                                    <input type="date" class="form-control" id="tgl_penagihan" name="tgl_penagihan"
+                                        required>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
-                    </form> 
+                    </form>
                 </div>
             </div>
         </div>

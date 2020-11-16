@@ -61,14 +61,14 @@
                                                 <div class="col-md-3 ">
                                                     <input type="number" class="form-control" placeholder=""
                                                         id="kapasitas" name="kapasitas" required>
-                                                    <small class="form-text text-muted">Ex. 1 Gbps</small>
+                                                    <small class="form-text text-muted">Ex. 1 Gbps/ 2 Unit</small>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <select name="satuan_kapasitas" class="form-control">
                                                         <option value="Mbps">Mbps</option>
                                                         <option value="Gbps">Gbps</option>
+                                                        <option value="Unit">Unit</option>
                                                     </select>
-                                                    
                                                 </div>
                                             </div>
 
