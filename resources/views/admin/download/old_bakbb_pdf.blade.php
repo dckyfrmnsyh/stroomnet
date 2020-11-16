@@ -116,7 +116,7 @@
         </p>
         @endforeach
         <table style="font-size: 8pt">
-            <tr>
+        <tr>
                 <td style="padding-right: 20pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PIHAK PERTAMA</b></td>
                 <td style="padding-right: 13pt;padding-left: 7pt;">:</td>
                 <td><b>PT INDONESIA COMNETS PLUS</b></td>
@@ -134,13 +134,13 @@
             <tr>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Alamat Kantor</td>
                 <td style="padding-left: 7pt;">:</td>
-                <td>Gedung PLN Jalan KH. Abdul Rochim No.1 Kuningan Barat, Mampang Jakarta Selatan 12710</td>
+                <td>Jl. Ketintang Baru 1 No. 1-3 Surabaya 60231</td>
             </tr>
             <tr>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nomor Telepon & Faksimile
                 </td>
                 <td style="padding-left: 7pt;">:</td>
-                <td>Telp (021) 5253019, Fax(021) 5253659</td>
+                <td>Telp (031) 827 3399 / 827 0033, Fax(031) 828 6611</td>
             </tr>
             <tr>
                 <td style="padding-right: 50pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PIHAK KEDUA</b></td>
@@ -282,7 +282,9 @@
                 <td>&nbsp;</td>
                 <td colspan="3"><b>Tanggal Mulai Penagihan </b></td>
                 <td>&nbsp;</td>
-                <td colspan="3" style="text-align: center;"><b>Sesuai Berita Acara Aktivasi</b></td>
+                @foreach($customer as $c)
+                <td colspan="3" style="text-align: center;"><b>{{$c->tgl_penagihan}}</b></td>
+                @endforeach
             </tr>
             <tr>
                 <td>&nbsp;</td>

@@ -19,9 +19,9 @@
             <center>
                 <b style="font-size: 14pt">PT. INDONESIA COMNETS PLUS</b><br>
                 <p style="font-size: 11pt">
-                    Gedung PLN Jl. KH Abdul Rochim Kuningan Barat 1 Mampang Prapatan Jakarta Selatan<br>
-                    Telp : +62 -21 - 525 3019, Fax. 62-21-525 3659</p>
-            </center>    
+                    Jl. Ketintang Baru 1 No. 1-3 Surabaya 60231<br>
+                    Telp : (031) 827 3399 / 827 0033, Fax. (031) 828 6611</p>
+            </center> 
         </div>
         <!-- 2 -->
         <table style="width: 100%; " bgcolor="black">
