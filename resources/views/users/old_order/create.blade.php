@@ -306,7 +306,7 @@
                         <div class="card-body"> 
                             <div class="form-group row">
                                 <div class="col-md">
-                                    <input type="number" class="form-control" id="tgl_penagihan"
+                                    <input type="date" class="form-control" id="tgl_penagihan"
                                         name="tgl_penagihan" required>
                                 </div>
                             </div>
