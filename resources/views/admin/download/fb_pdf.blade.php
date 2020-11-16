@@ -9,7 +9,7 @@
 </head>
 <body style="font-family: Calibri; background-color: white;">
     <div>
-        <img src="./images/a.png" style="float: right; width: 15%;margin-top:-15px;padding-right:30px;">
+        <img src="{{asset('images/a.png')}}" style="float: right; width: 15%;margin-top:-15px;padding-right:30px;">
     </div>
     <br><br><br><br><br><br><br>
     <!-- tampilan 80% -->

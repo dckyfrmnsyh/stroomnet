@@ -19,7 +19,7 @@
     <div class="row align-items-center justify-content-md-center">
     @foreach($customer as $c)
         <div class="col-md-auto">
-            <a href="/users/download/oldBAKBB/{{$c->id}}" class="btn btn-warning btn-lg float-left"
+            <a href="/users/download/oldBAKBB/{{$c->id}}" target="_blank" class="btn btn-warning btn-lg float-left"
                 style="margin:5px"><i class="fa fa-download"></i> Download BAKBB
             </a>
         </div>

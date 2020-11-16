@@ -36,10 +36,10 @@
                                     <td>{{Date::parse($new->tgl_hari_ini)->format('l, d F Y')}}
                                     </td>
                                     <td>
-                                        <a href="/Admin/pdf/new/{{$new->id}}" class="btn btn-outline-success btn-sm"><i
+                                        <a href="/Admin/pdf/new/{{$new->id}}" target="_blank" class="btn btn-outline-success btn-sm"><i
                                                 class="fa fa-download"></i> BAKBB
                                                 </a>
-                                        <a href="/Admin/pdf/fb/{{$new->id}}" class="btn btn-outline-primary btn-sm"><i
+                                        <a href="/Admin/pdf/fb/{{$new->id}}" target="_blank" class="btn btn-outline-primary btn-sm"><i
                                                 class="fa fa-download"></i> FB
                                                 </a>
                                     </td>

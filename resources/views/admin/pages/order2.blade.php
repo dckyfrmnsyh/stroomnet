@@ -34,10 +34,10 @@
                                     <td>{{Date::parse($orderlist->tgl_hari_ini)->format('l, d F Y')}}
                                     </td>
                                     <td>
-                                    <a href="/Admin/pdf/old/{{$orderlist->id}}" class="btn btn-outline-success btn-sm"><i
+                                    <a href="/Admin/pdf/old/{{$orderlist->id}}" target="_blank" class="btn btn-outline-success btn-sm"><i
                                                 class="fa fa-download"></i> BAKBB
                                             </a>
-                                        <a href="/Admin/pdf/fb/{{$orderlist->id}}" class="btn btn-outline-primary btn-sm"><i
+                                        <a href="/Admin/pdf/fb/{{$orderlist->id}}" target="_blank" class="btn btn-outline-primary btn-sm"><i
                                                 class="fa fa-download"></i> FB</a>
                                     </td>
                                     <td>

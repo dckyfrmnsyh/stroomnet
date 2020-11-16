@@ -4,7 +4,7 @@ html{
 }
 
 .navbar-fixed-top.scrolled {
-    background-color: #db7c26 !important;
+    background: linear-gradient(45deg, #f39c12c7, #ea7700) !important;
     transition: background-color 200ms linear;
     transition: 0.5s;
 }
@@ -209,7 +209,7 @@ footer .bawah{
     }
 
     .navbar-fixed-top{
-        background-color: #db7c26 !important;
+        background: linear-gradient(45deg, #f39c12c7, #ea7700) !important;
     }
 
     .nav-link{

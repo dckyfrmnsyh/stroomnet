@@ -34,10 +34,10 @@
                                     <td>{{Date::parse($relolist->tgl_hari_ini)->format('l, d F Y')}}
                                     </td>
                                     <td>
-                                        <a href="/Admin/pdf/old/{{$relolist->id}}" class="btn btn-outline-success btn-sm"><i
+                                        <a href="/Admin/pdf/old/{{$relolist->id}}" target="_blank" class="btn btn-outline-success btn-sm"><i
                                                 class="fa fa-download"></i>
                                             BAKBB</a>
-                                        <a href="/Admin/pdf/fb/{{$relolist->id}}" class="btn btn-outline-primary btn-sm"><i
+                                        <a href="/Admin/pdf/fb/{{$relolist->id}}" target="_blank" class="btn btn-outline-primary btn-sm"><i
                                                 class="fa fa-download"></i> FB</a>
                                     </td>
                                     <td>

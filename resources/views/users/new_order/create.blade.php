@@ -166,7 +166,7 @@
                             <div class="form-group row">
                                 <div class="col-md">
                                     <input type="date" class="form-control" id="tgl_penagihan"
-                                        name="tgl_penagihan" required>
+                                        name="tgl_penagihan" value="{{ old('tgl_penagihan') ? old('tgl_penagihan') : $customer->tgl_penagihan }}" required>
                                 </div>
                             </div>
                         </div>

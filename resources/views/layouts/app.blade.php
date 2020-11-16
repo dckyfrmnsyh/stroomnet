@@ -38,10 +38,12 @@
 
     </script>
 
-    <style type="text/css">
+    <style type="text/css"> 
         .navbar {
-            background-color: #db7c26 !important;
+            
+            background: linear-gradient(45deg, #f39c12c7, #ea7700) !important;
             transition: background-color 200ms linear;
+
         }
 
         footer .bawah{
@@ -153,6 +155,10 @@
             justify-content: center;
             font-size: 48px;
         }
+        body {
+            background: url(/../../images/Untitled-1.jpg);
+        }
+        
 
     </style>
 </head>
@@ -200,6 +206,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script>
         function konfirmasi() {
@@ -430,6 +437,11 @@
                         console.log(id);
                         console.log(data);
                         $('#regencies').empty();
+                        $('#districts').empty();
+                        $('#villages').empty();
+                        $('#regencies').append(new Option("Select Kab/Kota", ""));
+                        $('#districts').append(new Option("Select Kecamatan", ""));
+                        $('#villages').append(new Option("Select Desa", ""));
                         $.each(data, function (index, element) {
                             $('#regencies').append(new Option(element.name, element.id));
                         });
@@ -442,6 +454,9 @@
                         console.log(id);
                         console.log(data);
                         $('#districts').empty();
+                        $('#districts').append(new Option("Select Kecamatan", ""));
+                        $('#villages').empty();
+                        $('#villages').append(new Option("Select Desa", ""));
                         $.each(data, function (index, element) {
                             $('#districts').append(new Option(element.name, element.id));
                         });
@@ -454,6 +469,7 @@
                         console.log(id);
                         console.log(data);
                         $('#villages').empty();
+                        $('#villages').append(new Option("Select Desa", ""));
                         $.each(data, function (index, element) {
                             $('#villages').append(new Option(element.name, element.id));
                         });
