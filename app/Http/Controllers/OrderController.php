@@ -149,4 +149,13 @@ class OrderController extends Controller
         $order->delete();
         return redirect()->route('order.old_create');
     }
+
+    public function addpenagihan(Request $request){
+        $customer_id = Session::get('customer_id');
+        $customer = Customer::where('id',$customer_id)->first();
+        $customer->tgl_penagihan = $request->tgl_penagihan;
+        $customer->save();
+        return redirect()->back();
+    }
+
 }

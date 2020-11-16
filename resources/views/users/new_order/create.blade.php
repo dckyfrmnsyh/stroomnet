@@ -3,7 +3,7 @@
 <section class="about" id="tambah_pelanggan_form">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">
                         <h1 class="text-center">TAMBAH ORDER <br> {{$customer->nama_customer}} </h1>
@@ -31,7 +31,7 @@
                                                 <div class="col-md-6">
                                                     <input type="text" class="form-control"
                                                         placeholder="" id="originating"
-                                                        name="originating"><small class="form-text text-muted">*jika
+                                                        name="originating" required><small class="form-text text-muted">*jika
                                                         kosong isi (-)</small>
                                                 </div>
                                             </div>
@@ -41,7 +41,7 @@
                                                 <div class="col-md-6">
                                                     <input type="text" class="form-control"
                                                         placeholder="" id="terminating"
-                                                        name="terminating">
+                                                        name="terminating" required>
                                                     <small class="form-text text-muted">*jika kosong isi (-)</small>
                                                 </div>
                                             </div>
@@ -50,8 +50,8 @@
                                                 <label class="col-md-5 col-form-label">Jenis Layanan</label>
                                                 <div class="col-md-6">
                                                     <input type="text" class="form-control" id="nama_product"
-                                                        name="nama_product">
-                                                    <small class="form-text text-muted">*jika kosong isi (-)</small>
+                                                        name="nama_product" required>
+                                                    <small class="form-text text-muted" >*jika kosong isi (-)</small>
                                                 </div>
 
                                             </div>
@@ -60,7 +60,7 @@
                                                 <label class="col-md-5 col-form-label">Kapasitas</label>
                                                 <div class="col-md-3 ">
                                                     <input type="number" class="form-control" placeholder=""
-                                                        id="kapasitas" name="kapasitas">
+                                                        id="kapasitas" name="kapasitas" required>
                                                     <small class="form-text text-muted">Ex. 1 Gbps</small>
                                                 </div>
                                                 <div class="col-md-3">
@@ -77,8 +77,8 @@
                                                     Berlangganan</label>
                                                 <div class="col-md-6">
                                                     <input type="number" class="form-control" id="biaya_langganan"
-                                                        name="biaya_langganan">
-                                                    <small class="form-text text-muted">Ex. 1000000 (Hanya Diisi
+                                                        name="biaya_langganan" required>
+                                                    <small class="form-text text-muted" >Ex. 1000000 (Hanya Diisi
                                                         Angka)</small>
                                                 </div>
                                             </div>
@@ -88,7 +88,7 @@
                                                     Instalasi</label>
                                                 <div class="col-md-6">
                                                     <input type="number" class="form-control" id="biaya_instalasi"
-                                                        name="biaya_instalasi">
+                                                        name="biaya_instalasi" required>
                                                     <small class="form-text text-muted">Ex. 1000000 (Hanya Diisi
                                                         Angka)</small>
                                                 </div>
@@ -155,5 +155,28 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="card"  style="text-align:center;">
+                    <div class="card-header">
+                        <h2>Tambah Tanggal Penagihan</h2>
+                    </div>
+                    <form action="{{ route('penagihan.store') }}" method="post">
+                        {{ csrf_field() }}
+                        <div class="card-body"> 
+                            <div class="form-group row">
+                                <div class="col-md">
+                                    <input type="number" class="form-control" id="tgl_penagihan"
+                                        name="tgl_penagihan" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 @endsection

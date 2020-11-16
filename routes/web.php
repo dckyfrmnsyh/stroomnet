@@ -33,6 +33,8 @@ Auth::routes(['register' => true]);
     // *delete data
     Route::get('/users/data/delete/{id}', 'UserController@delete');
 
+    Route::post('/users/penagihanstore', 'OrderController@addpenagihan')->name('penagihan.store');
+
 
 // ##route Admin## //
     // *index
