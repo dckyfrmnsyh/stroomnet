@@ -561,7 +561,7 @@ class ComposerStaticInitf33e6736c090232d57fea1d57123ea95
         'App\\Http\\Controllers\\CustomerController' => __DIR__ . '/../..' . '/app/Http/Controllers/CustomerController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\OrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrderController.php',
-        'App\\Http\\Controllers\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductController.php',
+        'App\\Http\\Controllers\\PDFController' => __DIR__ . '/../..' . '/app/Http/Controllers/PDFController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
