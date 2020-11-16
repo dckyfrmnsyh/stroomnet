@@ -95,20 +95,20 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-3">
                         <h4>Alamat</h4>
-                        <p><i class="fa fa-map-marker"></i> Ketintang Baru No.104 Surabaya Jawa Timur Indonesia</p>
+                        <p><i class="fa fa-map-marker"></i> Kantor SBU Regional Surabaya PLN PIKITRING Jl. Ketintang Baru 1 NO.1-3 Surabaya 60231</p>
                     </div>
                     <div class="col-lg-2">
 
                     </div>
                     <div class="col-lg-3">
                         <h4>Telepon</h4>
-                        <p><i class="fa fa-phone"></i> Kantor: 123456789<br>
-                            Fax : (021)3456789</p>
+                        <p><i class="fa fa-phone"></i> Kantor: (031)827-3399<br>
+                            Fax : (031)828-6611</p>
                     </div>
                     <div class="col-lg-1"></div>
                     <div class="col-lg-3">
                         <h4>Email</h4>
-                        <p ><i class="fa fa-envelope"></i> iconplus@gmail.co.id</p>
+                        <p ><i class="fa fa-envelope"></i> hendy.rubiyanto@iconpln.co.id</p>
                     </div>
                 </div>
             </div>
