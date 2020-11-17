@@ -286,11 +286,13 @@
                         <!-- end of tampilan -->
                     </div>
                     <div class="card-footer">
-                        <div class="" style="float: right;">
-                            <a class="btn btn-primary" type="button" id="button_next"
-                                onclick="konfirmasi1()">Selanjutnya</a>
-
-                        </div>
+                    @if(Session::has('div'))
+                        <?php
+                            if((Session::get('div')) == 1 ){
+                                echo'<div class="" style="float: right;"><a class="btn btn-primary" type="button" id="button_next"onclick="konfirmasi1()">Selanjutnya</a></div>';
+                            }
+                        ?>
+                    @endif
                     </div>
                 </div>
             </div>
@@ -315,23 +317,31 @@
                             </div>
 
                             <div class="form-group row justify-content-center">
-                                <label>Tanggal Mulai Penagihan</label>
-                                <div>
-                                    <select class="form-control col-md" name="">
-                                        <option value="Tanggal">tanggal</option>
-                                        <option value="text">text</option>
+                                <div class="col-md-12">
+                                    <label>Tanggal Mulai Penagihan</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <select class="form-control" id="opsi_tanggal" name="opsi_tanggal">
+                                        <option value="">Select option</option>
+                                        <option value="Tanggal">Tanggal</option>
+                                        <option value="Text">Text</option>
                                     </select>    
                                     <br>
                                 </div>
                                 
-                                <div class="col-md ">
+                                <div class="col-md " style="visibility:hidden;" id="col1">
                                     <input type="date" class="form-control" id="tgl_penagihan"
                                         name="tgl_penagihan" value="{{ old('tgl_penagihan') ? old('tgl_penagihan') : $customer->tgl_penagihan }}" required>
+                                </div>
+                                <div class="col-md" style="visibility:hidden;" id="col2">
+                                    <input type="text" class="form-control" id="tgl_penagihan1"
+                                        name="tgl_penagihan" value="{{ old('tgl_penagihan') ? old('tgl_penagihan') : $customer->tgl_penagihan }}"
+                                         required>
                                 </div>
                             </div>
                         </div>                        
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="submit" onClick="goto()" class="btn btn-primary">Simpan</button>
                         </div>                        
                     </div>
                     <!-- end of tgl mulai penagihan -->

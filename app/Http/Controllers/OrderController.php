@@ -156,6 +156,7 @@ class OrderController extends Controller
         $customer->tgl_penagihan = $request->tgl_penagihan;
         $customer->jangka_waktu = $request->jangka_waktu;
         $customer->save();
+        $request->session()->put('div', 1);
         return redirect()->back();
     }
 

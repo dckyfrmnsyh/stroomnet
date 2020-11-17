@@ -147,11 +147,13 @@
                         <!-- end of tampilan -->
                     </div>
                     <div class="card-footer">
-                        <div class="" style="float: right;">
-                            <a class="btn btn-primary" type="button" id="button_next"
-                                onclick="konfirmasi()">Selanjutnya</a>
-
-                        </div>
+                    @if(Session::has('div'))
+                        <?php
+                            if((Session::get('div')) == 1 ){
+                                echo'<div class="" style="float: right;"><a class="btn btn-primary" type="button" id="button_next"onclick="konfirmasi1()">Selanjutnya</a></div>';
+                            }
+                        ?>
+                    @endif
                     </div>
                 </div>
             </div>

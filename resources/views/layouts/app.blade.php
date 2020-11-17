@@ -209,6 +209,30 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script>
+        $(document).ready(function () {
+            $('#opsi_tanggal').on('change', function (e) {
+                var val = e.target.value;
+                console.log(val);
+                if(val == "Text"){
+                    $('#col1').css("visibility", "hidden")
+                    $('#col2').css("visibility", "visible")
+                }
+                if(val == "Tanggal"){
+                    $('#col1').css("visibility", "visible")
+                    $('#col2').css("visibility", "hidden")
+                }
+            });
+        });
+    </script>
+    <script>
+
+        function goto() {
+            var txt1 = `<div class="" style="float: right;">
+                            <a class="btn btn-primary" type="button" id="button_next"
+                                onclick="konfirmasi1()">Selanjutnya</a>
+                        </div>`;
+            $(".wakwaw").append(txt1); 
+        }
         function konfirmasi() {
 
             Swal.fire({
