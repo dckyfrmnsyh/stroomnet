@@ -154,6 +154,7 @@ class OrderController extends Controller
         $customer_id = Session::get('customer_id');
         $customer = Customer::where('id',$customer_id)->first();
         $customer->tgl_penagihan = $request->tgl_penagihan;
+        $customer->jangka_waktu = $request->jangka_waktu;
         $customer->save();
         return redirect()->back();
     }

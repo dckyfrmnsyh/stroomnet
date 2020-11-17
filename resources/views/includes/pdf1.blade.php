@@ -189,7 +189,9 @@ function terbilang($nilai) {
             <td>&nbsp;</td>
             <td colspan="3"><b>Jangka Waktu Berlangganan : </b></td>
             <td>&nbsp;</td>
-            <td colspan="3" style="text-align: center;"><b>12 (dua belas) Bulan</b></td>
+            @foreach($customer as $c)
+                <td colspan="3" style="text-align: center;"><b>{{$c->jangka_waktu}} (<?php echo terbilang($c->jangka_waktu); ?>) Bulan</b></td>
+            @endforeach
         </tr>
         <tr>
             <td>&nbsp;</td>
