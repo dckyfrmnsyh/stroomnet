@@ -156,25 +156,47 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card"  style="text-align:center;">
-                    <div class="card-header">
-                        <h2>Tambah Tanggal Penagihan</h2>
-                    </div>
-                    <form action="{{ route('penagihan.store') }}" method="post">
+                <form action="{{ route('penagihan.store') }}" method="post">
                         {{ csrf_field() }}
-                        <div class="card-body"> 
-                            <div class="form-group row">
-                                <div class="col-md">
+                    <!-- tgl mulai penagihan -->
+                    <div class="card"  style="text-align:center;">
+                        <div class="card-header">
+                            <h4> <br> </h4>
+                        </div>
+                        <div class="card-body">
+                                <label>Jangka Waktu Berlangganan</label> 
+                            <div class="form-group row justify-content-center" >
+                                <div class="col-md-5">
+                                    <input type="number" class="form-control" id=""
+                                            name="jangka_waktu" value="{{ old('jangka_waktu') ? old('jangka_waktu') : $customer->jangka_waktu }}" required>
+                                </div>
+                                <div class="col-md-5">
+                                    <input class="form-control" type="text" name="" value="Bulan" disabled>
+                                </div>
+                            </div>
+
+                            <div class="form-group row justify-content-center">
+                                <label>Tanggal Mulai Penagihan</label>
+                                <div>
+                                    <select class="form-control col-md" name="">
+                                        <option value="Tanggal">tanggal</option>
+                                        <option value="text">text</option>
+                                    </select>    
+                                    <br>
+                                </div>
+                                
+                                <div class="col-md ">
                                     <input type="date" class="form-control" id="tgl_penagihan"
                                         name="tgl_penagihan" value="{{ old('tgl_penagihan') ? old('tgl_penagihan') : $customer->tgl_penagihan }}" required>
                                 </div>
                             </div>
-                        </div>
+                        </div>                        
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form> 
-                </div>
+                        </div>                        
+                    </div>
+                    <!-- end of tgl mulai penagihan -->
+                </form> 
             </div>
         </div>
     </div>

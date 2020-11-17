@@ -18,7 +18,7 @@ class CreateCustomersTable extends Migration
             $table->dateTime('tgl_hari_ini');
 
             //tipe
-            $table->enum('tipe', ['new', 'upgrade', 'downgrade', 'relokasi']); //new
+            $table->string('tipe'); //new
 
             //nama instansi
             $table->string('nama_customer');
