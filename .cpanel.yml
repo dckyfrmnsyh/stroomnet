@@ -2,7 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/sburegjatim/
-    - /bin/cp -r ./public/assets/* $DEPLOYPATH/public_html/customers/assets/
-    - /bin/cp ./public/images/* $DEPLOYPATH/public_html/customers/images/
-    - /bin/cp ./public/js/*.js $DEPLOYPATH/public_html/customers/js
-    - /bin/cp ./public/css/*.css $DEPLOYPATH/public_html/customers/css
+    - /bin/cp -r ./public/assets/* $DEPLOYPATH/public_html/monkpi
+    - /bin/cp ./public/images/* $DEPLOYPATH/public_html/monkpi
+    - /bin/cp ./public/js/*.js $DEPLOYPATH/public_html/monkpi
+    - /bin/cp ./public/css/*.css $DEPLOYPATH/public_html/monkpi
