@@ -285,7 +285,15 @@
                 <td colspan="3"><b>Tanggal Mulai Penagihan </b></td>
                 <td>&nbsp;</td>
                 @foreach($customer as $c)
-                <td colspan="3" style="text-align: center;"><b>{{$c->tgl_penagihan}}</b></td>
+                <td colspan="3" style="text-align: center;"><b> 
+                    <?php
+                    if($c->tgl_penagihan != "" ){
+                        echo Date::parse($c->tgl_penagihan)->format('d-m-Y');
+                        echo'<br>';
+                    }
+                    ?>
+                     {{$c->catatan_penagihan}} </b>
+                </td>
                 @endforeach
             </tr>
             <tr>

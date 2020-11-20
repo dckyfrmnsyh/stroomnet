@@ -147,13 +147,11 @@
                         <!-- end of tampilan -->
                     </div>
                     <div class="card-footer">
-                    @if(Session::has('div'))
-                        <?php
-                            if((Session::get('div')) == 1 ){
-                                echo'<div class="" style="float: right;"><a class="btn btn-primary" type="button" id="button_next"onclick="konfirmasi1()">Selanjutnya</a></div>';
-                            }
-                        ?>
-                    @endif
+                        <div class="" style="float: right;">
+                            <a class="btn btn-primary" type="button" id="button_next"
+                                onclick="konfirmasi()">Selanjutnya</a>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -179,17 +177,15 @@
 
                             <div class="form-group row justify-content-center">
                                 <label>Tanggal Mulai Penagihan</label>
-                                <div>
-                                    <select class="form-control col-md" name="">
-                                        <option value="Tanggal">tanggal</option>
-                                        <option value="text">text</option>
-                                    </select>    
-                                    <br>
-                                </div>
-                                
                                 <div class="col-md ">
                                     <input type="date" class="form-control" id="tgl_penagihan"
-                                        name="tgl_penagihan" value="{{ old('tgl_penagihan') ? old('tgl_penagihan') : $customer->tgl_penagihan }}" required>
+                                        name="tgl_penagihan" value="{{ old('tgl_penagihan') ? old('tgl_penagihan') : $customer->tgl_penagihan }}">
+                                        <br>
+                                </div>
+
+                                <div class="col-md">
+                                    <input placeholder="tambahkan catatan" type="text" name="catatan_penagihan" class="form-control" value="{{ old('catatan_penagihan') ? old('catatan_penagihan') : $customer->catatan_penagihan }}">
+                                    
                                 </div>
                             </div>
                         </div>                        
