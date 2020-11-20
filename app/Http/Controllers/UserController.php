@@ -43,7 +43,7 @@ class UserController extends Controller
     public function thankyou(Request $request)
     {
         $request->session()->forget('customer_id');
-        echo "<script>setTimeout(function(){ window.location.href = 'http://localhost:8000/'; }, 6000);</script>";
+        echo "<script>setTimeout(function(){ window.location.href = 'https://customer.sburegjatim.co.id/'; }, 6000);</script>";
         return view('users.thankyou');
     }
     public function delete($id)
