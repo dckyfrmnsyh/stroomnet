@@ -23,7 +23,7 @@
                                                             <option value="upgrade">Upgrade</option>
                                                             <option value="downgrade">Downgrade</option>
                                                             <option value="relokasi">Relokasi</option>
-                                                            <option value="layanan baru">Layanan Baru</option>
+                                                            <option value="layanan_baru">Layanan Baru</option>
                                                             <option value="perpanjangan">Perpanjangan</option>
                                                         </select>
                                                     </div>

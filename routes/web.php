@@ -41,10 +41,13 @@ Auth::routes(['register' => true]);
     Route::get('/Admin/dashboard', 'AdminController@index')->name('dashboard');
 
     // *orderadmin
-    Route::get('/Admin/dashboard/order/new', 'AdminController@order')->name('pages.order');
+    Route::get('/Admin/dashboard/order', 'AdminController@order')->name('pages.order');
+    Route::get('/Admin/dashboard/order/new', 'AdminController@order1')->name('pages.order1');
     Route::get('/Admin/dashboard/order/upgrade', 'AdminController@order2')->name('pages.order2');
     Route::get('/Admin/dashboard/order/downgrade', 'AdminController@order3')->name('pages.order3');
     Route::get('/Admin/dashboard/order/relokasi', 'AdminController@order4')->name('pages.order4');
+    Route::get('/Admin/dashboard/order/perpanjangan', 'AdminController@order5')->name('pages.order5');
+    Route::get('/Admin/dashboard/order/layanan_baru', 'AdminController@order6')->name('pages.order6');
     Route::get('/Admin/dashboard/order/delete/{id}', 'AdminController@delete_order');
 
     // *pdf

@@ -50,8 +50,18 @@ class AdminController extends Controller
     }
     public function order()
     {
+        $countnew = DB::table('customers')->where('tipe','=','new')->count();
+        $countup = DB::table('customers')->where('tipe','=','upgrade')->count();
+        $countdown = DB::table('customers')->where('tipe','=','downgrade')->count();
+        $countre = DB::table('customers')->where('tipe','=','relokasi')->count();
+        $countper = DB::table('customers')->where('tipe','=','perpanjangan')->count();
+        $countoldnew = DB::table('customers')->where('tipe','=','layanan_baru')->count();
+        return view('admin.pages.order',compact('countnew','countup','countdown','countre','countper','countoldnew'));
+    }
+    public function order1()
+    {
         $orderlist = Customer::where('tipe','=','new')->orderBy('tgl_hari_ini', 'DESC')->paginate(15);
-        return view('admin.pages.order',compact('orderlist'));
+        return view('admin.pages.order1',compact('orderlist'));
     }
     public function order2()
     {
@@ -67,6 +77,16 @@ class AdminController extends Controller
     {
         $relokasilist = Customer::where('tipe','=','relokasi')->orderBy('tgl_hari_ini', 'DESC')->paginate(15);
         return view('admin.pages.order4',compact('relokasilist'));
+    }
+    public function order5()
+    {
+        $perpanjanganlist = Customer::where('tipe','=','perpanjangan')->orderBy('tgl_hari_ini', 'DESC')->paginate(15);
+        return view('admin.pages.order5',compact('perpanjanganlist'));
+    }
+    public function order6()
+    {
+        $layanan_barulist = Customer::where('tipe','=','layanan_baru')->orderBy('tgl_hari_ini', 'DESC')->paginate(15);
+        return view('admin.pages.order6',compact('layanan_barulist'));
     }
     public function delete_order($id)
     {
