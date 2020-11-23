@@ -40,12 +40,15 @@ class AdminController extends Controller
         $total_client_upgrade = DB::table('customers')->where('tipe','=','upgrade')->count();
         $total_client_downgrade = DB::table('customers')->where('tipe','=','downgrade')->count();
         $total_client_relokasi = DB::table('customers')->where('tipe','=','relokasi')->count();
+        $total_client_per = DB::table('customers')->where('tipe','=','perpanjangan')->count();
+        $total_client_oldnew = DB::table('customers')->where('tipe','=','layanan_baru')->count();
+
         $tabel = Customer::orderBy('tgl_hari_ini', 'DESC')->paginate(10);
 
         $allOrder = Order::all();
         $allOldorder = Oldorder::all();
         return view('admin.index',compact('tabel','total_client','total_client_new',
-        'total_client_upgrade','total_client_downgrade','total_client_relokasi',
+        'total_client_upgrade','total_client_downgrade','total_client_relokasi','total_client_per','total_client_oldnew',
         'total_order','allOrder','allOldorder'));
     }
     public function order()

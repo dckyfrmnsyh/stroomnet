@@ -155,7 +155,7 @@
                     <div class="col-lg-6 col-xl-12">
                         <div class="card br-0">
                             <div class="card-body">
-                                <div class="chart-container ov-h">
+                                <div class="chart-container">
                                     <div id="flotPie1" class="float-chart"></div>
                                 </div>
                             </div>
@@ -180,46 +180,44 @@
         var piedata = [{
                 label: "Relokasi",
                 data: [
-                    [1, {
-                        {
-                            $total_client_relokasi
-                        }
-                    }]
+                    [1, {{$total_client_relokasi}}]
                 ],
                 color: '#5c6bc0'
             },
             {
                 label: "Upgrade",
                 data: [
-                    [1, {
-                        {
-                            $total_client_upgrade
-                        }
-                    }]
+                    [1, {{$total_client_upgrade}}]
                 ],
                 color: '#03a9f3'
             },
             {
                 label: "Downgrade",
                 data: [
-                    [1, {
-                        {
-                            $total_client_downgrade
-                        }
-                    }]
+                    [1, {{$total_client_downgrade}}]
                 ],
                 color: '#ef5350'
             },
             {
                 label: "New",
                 data: [
-                    [1, {
-                        {
-                            $total_client_new
-                        }
-                    }]
+                    [1, {{$total_client_new}}]
                 ],
                 color: '#66bb6a'
+            },
+            {
+                label: "Perpanjangan",
+                data: [
+                    [1, {{$total_client_per}}]
+                ],
+                color: '#fd7e14'
+            },
+            {
+                label: "Old New",
+                data: [
+                    [1, {{$total_client_oldnew}}]
+                ],
+                color: '#e83e8c'
             }
         ];
 
