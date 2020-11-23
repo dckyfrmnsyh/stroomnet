@@ -71,6 +71,55 @@
                 </div> <!-- /.card -->
             </div> <!-- /.col-xl-4 -->
         </div>
+
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="box-title">Data Pelanggan</h4>
+                    </div>
+                    <div class="card-body--">
+                        <div class="table-stats order-table ov-h">
+                            <table class="table ">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nama Customer</th>
+                                        <th>Penanggung Jawab</th>
+                                        <th>Tipe</th>
+                                        <th>Tanggal Pemesanan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $no=0 ?>
+                                    @forelse($tabel as $new)
+                                    <?php $no++ ?>
+                                    <tr>
+                                        <td>{{ $no }}</td>
+                                        <td>{{$new->nama_customer}}</td>
+                                        <td>{{$new->penanggung_jawab}}</td>
+                                        <td>{{$new->tipe}}</td>
+                                        <td>{{Date::parse($new->tgl_hari_ini)->format('l, d F Y')}}
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="6" class="text-center p-5">
+                                            Data tidak tersedia
+                                        </td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div> <!-- /.table-stats -->
+                    </div>
+                    <div style="margin:auto">
+                        {{ $tabel->links() }}
+                    </div>
+                </div> <!-- /.card -->
+            </div> <!-- /.col-lg-8 -->
+        </div>
     </div>
     <!-- /.orders -->
 </div>

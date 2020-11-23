@@ -56,7 +56,8 @@ class AdminController extends Controller
         $countre = DB::table('customers')->where('tipe','=','relokasi')->count();
         $countper = DB::table('customers')->where('tipe','=','perpanjangan')->count();
         $countoldnew = DB::table('customers')->where('tipe','=','layanan_baru')->count();
-        return view('admin.pages.order',compact('countnew','countup','countdown','countre','countper','countoldnew'));
+        $tabel = Customer::orderBy('tgl_hari_ini', 'DESC')->paginate(15);
+        return view('admin.pages.order',compact('tabel','countnew','countup','countdown','countre','countper','countoldnew'));
     }
     public function order1()
     {
