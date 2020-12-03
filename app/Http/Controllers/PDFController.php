@@ -14,21 +14,21 @@ class PDFController extends Controller
         $customer = Customer::where('id',$id)->get();
         $pdf = PDF::loadview('admin.download.new_bakbb_pdf',['customer'=>$customer]);
 
-        return $pdf->setPaper('A4')->stream('BAKBB LAYANAN BARU', array("Attachment"=>false));
+        return $pdf->setPaper('A4')->stream('BAKBB LAYANAN BARU.pdf', array("Attachment"=>false));
     }
     public function oldbakbb(Request $request, $id)
     {
         $customer = Customer::where('id',$id)->get();
         $pdf = PDF::loadview('admin.download.old_bakbb_pdf',['customer'=>$customer]);
 
-        return $pdf->setPaper('A4')->stream('BAKBB LAYANAN LAMA', array("Attachment"=>false));
+        return $pdf->setPaper('A4')->stream('BAKBB LAYANAN LAMA.pdf', array("Attachment"=>false));
     }
     public function fb(Request $request, $id)
     {
         $customer = Customer::where('id',$id)->get();
         $pdf = PDF::loadview('admin.download.fb_pdf',['customer'=>$customer]);
 
-        return $pdf->setPaper('A4')->stream('FORMULIR BERLANGGAN', array("Attachment"=>false));
+        return $pdf->setPaper('A4')->stream('FORMULIR BERLANGGAN.pdf', array("Attachment"=>false));
     }
 
     public function show($id){

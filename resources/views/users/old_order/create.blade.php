@@ -1,5 +1,11 @@
 @extends('layouts.app')
 @section('content')
+<?php
+    function rupiah($angka){
+        $hasil_rupiah = "Rp. " . number_format($angka,0,',','.');
+        return $hasil_rupiah;                                                                                   
+    }
+?>
 <section class="about" id="tambah_pelanggan_form">
     <div class="container">
         <div class="row justify-content-center">
@@ -66,6 +72,7 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                     <select name="satuan_kapasitas" class="form-control">
+                                                        <option value="Kbps">Kbps</option>
                                                         <option value="Mbps">Mbps</option>
                                                         <option value="Gbps">Gbps</option>
                                                         <option value="Unit">Unit</option>
@@ -152,6 +159,7 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                     <select name="satuan_kapasitas" class="form-control">
+                                                        <option value="Kbps">Kbps</option>
                                                         <option value="Mbps">Mbps</option>
                                                         <option value="Gbps">Gbps</option>
                                                         <option value="Unit">Unit</option>
@@ -221,8 +229,27 @@
                                                 <td>{{ $p->terminating }}</td>
                                                 <td>{{ $p->nama_product }}</td>
                                                 <td>{{ $p->kapasitas }}</td>
-                                                <td>@currency($p->biaya_langganan)</td>
-                                                <td>@currency($p->biaya_instalasi)</td>
+                                                <td>
+                                                    
+                                                    <?php
+                                                        
+                                                        if($p->biaya_langganan == "0" ){
+                                                            echo'-';
+                                                        }
+                                                        else
+                                                            echo rupiah($p->biaya_langganan);
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                        
+                                                        if($p->biaya_instalasi == "0" ){
+                                                            echo'-';
+                                                        }
+                                                        else
+                                                            echo rupiah($p->biaya_instalasi);
+                                                    ?>
+                                                </td>
                                                 <td>
                                                     <a href="/users/old/order/delete/2/{{ $p->id }}" type="button"
                                                         class="btn btn-danger btn-sm">
@@ -267,8 +294,27 @@
                                                 <td>{{ $ol->terminating }}</td>
                                                 <td>{{ $ol->nama_product }}</td>
                                                 <td>{{ $ol->kapasitas }}</td>
-                                                <td>@currency($ol->biaya_langganan)</td>
-                                                <td>@currency($ol->biaya_instalasi)</td>
+                                                <td>
+                                                    
+                                                    <?php
+                                                        
+                                                        if($ol->biaya_langganan == "0" ){
+                                                            echo'-';
+                                                        }
+                                                        else
+                                                            echo rupiah($ol->biaya_langganan);
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                        
+                                                        if($ol->biaya_instalasi == "0" ){
+                                                            echo'-';
+                                                        }
+                                                        else
+                                                            echo rupiah($ol->biaya_instalasi);
+                                                    ?>
+                                                </td>
                                                 <td>
                                                     <a href="/users/old/order/delete/{{ $ol->id }}" type="button"
                                                         class="btn btn-danger btn-sm">

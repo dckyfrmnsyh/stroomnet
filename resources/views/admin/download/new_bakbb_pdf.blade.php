@@ -61,6 +61,11 @@
 		}     		
 		return $hasil;
 	}
+
+    function rupiah($angka){
+        $hasil_rupiah = "Rp. " . number_format($angka,0,',','.');
+        return $hasil_rupiah;                                                                                   
+    }
 	
 ?>
 
@@ -201,8 +206,25 @@
                     <td>&nbsp;{{$o->terminating}}</td>
                     <td>&nbsp;{{$o->nama_product}}</td>
                     <td>&nbsp;{{$o->kapasitas}}</td>
-                    <td>&nbsp;@currency($o->biaya_langganan)</td>
-                    <td>&nbsp;@currency($o->biaya_instalasi)</td>
+                    <td>
+                        <?php                                     
+                            if($o->biaya_langganan == "0" ){
+                                echo'&nbsp;-';
+                            }
+                            else
+                                echo '&nbsp;'.rupiah($o->biaya_langganan);
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                                                      
+                            if($o->biaya_instalasi == "0" ){
+                                echo'&nbsp;-';
+                            }
+                            else
+                                echo '&nbsp;'.rupiah($o->biaya_instalasi);
+                        ?>
+                    </td>
                     <td>&nbsp;Fiber Optic/<br>&nbsp;Ethernet</td>
                     <?php $total_langganan += $o->biaya_langganan ?>
                     <?php $total_instalasi += $o->biaya_instalasi ?>
@@ -213,7 +235,16 @@
                 <td>&nbsp;</td>
                 <td colspan="3"><b>Total Biaya Berlangganan/Bulan : </b></td>
                 <td>&nbsp;</td>
-                <th>@currency($total_langganan)</th>
+                <th>
+
+                    <?php                                     
+                        if($total_langganan == "0" ){
+                            echo'&nbsp;-';
+                        }
+                        else
+                            echo '&nbsp;'.rupiah($total_langganan);
+                    ?>
+                </th>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
@@ -222,7 +253,16 @@
                 <td colspan="3"><b>Total Biaya Instalasi : </b></td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-                <th>@currency($total_instalasi)</th>
+                <th>
+
+                    <?php                                     
+                        if($total_instalasi == "0" ){
+                            echo'&nbsp;-';
+                        }
+                        else
+                            echo '&nbsp;'.rupiah($total_instalasi);
+                    ?>
+                </th>
                 <td>&nbsp;</td>
             </tr>
             <tr>

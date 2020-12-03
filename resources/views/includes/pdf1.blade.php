@@ -32,6 +32,10 @@ function terbilang($nilai) {
     }     		
     return $hasil;
 }
+function rupiah($angka){
+        $hasil_rupiah = "Rp. " . number_format($angka,0,',','.');
+        return $hasil_rupiah;                                                                                   
+    }
 
 ?>
 
@@ -161,8 +165,25 @@ function terbilang($nilai) {
                 <td>{{$o->terminating}}</td>
                 <td>{{$o->nama_product}}</td>
                 <td>{{$o->kapasitas}}</td>
-                <td>@currency($o->biaya_langganan)</td>
-                <td>@currency($o->biaya_instalasi)</td>
+                <td>
+                    <?php                                     
+                        if($o->biaya_langganan == "0" ){
+                            echo'&nbsp;-';
+                        }
+                        else
+                            echo '&nbsp;'.rupiah($o->biaya_langganan);
+                    ?>
+                </td>
+                <td>
+                    <?php
+                                                  
+                        if($o->biaya_instalasi == "0" ){
+                            echo'&nbsp;-';
+                        }
+                        else
+                            echo '&nbsp;'.rupiah($o->biaya_instalasi);
+                    ?>
+                </td>
                 <td>Fiber Optic/<br>Ethernet</td>
                 <?php $total_langganan += $o->biaya_langganan ?>
                 <?php $total_instalasi += $o->biaya_instalasi ?>
@@ -173,7 +194,16 @@ function terbilang($nilai) {
             <td>&nbsp;</td>
             <td colspan="3"><b>Total Biaya Berlangganan/Bulan : </b></td>
             <td>&nbsp;</td>
-            <th>@currency($total_langganan)</th>
+            <th>
+
+                    <?php                                     
+                        if($total_langganan == "0" ){
+                            echo'&nbsp;-';
+                        }
+                        else
+                            echo '&nbsp;'.rupiah($total_langganan);
+                    ?>
+            </th>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
@@ -182,7 +212,15 @@ function terbilang($nilai) {
             <td colspan="3"><b>Total Biaya Instalasi : </b></td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <th>@currency($total_instalasi)</th>
+            <th>                
+                    <?php                                     
+                        if($total_instalasi == "0" ){
+                            echo'&nbsp;-';
+                        }
+                        else
+                            echo '&nbsp;'.rupiah($total_instalasi);
+                    ?>
+            </th>
             <td>&nbsp;</td>
         </tr>
         <tr>

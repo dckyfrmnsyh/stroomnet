@@ -60,6 +60,11 @@
             }     		
             return $hasil;
         }
+
+        function rupiah($angka){
+            $hasil_rupiah = "Rp. " . number_format($angka,0,',','.');
+            return $hasil_rupiah;                                                                                   
+        }
         
     ?>
 
@@ -112,7 +117,7 @@
             <?php echo terbilang(Date::parse($c->tgl_hari_ini)->format('Y')); ?> (
             {{Date::parse($c->tgl_hari_ini)->format('d')}}-{{Date::parse($c->tgl_hari_ini)->format('m')}}-{{Date::parse($c->tgl_hari_ini)->format('Y')}}),
             telah dilakukan
-            kesepakatan biaya berlangganan permintaan layanan baru atas Jaringan Telekomunikasi oleh dan antara
+            kesepakatan biaya berlangganan permintaan layanan {{($c->tipe)}} atas Jaringan Telekomunikasi oleh dan antara
         </p>
         @endforeach
         <table style="font-size: 8pt">
@@ -209,8 +214,26 @@
                 <td>&nbsp;{{$o->terminating}}</td>
                 <td>&nbsp;{{$o->nama_product}}</td>
                 <td>&nbsp;{{$o->kapasitas}}</td>
-                <td>&nbsp;@currency($o->biaya_langganan)</td>
-                <td>&nbsp;@currency($o->biaya_instalasi)</td>
+                
+                <td>
+                    <?php                                     
+                        if($o->biaya_langganan == "0" ){
+                            echo'&nbsp;-';
+                        }
+                        else
+                            echo '&nbsp;'.rupiah($o->biaya_langganan);
+                    ?>
+                </td>
+                <td>
+                    <?php
+                                                  
+                        if($o->biaya_instalasi == "0" ){
+                            echo'&nbsp;-';
+                        }
+                        else
+                            echo '&nbsp;'.rupiah($o->biaya_instalasi);
+                    ?>
+                </td>
                 <td>&nbsp;Fiber Optic/<br>&nbsp;Ethernet</td>
                 <?php $total_langganan += $o->biaya_langganan ?>
                 <?php $total_instalasi += $o->biaya_instalasi ?>
@@ -221,7 +244,16 @@
                 <td>&nbsp;</td>
                 <td colspan="3"><b>Total Biaya Berlangganan/Bulan : </b></td>
                 <td>&nbsp;</td>
-                <th>@currency($total_langganan)</th>
+                <th>
+
+                    <?php                                     
+                        if($total_langganan == "0" ){
+                            echo'&nbsp;-';
+                        }
+                        else
+                            echo '&nbsp;'.rupiah($total_langganan);
+                    ?>
+                </th>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
@@ -230,7 +262,15 @@
                 <td colspan="3"><b>Total Biaya Instalasi : </b></td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-                <th>@currency($total_instalasi)</th>
+                <th>                
+                    <?php                                     
+                        if($total_instalasi == "0" ){
+                            echo'&nbsp;-';
+                        }
+                        else
+                            echo '&nbsp;'.rupiah($total_instalasi);
+                    ?>
+                </th>
                 <td>&nbsp;</td>
             </tr>
             <tr>
@@ -248,8 +288,25 @@
                 <td>{{$o->terminating}}</td>
                 <td>{{$o->nama_product}}</td>
                 <td>{{$o->kapasitas}}</td>
-                <td>@currency($o->biaya_langganan)</td>
-                <td>@currency($o->biaya_instalasi)</td>
+                <td>
+                    <?php                                     
+                        if($o->biaya_langganan == "0" ){
+                            echo'&nbsp;-';
+                        }
+                        else
+                            echo '&nbsp;'.rupiah($o->biaya_langganan);
+                    ?>
+                </td>
+                <td>
+                    <?php
+                                                  
+                        if($o->biaya_instalasi == "0" ){
+                            echo'&nbsp;-';
+                        }
+                        else
+                            echo '&nbsp;'.rupiah($o->biaya_instalasi);
+                    ?>
+                </td>
                 <td>Fiber Optic/<br>Ethernet</td>
                 <?php $total_langganan1 += $o->biaya_langganan ?>
                 <?php $total_instalasi1 += $o->biaya_instalasi ?>
@@ -260,7 +317,16 @@
                 <td>&nbsp;</td>
                 <td colspan="3"><b>Total Biaya Berlangganan/Bulan : </b></td>
                 <td>&nbsp;</td>
-                <th>@currency($total_langganan1)</th>
+                <th>
+
+                    <?php                                     
+                        if($total_langganan1 == "0" ){
+                            echo'&nbsp;-';
+                        }
+                        else
+                            echo '&nbsp;'.rupiah($total_langganan1);
+                    ?>
+                </th>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
@@ -269,7 +335,16 @@
                 <td colspan="3"><b>Total Biaya Instalasi : </b></td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-                <th>@currency($total_instalasi1)</th>
+                <th>
+
+                    <?php                                     
+                        if($total_instalasi1 == "0" ){
+                            echo'&nbsp;-';
+                        }
+                        else
+                            echo '&nbsp;'.rupiah($total_instalasi1);
+                    ?>
+                </th>
                 <td>&nbsp;</td>
             </tr>
             <tr>
