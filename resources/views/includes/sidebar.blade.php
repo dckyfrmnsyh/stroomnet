@@ -6,19 +6,22 @@
                 <li class="">
                     <a href="{{ route('order') }}"><i class="menu-icon fa fa-shopping-cart"></i>Order </a>
                 </li>
-                @hasrole('admin')
+
+                @if(auth()->user()->hasRole('admin'))
                 <li class="">
                     <a href="{{route('order.all')}}"><i class="menu-icon fa fa-shopping-cart"></i>All Order </a>
                 </li>
-                @endhasrole
+                @endif
+
                 <li class="">
                     <a href="{{ route('customer') }}"><i class="menu-icon fa fa-user"></i>Customer </a>
                 </li>
-                @hasrole('admin')
+
+                @if(auth()->user()->hasRole('admin'))
                 <li class="">
                     <a href="{{ route('user') }}"><i class="menu-icon fa fa-users"></i>User </a>
                 </li>
-                @endhasrole
+                @endif
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>
