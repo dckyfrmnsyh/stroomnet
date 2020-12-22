@@ -2,17 +2,13 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/sburegjatim/
-    # - /bin/cp ./public/images/* $DEPLOYPATH/tes
-    # - /bin/cp ./public/css/*.css $DEPLOYPATH/tes
+    - /bin/cp ./public/images/* $DEPLOYPATH/tes
+    - /bin/cp ./public/css/*.css $DEPLOYPATH/tes
 
-    # - /bin/cp ./composer.json $DEPLOYPATH/tes
-    # - /bin/cp ./composer.lock $DEPLOYPATH/tes
-    # - /bin/cp ./vendor/* $DEPLOYPATH/tes
-    # - /bin/cp ./storage/* $DEPLOYPATH/tes
-    # - /bin/cp ./routes/* $DEPLOYPATH/tes
+    - /bin/cp ./composer.json $DEPLOYPATH/tes
+    - /bin/cp ./composer.lock $DEPLOYPATH/tes
+    - /bin/cp ./vendor/* $DEPLOYPATH/tes
+    - /bin/cp ./storage/* $DEPLOYPATH/tes
+    - /bin/cp ./routes/* $DEPLOYPATH/tes
     - /bin/cp ./resources/* $DEPLOYPATH/laravel/resources
-    # - /bin/cp ./resources/* $DEPLOYPATH/tes
-    # - /bin/cp ./database/* $DEPLOYPATH/tes
-    # - /bin/cp ./config/app.php $DEPLOYPATH/tes
-    # - /bin/cp ./config/permission.php $DEPLOYPATH/tes
-    # - /bin/cp ./app/* $DEPLOYPATH/tes
+    
