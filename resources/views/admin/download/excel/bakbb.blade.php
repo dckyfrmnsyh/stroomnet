@@ -38,36 +38,90 @@
             <td>{{ $item->order_data->tanggal_penagihan }}</td>
             <td>{{ $item->order_data->catatan_penagihan }}</td>
             <td>{{ $item->order_data->jangka_berlangganan }}</td>
-            @forelse($layanan1[$item->id] as $data)
-            <td>{{ $data->originating }}, </td>
-            <td>{{ $data->terminating }}, </td>
-            <td>{{ $data->nama_layanan }}, </td>
-            <td>{{ $data->kapasitas }}, </td>
-            <td>{{ $data->biaya_langganan }}, </td>
-            <td>{{ $data->biaya_instalasi }}, </td>
-            @empty
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            @endforelse
-            @forelse($layanan2[$item->id] as $data)
-            <td>{{ $data->originating }}, </td>
-            <td>{{ $data->terminating }}, </td>
-            <td>{{ $data->nama_layanan }}, </td>
-            <td>{{ $data->kapasitas }}, </td>
-            <td>{{ $data->biaya_langganan }}, </td>
-            <td>{{ $data->biaya_instalasi }}, </td>
-            @empty
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            @endforelse
+            <td>
+                @forelse($layanan1[$item->id] as $data)
+                    {{ $data->originating }}, 
+                @empty 
+                    <p></p>
+                @endforelse
+            </td>
+            <td>
+                @forelse($layanan1[$item->id] as $data)
+                    {{ $data->terminating }}, 
+                @empty 
+                    <p></p>
+                @endforelse
+            </td>
+            <td>
+                @forelse($layanan1[$item->id] as $data)
+                    {{ $data->nama_layanan }}, 
+                @empty 
+                    <p></p>
+                @endforelse
+            </td>
+            <td>
+                @forelse($layanan1[$item->id] as $data)
+                    {{ $data->kapasitas }}, 
+                @empty 
+                    <p></p>
+                @endforelse
+            </td>
+            <td>
+                @forelse($layanan1[$item->id] as $data)
+                    {{ $data->biaya_langganan }}, 
+                @empty 
+                    <p></p>
+                @endforelse
+            </td>
+            <td>
+                @forelse($layanan1[$item->id] as $data)
+                    {{ $data->biaya_instalasi }}, 
+                @empty 
+                    <p></p>
+                @endforelse
+            </td>
+            <td>
+                @forelse($layanan2[$item->id] as $data)
+                    {{ $data->originating }}, 
+                @empty 
+                    <p></p>
+                @endforelse
+            </td>
+            <td>
+                @forelse($layanan2[$item->id] as $data)
+                    {{ $data->terminating }}, 
+                @empty 
+                    <p></p>
+                @endforelse
+            </td>
+            <td>
+                @forelse($layanan2[$item->id] as $data)
+                    {{ $data->nama_layanan }}, 
+                @empty 
+                    <p></p>
+                @endforelse
+            </td>
+            <td>
+                @forelse($layanan2[$item->id] as $data)
+                    {{ $data->kapasitas }}, 
+                @empty 
+                    <p></p>
+                @endforelse
+            </td>
+            <td>
+                @forelse($layanan2[$item->id] as $data)
+                    {{ $data->biaya_langganan }}, 
+                @empty 
+                    <p></p>
+                @endforelse
+            </td>
+            <td>
+                @forelse($layanan2[$item->id] as $data)
+                    {{ $data->biaya_instalasi }}, 
+                @empty 
+                    <p></p>
+                @endforelse
+            </td>
             <td>{{$nama_user[$item->id]}}</td>
         </tr>
     @endforeach
