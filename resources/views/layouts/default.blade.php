@@ -17,7 +17,7 @@
 </head>
 <body>
     {{-- Sidebar --}}
-    @include('includes.sidebar')
+    @include('includes.sidebar1')
 
     <div id="right-panel" class="right-panel">
         {{-- Navbar --}}

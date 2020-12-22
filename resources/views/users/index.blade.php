@@ -100,12 +100,16 @@
                 <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="700"
                     class="col-lg-4 baru">
                     <h3>Layanan Baru</h3>
+                    @if($count_fb != 0)
                     <a href="{{route('users.bakbb_new')}}" class="btn btn-outline-light btn-dark">Daftar</a>
+                    @endif
                 </div>
                 <div data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="700"
                     class="col-lg-4 lama">
                     <h3>Layanan Lama</h3>
+                    @if($count_fb != 0)
                     <a href="{{route('users.bakbb_exist')}}" class="">Daftar</a>
+                    @endif
                 </div>
             </div>
         </section>

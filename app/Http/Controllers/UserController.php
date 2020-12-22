@@ -41,7 +41,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index');
+        $user_id = Auth::id();
+        $count_fb = FB::where('user_id',$user_id)->count();
+        return view('users.index',compact('count_fb'));
     }
     public function profile(Request $request)
     {
