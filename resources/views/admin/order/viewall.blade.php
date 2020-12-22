@@ -64,14 +64,14 @@
                                                 {{$nama_user[$list_data->id]}}
                                             </td>
                                             <td>
-                                                @hasrole('admin')
+                                                @if(auth()->user()->hasRole('admin'))
                                                 <a href="/Admin/order/edit/{{$list->id}}" class="btn btn-sm btn-info"><i class="fa fa-edit"></i> Edit</a>
-                                                @endhasrole
+                                                @endif
                                                 <a href="/Admin/order/show/BAKBB/{{$list->id}}" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i> Show</a>
                                                 <a href="/Admin/order/download/BAKBB/{{$list->id}}" class="btn btn-sm btn-success" target="_blank"><i class="fa fa-download"></i> Download</a>
-                                                @hasrole('admin')
+                                                @if(auth()->user()->hasRole('admin'))
                                                 <a href="/Admin/order/delete/{{$list->id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
-                                                @endhasrole
+                                                @endif
                                             </td>
                                         </tr>
                                         @endforeach
