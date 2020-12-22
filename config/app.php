@@ -179,6 +179,7 @@ return [
         // tambahan
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class
          
 
     ],
