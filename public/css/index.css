@@ -2,7 +2,19 @@
 html{
     scroll-behavior: smooth;
 }
-
+.navbar-nav .dropdown-menu{
+    background: linear-gradient(45deg, #f39c12c7, #ea7700) !important;
+}
+.dropdown-item{
+    color: #fff !important;
+    text-align: center;
+    text-shadow: 1px 1px black;
+}
+.dropdown-item i{
+    color: black !important;
+    text-align: center;
+    text-shadow: 1px 1px white;
+}
 .navbar-fixed-top.scrolled {
     background: linear-gradient(45deg, #f39c12c7, #ea7700) !important;
     transition: background-color 200ms linear;

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'STROOMNET'),
+    'name' => env('APP_NAME', 'ICON+'),
 
     /*
     |--------------------------------------------------------------------------
@@ -237,6 +237,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Carbon' => 'Carbon\Carbon',
 
     ],
 

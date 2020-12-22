@@ -38,7 +38,7 @@ class CustomerController extends Controller
     public function create()
     {
         $provinces = Province::pluck('name', 'id');
-        return view('users.new_customer.create', [
+        return view('admin.customer.create', [
             'provinces' => $provinces,
         ]);
     }

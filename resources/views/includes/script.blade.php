@@ -23,17 +23,8 @@
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
 <script src="{{ asset('assets/js/init/fullcalendar-init.js') }}"></script>
 
-<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-<script>
-     ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-            .then( editor => {
-                console.log( editor );
-            } )
-            .catch( error => {
-                console.error( error );
-            } );
-</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script>
     jQuery(document).ready(function($){

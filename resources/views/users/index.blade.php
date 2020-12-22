@@ -21,18 +21,19 @@
 </head>
 
 <body>
+
     <!-- navbar -->
-    <nav class="navbar overflow-hidden fixed-top navbar-expand-md navbar-light navbar-fixed-top" id="navbar" style="">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light navbar-fixed-top" id="navbar" style="">
         <div class="container">
             <a class="navbar-brand">
                 <img src="./images/a.png" width="60" height="50" alt="" loading="lazy">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
 
@@ -40,13 +41,38 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <div class="navbar-nav" style="">
-                            <a class="nav-link" href="#intro" style="margin-right: 10px">Home <span
-                                    class="sr-only">(current)</span></a>
-                            <a class="nav-link" href="#daftar" style="margin-right: 10px">Daftar</a>
-                            <a class="nav-link" href="#kontak" style="margin-right: 10px">Kontak</a>
+
+                    <div class="navbar-nav" style="">
+
+                        <a class="nav-link" href="#intro" style="margin-right: 10px">Home <span
+                                class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#daftar" style="margin-right: 10px">Daftar</a>
+                        <a class="nav-link" href="#kontak" style="margin-right: 10px">Kontak</a>
+
+                        <!-- Authentication Links -->
+                        @guest
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        @else
+                        <div class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('users.profile') }}"><i class="fa fa-btn fa-user"
+                                        style="margin-right:10px;"></i> Profile</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    <i class="fa fa-btn fa-sign-out" style="margin-right:10px;"></i>
+                                    {{ __('Logout') }}</a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
                         </div>
+                        @endguest
                     </div>
                 </ul>
             </div>
@@ -68,18 +94,18 @@
         <section id="daftar">
             <div class="row justify-content-center">
                 <h2 data-aos="fade-down" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="700"
-                 class="daftar-tittle">Pilih Layanan</h2>
+                    class="daftar-tittle">Pilih Layanan</h2>
             </div>
             <div class="row overflow-hidden justify-content-center">
                 <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="700"
-                 class="col-lg-4 baru">
+                    class="col-lg-4 baru">
                     <h3>Layanan Baru</h3>
-                    <a href="{{route('customer.create')}}" class="btn btn-outline-light btn-dark">Daftar</a>
+                    <a href="{{route('users.bakbb_new')}}" class="btn btn-outline-light btn-dark">Daftar</a>
                 </div>
                 <div data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="700"
-                class="col-lg-4 lama">
+                    class="col-lg-4 lama">
                     <h3>Layanan Lama</h3>
-                    <a href="{{route('customer.old_create')}}" class="">Daftar</a>
+                    <a href="{{route('users.bakbb_exist')}}" class="">Daftar</a>
                 </div>
             </div>
         </section>
@@ -95,7 +121,8 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-3">
                         <h4>Alamat</h4>
-                        <p><i class="fa fa-map-marker"></i> Kantor SBU Regional Surabaya PLN PIKITRING Jl. Ketintang Baru 1 NO.1-3 Surabaya 60231</p>
+                        <p><i class="fa fa-map-marker"></i> Kantor SBU Regional Surabaya PLN PIKITRING Jl. Ketintang
+                            Baru 1 NO.1-3 Surabaya 60231</p>
                     </div>
                     <div class="col-lg-2">
 
@@ -108,7 +135,7 @@
                     <div class="col-lg-1"></div>
                     <div class="col-lg-3">
                         <h4>Email</h4>
-                        <p ><i class="fa fa-envelope"></i> hendy.rubiyanto@iconpln.co.id</p>
+                        <p><i class="fa fa-envelope"></i> hendy.rubiyanto@iconpln.co.id</p>
                     </div>
                 </div>
             </div>
@@ -126,7 +153,7 @@
                             <i class="fa fa-instagram"></i>
                             <i class="fa fa-facebook-square" aria-hidden="true"></i>
                             <i class="fa fa-twitter-square" aria-hidden="true"></i>
-                        </p> 
+                        </p>
                     </div>
                 </div>
             </div>
@@ -146,7 +173,7 @@
             $(document).scroll(function () {
                 var $nav = $(".navbar-fixed-top");
                 var $intro = $("#intro");
-                $nav.toggleClass('scrolled', $(this).scrollTop() >= $intro.height());
+                $nav.toggleClass('scrolled', $(this).scrollTop() >= ($intro.height()-100));
             });
         });
 
