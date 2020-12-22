@@ -25,7 +25,7 @@
     <div
         style="font-family: Calibri, Helvetica, sans-serif;width: 90% ; margin-right: auto; margin-left: auto; margin-top: -60px; border : 1px solid">
         <div align="center" style="margin-top: 5%">
-            <img src="{{public_path('images/a.png')}}" style=" width: 15%;">
+            <img src="{{asset('images/a.png')}}" style=" width: 15%;">
         </div> 
         <!-- 1 -->
         <div>
