@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    # - export DEPLOYPATH=/home/sburegjatim/
+    - export DEPLOYPATH=/home/sburegjatim/
     # - /bin/cp ./public/images/* $DEPLOYPATH/tes
     # - /bin/cp ./public/css/*.css $DEPLOYPATH/tes
 
