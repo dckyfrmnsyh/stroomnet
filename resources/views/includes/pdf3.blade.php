@@ -454,7 +454,7 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td style="text-align: center;"><u>(Agus Widya Santoso)</u></td>
+                <td style="text-align: center;"><u>( {{$icons->nama_pj}} )</u></td>
                 <td>&nbsp;</td>
                 @foreach($fb as $c)
                 <td style="text-align: center;"><u>({{$c->penanggung_jawab}})</u></td>

@@ -147,6 +147,8 @@ Route::group(['middleware'=>['role:sales']],function(){
 // Only Admin route
 Route::group(['middleware'=>['role:admin']],function(){
     Route::get('/Admin/user', 'AdminController@user')->name('user');
+    Route::get('/Admin/data/edit', 'AdminController@data_icon_edit')->name('data.icons');
+    Route::post('/Admin/data/update', 'AdminController@data_icon_update')->name('data.icons.update');
     Route::post('/Admin/user/store', 'AdminController@user_store')->name('customer.user_store');
     Route::get('/Admin/user/edit/{id}', 'AdminController@user_edit')->name('customer.user_edit');
     Route::post('/Admin/user/update/{id}', 'AdminController@user_update')->name('customer.user_update');

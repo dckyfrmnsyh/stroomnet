@@ -1,6 +1,6 @@
 @extends('layouts.user')
 @section('sidebar')
-    @include('users.profile.sidebar')
+@include('users.profile.sidebar')
 @endsection
 
 @section('content')
@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-5 col-form-label" for="tgl_billing">Tanggal Billing</label>
+                                <label class="col-md-5 col-form-label" for="tgl_billing">Tanggal</label>
                                 <div class="col-md-6">
                                     <input type="date" class="form-control" name="tgl_billing">
                                 </div>
@@ -410,6 +410,18 @@
                                     <small class="form-text text-muted">*jika kosong isi (-)</small>
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-5">
+                                    <label>Status Publish</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <select name="status" id="status" class="form-control">
+                                        <option value="ya">Ya</option>
+                                        <option value="tidak">Tidak</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -483,7 +495,7 @@
         });
         $('#districts').on('change', function (e) {
             var id = e.target.value;
-            $.get('{{ url('users/alamat/desa')}}/' + id,
+            $.get('{{ url('users/alamat desa')}}/' + id,
                 function (data) {
                     console.log(id);
                     console.log(data);
@@ -609,7 +621,6 @@
     .step.finish {
         background-color: #4CAF50;
     }
-
 
 </style>
 @endpush

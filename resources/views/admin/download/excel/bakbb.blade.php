@@ -7,6 +7,10 @@
             <th>No. Pihak Kedua</th>
             <th>Tanggal Kesepakatan</th>
             <th>Tipe</th>
+            <th>Nama Penanggung Jawab</th>
+            <th>Jabatan Penanggung Jawab</th>
+            <th>Status Biaya</th>
+            <th>Status Penagihan</th>
             <th>Tanggal Penagihan</th>
             <th>Catatan Penagihan</th>
             <th>Jangka Waktu Berlangganan</th>
@@ -22,6 +26,7 @@
             <th>Kapasitas Baru</th>
             <th>Biaya Langganan Baru</th>
             <th>Biaya Instalasi Baru</th>
+            <th>Status Publish</th>
             <th>Created By</th>
         </tr>
     </thead>
@@ -35,6 +40,10 @@
             <td>{{ $item->order_data->no_pihak_kedua }}</td>
             <td>{{ $item->order_data->tanggal_kesepakatan }}</td>
             <td>{{ $item->order_data->tipe }}</td>
+            <td>{{ $item->order_data->nama_pj }}</td>
+            <td>{{ $item->order_data->jabatan_pj }}</td>
+            <td>{{ ucfirst($item->order_data->status_biaya)  }} Termasuk PPN</td>
+            <td>{{ ucfirst($item->order_data->status_tagihan) }} Pemakaian Layanan </td>
             <td>{{ $item->order_data->tanggal_penagihan }}</td>
             <td>{{ $item->order_data->catatan_penagihan }}</td>
             <td>{{ $item->order_data->jangka_berlangganan }}</td>
@@ -123,6 +132,7 @@
                 @endforelse
             </td>
             <td>{{$nama_user[$item->id]}}</td>
+            <td>{{ ucfirst($item->order_data->status_publish) }}</td>
         </tr>
     @endforeach
     </tbody>

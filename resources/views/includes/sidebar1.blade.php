@@ -19,6 +19,9 @@
 
                 @if(auth()->user()->hasRole('admin'))
                 <li class="">
+                    <a href="{{ route('data.icons') }}"><i class="menu-icon fa fa-briefcase"></i>Data Icons </a>
+                </li>
+                <li class="">
                     <a href="{{ route('user') }}"><i class="menu-icon fa fa-users"></i>User </a>
                 </li>
                 @endif

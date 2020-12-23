@@ -15,8 +15,10 @@
         @else
         <a href="{{route('users.showfb')}}" class="list-group-item list-group-item-action bg-light text-center"><i class="fa fa-eye"></i>
             Preview FB</a>
-        <a href="{{route('users.downfb')}}" target="_blank" class="list-group-item list-group-item-action bg-light text-center"><i class="fa fa-download"></i>
-            Download FB</a>
+            @if($data->status == 'ya')
+                <a href="{{route('users.downfb')}}" target="_blank" class="list-group-item list-group-item-action bg-light text-center"><i class="fa fa-download"></i>
+                    Download FB</a>
+            @endif
         <a href="{{route('users.editfb')}}" class="list-group-item list-group-item-action bg-light text-center"><i class="fa fa-edit"></i> Edit
             FB</a>
         @endif

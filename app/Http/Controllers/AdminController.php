@@ -129,9 +129,11 @@ class AdminController extends Controller
                 
                 foreach($customer as $data){
                     $countfb = FB::where('user_id','=',$data->id)->count();
+                    $fb1 = FB::where('user_id','=',$data->id)->first();
                     $setbtn[$data->id] = $countfb;
+                    $fb[$data->id] = $fb1['status'];
                 }
-                return view('admin.customer.index',compact('customer','setbtn'));
+                return view('admin.customer.index',compact('customer','fb','setbtn'));
             }
             public function acc_store(Request $request){
                 $customer = User::create([
@@ -181,6 +183,7 @@ class AdminController extends Controller
 
                     'nomor_fb' => $request->nomor_fb,
                     'tgl_billing' => $request->tgl_billing,
+                    'status' => $request->status,
                     'virtual_account' => $request->virtual_account,
 
                     'nama_customer' => $request->nama_customer,
@@ -244,7 +247,7 @@ class AdminController extends Controller
                 $customer = User::find($id);
                 $data = FB::where('user_id','=',$customer->id)->first();
                 $provinces = Province::pluck('name', 'id');
-
+                $icons = DB::table('data_pihak_icons')->first();
                 $provinsi = Province::where('name',$data->provinsi)->first();
                 $kota = City::where([
                     ['province_id',$provinsi->id],
@@ -261,7 +264,7 @@ class AdminController extends Controller
 
                 $fb = FB::where('user_id',$id)->get();
 
-                return view('admin.customer.showfb',compact('fb','data','customer','provinces','desa','kecamatan','kota','provinsi'));
+                return view('admin.customer.showfb',compact('fb','icons','data','customer','provinces','desa','kecamatan','kota','provinsi'));
             }
             public function updatefb(Request $request, $id){
                 $provinsi = Province::where('id',$request->provinsi)->first();
@@ -277,6 +280,7 @@ class AdminController extends Controller
 
                 $data->nomor_fb = $request->nomor_fb;
                 $data->tgl_billing = $request->tgl_billing;
+                $data->status = $request->status;
                 $data->virtual_account = $request->virtual_account;
 
                 $data->nama_customer = $request->nama_customer;
@@ -380,13 +384,20 @@ class AdminController extends Controller
                 $layanan1 = OrderLayanan::where([['list_id', $id],['tipe','exist']])->get();
                 $layanan2 = OrderLayanan::where([['list_id', $id],['tipe','new']])->get();
 
+                $countod = OrderData::where([['tipe', 'Layanan Baru'],['list_id', '=', $id]])->count();
                 $count1 = OrderLayanan::where([['list_id', $id],['tipe','exist']])->count();
                 $count2 = OrderLayanan::where([['list_id', $id],['tipe','new']])->count();
 
-                if($count1 >= 1){
+                if($countod >= 1 ){
+                    $cek_data_od = 1;
+                }
+                elseif($countod == 0 ){
+                    $cek_data_od = 0;
+                }
+                if($count1 >= 1 ){
                     $cek_data1 = 1;
                 }
-                elseif($count1 == 0){
+                elseif($count1 == 0 ){
                     $cek_data1 = 0;
                 }
                 if($count2 >= 1){
@@ -395,7 +406,7 @@ class AdminController extends Controller
                 elseif($count2 == 0){
                     $cek_data2 = 0;
                 }
-                return view('admin.order.edit',compact('layanan1','layanan2','order_data','cek_data1','cek_data2','cek_order_data','fb','data','nama_user','count'));
+                return view('admin.order.edit',compact('layanan1','cek_data_od','layanan2','order_data','cek_data1','cek_data2','cek_order_data','fb','data','nama_user','count'));
             }
             public function update_data(Request $request,$id)
             {
@@ -403,11 +414,16 @@ class AdminController extends Controller
                 $data->tanggal_kesepakatan = $request->tanggal_kesepakatan;
                 $data->tipe = $request->tipe;
                 $data->nomor = $request->nomor;
+                $data->nama_pj = $request->nama_pj;
+                $data->jabatan_pj = $request->jabatan_pj;
                 $data->no_pihak_pertama = $request->no_pihak_pertama;
                 $data->no_pihak_kedua = $request->no_pihak_kedua;
                 $data->jangka_berlangganan = $request->jangka_berlangganan;
+                $data->status_biaya = $request->status_biaya;
+                $data->status_tagihan = $request->status_tagihan;
                 $data->catatan_penagihan = $request->catatan_penagihan;
                 $data->tanggal_penagihan = $request->tanggal_penagihan;
+                $data->status_publish = $request->status_publish;
                 $data->updated_at = Carbon::now();
                 $data->save();
                 return redirect()->back();
@@ -582,11 +598,16 @@ class AdminController extends Controller
                     'tanggal_kesepakatan' => $request->tanggal_kesepakatan,
                     'tipe' => $request->tipe,
                     'nomor' => $request->nomor,
+                    'nama_pj' => $request->nama_pj,
+                    'jabatan_pj' => $request->jabatan_pj,
                     'no_pihak_pertama' => $request->no_pihak_pertama,
                     'no_pihak_kedua' => $request->no_pihak_kedua,
                     'jangka_berlangganan' => $request->jangka_berlangganan,
+                    'status_biaya' => $request->status_biaya,
+                    'status_tagihan' => $request->status_tagihan,
                     'catatan_penagihan' => $request->catatan_penagihan,
                     'tanggal_penagihan' => $request->tanggal_penagihan,
+                    'status_publish' => $request->status_publish,
                     'created_at' => Carbon::now(),
                 ]);
                 return redirect()->back();
@@ -686,55 +707,78 @@ class AdminController extends Controller
                     'tanggal_kesepakatan' => $request->tanggal_kesepakatan,
                     'tipe' => $request->tipe,
                     'nomor' => $request->nomor,
+                    'nama_pj' => $request->nama_pj,
+                    'jabatan_pj' => $request->jabatan_pj,
                     'no_pihak_pertama' => $request->no_pihak_pertama,
                     'no_pihak_kedua' => $request->no_pihak_kedua,
                     'jangka_berlangganan' => $request->jangka_berlangganan,
+                    'status_biaya' => $request->status_biaya,
+                    'status_tagihan' => $request->status_tagihan,
                     'catatan_penagihan' => $request->catatan_penagihan,
                     'tanggal_penagihan' => $request->tanggal_penagihan,
+                    'status_publish' => $request->status_publish,
                     'created_at' => Carbon::now(),
                 ]);
                 return redirect()->back();
             }
     // Menu User
         // --Akun-- //
-        public function user(){
-            $user = User::role(['admin','sales'])->get();
-            return view('admin.user.index',compact('user'));
-        }
-        public function user_store(Request $request){
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-            ]);
-            $user->assignRole($request->role);
-            return redirect()->back();
-        }
-        public function user_edit(Request $request, $id){
-            $user = User::where('id','=',$id)->first();
-            return view('admin.user.edit')->with([
-                'user' => $user
-            ]);
-        }
-        public function user_update(Request $request, $id){
-            $user = User::where('id','=',$id)->first();
-            $user->name =$request->name;
-            $user->email =$request->email;
-            $user->password =$request->password;
-            if($request->has('password')){
-                $user['password'] = bcrypt($user['password']);
+            public function user(){
+                $user = User::role(['admin','sales'])->get();
+                return view('admin.user.index',compact('user'));
             }
-            else{
-                $user = array_excep($user,['password']);
+            public function user_store(Request $request){
+                $user = User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => bcrypt($request->password),
+                ]);
+                $user->assignRole($request->role);
+                return redirect()->back();
             }
-            $user->syncRoles($request->role);
-            $user->save();
-            return redirect()->route('user');
-        }
-        public function user_delete( $id){
-            $user = User::where('id','=',$id)->first();
-            $user->delete();
-            return redirect()->back();
-        }
+            public function user_edit(Request $request, $id){
+                $user = User::where('id','=',$id)->first();
+                return view('admin.user.edit')->with([
+                    'user' => $user
+                ]);
+            }
+            public function user_update(Request $request, $id){
+                $user = User::where('id','=',$id)->first();
+                $user->name =$request->name;
+                $user->email =$request->email;
+                $user->password =$request->password;
+                if($request->has('password')){
+                    $user['password'] = bcrypt($user['password']);
+                }
+                else{
+                    $user = array_excep($user,['password']);
+                }
+                $user->syncRoles($request->role);
+                $user->save();
+                return redirect()->route('user');
+            }
+            public function user_delete( $id){
+                $user = User::where('id','=',$id)->first();
+                $user->delete();
+                return redirect()->back();
+            }
 
+    // Menu User
+        // --Data-- //
+            public function data_icon_edit(Request $request){
+                $data = DB::table('data_pihak_icons')->first();
+                return view('admin.data_icons.edit')->with([
+                    'data' => $data
+                ]);
+            }
+            public function data_icon_update(Request $request){
+                $data = DB::table('data_pihak_icons')->first();
+                $data->nama_pj = $request->nama_pj;
+                $data->jabatan_pj = $request->jabatan_pj;
+                $data->alamat = $request->alamat;
+                $data->no_telp = $request->no_telp;
+                $data->no_fax = $request->no_fax;
+                $data->save();
+                return redirect()->route('data.icons');
+            }
 }       

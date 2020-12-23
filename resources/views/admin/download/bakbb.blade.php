@@ -130,26 +130,26 @@
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Diwakili Oleh</td>
                     <td style="">:</td>
-                    <td>Agus Widya Santoso</td>
+                    <td>{{$icons->nama_pj}}</td>
                     <td style="padding-left:-1050px"></td>
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Jabatan</td>
                     <td style="">:</td>
-                    <td>Plt General Manager SBU Regional Jawa Bagian Timur</td>
+                    <td>{{$icons->jabatan_pj}}</td>
                     <td style="padding-left:-1050px"></td>
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Alamat Kantor</td>
                     <td style="">:</td>
-                    <td>Jl. Ketintang Baru 1 No. 1-3 Surabaya 60231</td>
+                    <td>{{$icons->alamat}}</td>
                     <td style="padding-left:-1050px"></td>
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nomor Telepon & Faksimile
                     </td>
                     <td style="">:</td>
-                    <td>Telp (031) 827 3399 / 827 0033, Fax(031) 828 6611</td>
+                    <td>Telp {{$icons->no_telp}}, Fax {{$icons->no_fax}}</td>
                     <td style="padding-left:-1050px"></td>
                 </tr>
                 <tr>
@@ -161,13 +161,13 @@
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Diwakili Oleh</td>
                     <td style="">:</td>
-                    <td>{{$fb->penanggung_jawab}}</td>
+                    <td>{{$list_order->order_data->nama_pj}}</td>
                     <td style="padding-left:-1050px"></td>
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Jabatan</td>
                     <td style="">:</td>
-                    <td>{{$fb->jabatan_pj}}</td>
+                    <td>{{$list_order->order_data->jabatan_pj}}</td>
                     <td style="padding-left:-1050px"></td>
                 </tr>
                 <tr>
@@ -526,7 +526,7 @@
                         </tr>
                         <tr>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;</td>
-                            <td>Seluruh biaya belum termasuk PPN dan pajak-pajak lainnya serta biaya di lokasi gedung
+                            <td>Seluruh biaya {{$list_order->order_data->status_biaya}} termasuk PPN dan pajak-pajak lainnya serta biaya di lokasi gedung
                                 (tergantung perijinan lokasi gedung);</td>
                         </tr>
                         <tr>
@@ -536,7 +536,7 @@
                         </tr>
                         <tr>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;</td>
-                            <td>Penagihan Biaya Berlangganan dilakukan per bulan dan ditagihkan di awal pemakaian layanan
+                            <td>Penagihan Biaya Berlangganan dilakukan per bulan dan ditagihkan di {{$list_order->order_data->status_tagihan}} pemakaian layanan
                             </td>
                         </tr>
                         <tr>
@@ -596,7 +596,7 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <th>(Agus Widya Santoso)</th>
+                    <th>( {{$icons->nama_pj}} )</th>
                     <th>&nbsp;</th>
                     <th>( {{$fb->penanggung_jawab}} )</th>
                 </tr>

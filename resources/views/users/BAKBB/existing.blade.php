@@ -33,123 +33,187 @@
                                 {{ csrf_field() }}
                                 <div class="modal-body">
 
-                                    <div class="form-group row justify-content-center">
-                                        <div class="col-md">
-                                            <label>Tipe</label>
-                                        </div>
-                                        <div class="col-md">
-                                            <select name="tipe" id="tipe" class="form-control">
-                                                <option value="Layanan Upgrade">Upgrade</option>
-                                                <option value="Layanan Downgrade">Downgrade</option>
-                                                <option value="Layanan Relokasi">Relokasi</option>
-                                                <option value="Layanan Perpanjangan">Perpanjangan</option>
-                                                <option value="Change Tarif">Change Tarif</option>
-                                                <option value="Upgrade On Demand">Upgrade On Demand</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row justify-content-center">
-                                        <div class="col-md">
-                                            <label>Nomor</label>
-                                        </div>
-                                        <div class="col-md">
-                                            <input type="text" class="form-control" id="nomor" name="nomor">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row justify-content-center">
-                                        <div class="col-md">
-                                            <label>Tanggal Kesepakatan</label>
-                                        </div>
-                                        <div class="col-md">
-                                            <input type="date" class="form-control" id="tanggal_kesepakatan"
-                                                name="tanggal_kesepakatan">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row justify-content-center">
-                                        <div class="col-md">
-                                            <label>No. Pihak Pertama</label>
-                                        </div>
-                                        <div class="col-md">
-                                            <input type="text" class="form-control" id="no_pihak_pertama"
-                                                name="no_pihak_pertama">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row justify-content-center">
-                                        <div class="col-md">
-                                            <label>No. Pihak Kedua</label>
-                                        </div>
-                                        <div class="col-md">
-                                            <input type="text" class="form-control" id="no_pihak_kedua"
-                                                name="no_pihak_kedua">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row justify-content-center">
-                                        <div class="text-center col-md-12">
-                                            <label>Jangka Waktu Berlangganan</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="number" class="form-control" id="" name="jangka_berlangganan"
-                                                required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input class="form-control" type="text" name="" value="Bulan" disabled>
-                                        </div>
-                                    </div>
+                                            <div class="form-group row justify-content-center">
+												<div class="col-md">
+													<label>Tipe</label>
+												</div>
+                                                <div class="col-md">
+                                                    <select name="tipe" id="tipe" class="form-control">
+                                                        <option value="Layanan Upgrade">Upgrade</option>
+                                                        <option value="Layanan Downgrade">Downgrade</option>
+                                                        <option value="Layanan Relokasi">Relokasi</option>
+                                                        <option value="Layanan Perpanjangan">Perpanjangan</option>
+                                                        <option value="Change Tarif">Change Tarif</option>
+                                                        <option value="Upgrade On Demand">Upgrade On Demand</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row justify-content-center">
+											    <div class="col-md">
+													<label>Nomor</label>
+												</div>
+                                                <div class="col-md">
+                                                    <input type="text" class="form-control" id="nomor" name="nomor">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row justify-content-center">
+											    <div class="col-md">
+													<label>Nama Penanggung Jawab</label>
+												</div>
+                                                <div class="col-md">
+                                                    <input type="text" value ="{{$fb->penanggung_jawab}}" class="form-control" id="nama_pj" name="nama_pj">
+                                                </div>
+                                            </div>
 
-                                    <div class="form-group row justify-content-center">
-                                        <div class="text-center col-md-12">
-                                            <label>Tanggal Mulai Penagihan</label>
-                                        </div>
-                                        <div class="col-md">
-                                            <input type="date" class="form-control" id="tanggal_penagihan"
-                                                name="tanggal_penagihan">
-                                            <br>
-                                        </div>
+                                            <div class="form-group row justify-content-center">
+											    <div class="col-md">
+													<label>Jabatan Penanggung Jawab</label>
+												</div>
+                                                <div class="col-md">
+                                                    <input type="text" value ="{{$fb->jabatan_pj}}" class="form-control" id="jabatan_pj" name="jabatan_pj">
+                                                </div>
+                                            </div>
 
-                                        <div class="col-md">
-                                            <input placeholder="tambahkan catatan" type="text" name="catatan_penagihan"
-                                                class="form-control">
+                                            <div class="form-group row justify-content-center">
+                                                <div class="col-md">
+													<label>Tanggal Kesepakatan</label>
+												</div>
+                                                <div class="col-md">
+                                                    <input type="date" class="form-control" id="tanggal_kesepakatan" name="tanggal_kesepakatan">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row justify-content-center">
+												<div class="col-md">
+													<label>No. Pihak Pertama</label>
+												</div>
+                                                <div class="col-md">
+                                                    <input type="text" class="form-control" id="no_pihak_pertama"
+                                                        name="no_pihak_pertama">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row justify-content-center">
+												<div class="col-md">
+													<label>No. Pihak Kedua</label>
+												</div>
+                                                <div class="col-md">
+                                                    <input type="text" class="form-control" id="no_pihak_kedua"
+                                                        name="no_pihak_kedua">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row justify-content-center">
+												<div class="text-center col-md-12">
+                                            		<label >Jangka Waktu Berlangganan</label>
+												</div>
+                                                <div class="col-md-6">
+                                                    <input type="number" class="form-control" id="" name="jangka_berlangganan"
+                                                        required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input class="form-control" type="text" name="" value="Bulan"
+                                                        disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row justify-content-center">
+												<div class="col-md">
+													<label>Status Biaya</label>
+												</div>
+                                                <div class="col-md">
+                                                    <select name="status_biaya" id="status_biaya" class="form-control">
+                                                        <option value="belum">Belum Termasuk PPN</option>
+                                                        <option value="sudah">Sudah Termasuk PPN</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row justify-content-center">
+												<div class="col-md">
+													<label>Status Penagihan</label>
+												</div>
+                                                <div class="col-md">
+                                                    <select name="status_tagihan" id="status_tagihan" class="form-control">
+                                                        <option value="awal">Awal Pemakaian Layanan</option>
+                                                        <option value="akhir">Akhir Pemakaian Layanan</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row justify-content-center">
+												<div class="text-center col-md-12">
+                                                	<label>Tanggal Mulai Penagihan</label>
+												</div>
+                                                <div class="col-md">
+                                                    <input type="date" class="form-control" id="tanggal_penagihan"
+                                                        name="tanggal_penagihan">
+                                                    <br>
+                                                </div>
+
+                                                <div class="col-md">
+                                                    <input placeholder="tambahkan catatan" type="text"
+                                                        name="catatan_penagihan" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row justify-content-center">
+												<div class="col-md">
+													<label>Status Publish</label>
+												</div>
+                                                <div class="col-md">
+                                                    <select name="status_publish" id="status_publish" class="form-control">
+                                                        <option value="ya">Ya</option>
+                                                        <option value="tidak">Tidak</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!-- end of tgl mulai penagihan -->
                                         </div>
-                                    </div>
-                                    <!-- end of tgl mulai penagihan -->
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-hover table-bordered" style="width:95%">
-                        <thead>
-                            <tr>
-                                <th>Tanggal Kesepakatan</th>
-                                <th>Tipe</th>
-                                <th>Nomor Perjanjian</th>
-                                <th>No. Pihak pertama</th>
-                                <th>No. Pihak kedua</th>
-                                <th>Jangka Waktu Berlangganan</th>
-                                <th>Catatan Penagihan</th>
-                                <th>Tanggal Mulai Penagihan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($order_data as $data)
-                            <tr>
-                                <td>{{ $data->tanggal_kesepakatan}}</td>
-                                <td>{{ $data->tipe}}</td>
-                                <td>{{ $data->nomor }}</td>
-                                <td>{{ $data->no_pihak_pertama }}</td>
-                                <td>{{ $data->no_pihak_kedua }}</td>
-                                <td>{{ $data->jangka_berlangganan }} Bulan</td>
-                                <td>{{ $data->catatan_penagihan }}</td>
-                                <td>{{ $data->tanggal_penagihan }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered" style="width:95%">
+                            <thead>
+                                    <tr>
+                                        <th>Tanggal Kesepakatan</th>
+                                        <th>Tipe</th>
+                                        <th>Nomor Perjanjian</th>
+                                        <th>Nama Penanggung Jawab</th>
+                                        <th>Jabatan Penanggung Jawab</th>
+                                        <th>No. Pihak pertama</th>
+                                        <th>No. Pihak kedua</th>
+                                        <th>Jangka Waktu Berlangganan</th>
+                                        <th>Status Biaya</th>
+                                        <th>Status Penagihan</th>
+                                        <th>Catatan Penagihan</th>
+                                        <th>Tanggal Mulai Penagihan</th>
+                                        <th>Status Publish</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($order_data as $data)
+                                    <tr>
+                                        <td>{{ $data->tanggal_kesepakatan}}</td>
+                                        <td>{{ $data->tipe}}</td>
+                                        <td>{{ $data->nomor }}</td>
+                                        <td>{{ $data->nama_pj }}</td>
+                                        <td>{{ $data->jabatan_pj }}</td>
+                                        <td>{{ $data->no_pihak_pertama }}</td>
+                                        <td>{{ $data->no_pihak_kedua }}</td>
+                                        <td>{{ $data->jangka_berlangganan }} Bulan</td>
+                                        <td>{{ $data->status_biaya }} </td>
+                                        <td>{{ $data->status_tagihan }} </td>
+                                        <td>{{ $data->catatan_penagihan }}</td>
+                                        <td>{{ $data->tanggal_penagihan }}</td>
+                                        <td>{{ $data->status_publish }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
             </div>
         </div>
     </div>

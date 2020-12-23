@@ -20,6 +20,18 @@
                     <div class="tab">
                         <div class="form-group">
                             <div class="form-group row">
+                                <div class="col-md col-form-label">
+                                    <label>Status Publish</label>
+                                </div>
+                                <div class="col-md-12">
+                                    <select name="status" id="status" class="form-control">
+                                        <option value="{{ old('status') ? old('status') : $data->status }}">{{$data->status}}</option>
+                                        <option value="ya">Ya</option>
+                                        <option value="tidak">Tidak</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-md col-form-label" for="nama">Nama Customer
                                     (Instansi)</label>
                                 <div class="col-md-12">

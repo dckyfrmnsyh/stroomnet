@@ -87,6 +87,27 @@
                                                     value="{{ old('nomor') ? old('nomor') : $order_data->nomor }}">
                                                 </div>
                                             </div>
+
+                                            <div class="form-group row justify-content-center">
+											    <div class="col-md">
+													<label>Nama Penanggung Jawab</label>
+												</div>
+                                                <div class="col-md">
+                                                    <input type="text" value ="{{ old('nama_pj') ? old('nama_pj') : $order_data->nama_pj }}" 
+                                                    class="form-control" id="nama_pj" name="nama_pj">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row justify-content-center">
+											    <div class="col-md">
+													<label>Jabatan Penanggung Jawab</label>
+												</div>
+                                                <div class="col-md">
+                                                    <input type="text" value ="{{ old('jabatan_pj') ? old('jabatan_pj') : $order_data->jabatan_pj }}" 
+                                                    class="form-control" id="jabatan_pj" name="jabatan_pj">
+                                                </div>
+                                            </div>
+
                                             <div class="form-group row justify-content-center">
                                                 <div class="col-md">
 													<label>Tanggal Kesepakatan</label>
@@ -132,6 +153,32 @@
                                             </div>
 
                                             <div class="form-group row justify-content-center">
+												<div class="col-md">
+													<label>Status Biaya</label>
+												</div>
+                                                <div class="col-md">
+                                                    <select name="status_biaya" id="status_biaya" class="form-control">
+                                                        <option value="{{ old('status_biaya') ? old('status_biaya') : $order_data->status_biaya }}">{{$order_data->status_biaya}}</option>
+                                                        <option value="belum">Belum Termasuk PPN</option>
+                                                        <option value="sudah">Sudah Termasuk PPN</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row justify-content-center">
+												<div class="col-md">
+													<label>Status Penagihan</label>
+												</div>
+                                                <div class="col-md">
+                                                    <select name="status_tagihan" id="status_tagihan" class="form-control">
+                                                        <option value="{{ old('status_tagihan') ? old('status_tagihan') : $order_data->status_tagihan }}">{{$order_data->status_tagihan}}</option>
+                                                        <option value="awal">Awal Pemakaian Layanan</option>
+                                                        <option value="akhir">Akhir Pemakaian Layanan</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row justify-content-center">
 												<div class="text-center col-md-12">
                                                 	<label>Tanggal Mulai Penagihan</label>
 												</div>
@@ -148,6 +195,19 @@
                                                         value="{{ old('catatan_penagihan') ? old('catatan_penagihan') : $order_data->catatan_penagihan }}">
                                                 </div>
                                             </div>
+
+                                            <div class="form-group row justify-content-center">
+												<div class="col-md">
+													<label>Status Publish</label>
+												</div>
+                                                <div class="col-md">
+                                                    <select name="status_publish" id="status_publish" class="form-control">
+                                                        <option value="{{ old('status_publish') ? old('status_publish') : $order_data->status_publish }}">{{$order_data->status_publish}}</option>
+                                                        <option value="ya">Ya</option>
+                                                        <option value="tidak">Tidak</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <!-- end of tgl mulai penagihan -->
                                         </div>
                                         <div class="modal-footer">
@@ -159,16 +219,21 @@
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover table-bordered" style="">
-                                <thead>
+                            <thead>
                                     <tr>
                                         <th>Tanggal Kesepakatan</th>
                                         <th>Tipe</th>
                                         <th>Nomor Perjanjian</th>
+                                        <th>Nama Penanggung Jawab</th>
+                                        <th>Jabatan Penanggung Jawab</th>
                                         <th>No. Pihak pertama</th>
                                         <th>No. Pihak kedua</th>
                                         <th>Jangka Waktu Berlangganan</th>
+                                        <th>Status Biaya</th>
+                                        <th>Status Penagihan</th>
                                         <th>Catatan Penagihan</th>
                                         <th>Tanggal Mulai Penagihan</th>
+                                        <th>Status Publish</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -176,11 +241,16 @@
                                         <td>{{ $order_data->tanggal_kesepakatan}}</td>
                                         <td>{{ $order_data->tipe}}</td>
                                         <td>{{ $order_data->nomor }}</td>
+                                        <td>{{ $order_data->nama_pj }}</td>
+                                        <td>{{ $order_data->jabatan_pj }}</td>
                                         <td>{{ $order_data->no_pihak_pertama }}</td>
                                         <td>{{ $order_data->no_pihak_kedua }}</td>
                                         <td>{{ $order_data->jangka_berlangganan }} Bulan</td>
+                                        <td>{{ $order_data->status_biaya }} </td>
+                                        <td>{{ $order_data->status_tagihan }} </td>
                                         <td>{{ $order_data->catatan_penagihan }}</td>
                                         <td>{{ $order_data->tanggal_penagihan }}</td>
+                                        <td>{{ $order_data->status_publish }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -189,7 +259,7 @@
                 </div>
             </div>
             <div class="col-md-10">
-                @if($cek_data1 == 1)
+                @if($cek_data_od == 0)
                 <div class="card">
                     <div class="card-header">
                         <h1 class="text-center">Order Layanan Lama</h1>
@@ -349,7 +419,6 @@
 				@endif
             </div>
             <div class="col-md-10">
-                @if($cek_data2 == 1)
                 <div class="card">
                     <div class="card-header">
                         <h1 class="text-center">Order Layanan Baru</h1>
@@ -506,7 +575,6 @@
                         <!-- end of tampilan -->
                     </div>
                 </div>
-				@endif
             </div>
             <div class="col-md-10">
                 <div class="">

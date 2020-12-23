@@ -27,7 +27,9 @@
                 <td>
                     <a href="/users/profile/bakbb/edit/{{$list->id}}" class="btn btn-sm btn-info"><i class="fa fa-edit"></i> Edit</a>
                     <a href="/users/profile/bakbb/show/{{$list->id}}" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i> Show</a>
+                    @if($list->order_data->status_publish == 'ya')
                     <a href="/users/profile/bakbb/download/{{$list->id}}" class="btn btn-sm btn-success" target="_blank"><i class="fa fa-download"></i> Download</a>
+                    @endif
                 </td>
             </tr>
             @endforeach

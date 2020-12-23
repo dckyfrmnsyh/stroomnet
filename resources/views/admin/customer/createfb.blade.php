@@ -56,7 +56,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-md-5 col-form-label" for="tgl_billing">Tanggal Billing</label>
+                                        <label class="col-md-5 col-form-label" for="tgl_billing">Tanggal</label>
                                         <div class="col-md-6">
                                             <input type="date" class="form-control" name="tgl_billing">
                                         </div>
@@ -439,6 +439,18 @@
                                             <input type="text" class="form-control" placeholder=""
                                                 name="email_teknis">
                                             <small class="form-text text-muted">*jika kosong isi (-)</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-md-5">
+                                            <label>Status Publish</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select name="status" id="status" class="form-control">
+                                                <option value="ya">Ya</option>
+                                                <option value="tidak">Tidak</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

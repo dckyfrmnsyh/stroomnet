@@ -69,8 +69,8 @@ class UserController extends Controller
         $data = FB::where('user_id',Auth::id())->first();
         $fb = FB::where('user_id',Auth::id())->get();
         $count_fb = FB::where('user_id',Auth::id())->count();
-        
-        return view('users.FB.show',compact('fb','data','count_fb'));
+        $icons = DB::table('data_pihak_icons')->first();
+        return view('users.FB.show',compact('fb','icons','data','count_fb'));
     }
     public function createfb(){
         $data = FB::where('user_id',Auth::id())->first();
@@ -264,7 +264,7 @@ class UserController extends Controller
     }
 
     public function bakbb_exist(Request $request){
-        $fb = FB::where('id', '=', Auth::id())->first();
+        $fb = FB::where('user_id', '=', Auth::id())->first();
         $list_id = Session::get('list_order_id_user');
         $data = ListOrder::get();
         $order_data = OrderData::where('list_id', '=', $list_id)->get();
@@ -381,9 +381,16 @@ class UserController extends Controller
         $layanan1 = OrderLayanan::where([['list_id', $id],['tipe','exist']])->get();
         $layanan2 = OrderLayanan::where([['list_id', $id],['tipe','new']])->get();
 
+        $countod = OrderData::where([['tipe', 'Layanan Baru'],['list_id', '=', $id]])->count();
         $count1 = OrderLayanan::where([['list_id', $id],['tipe','exist']])->count();
         $count2 = OrderLayanan::where([['list_id', $id],['tipe','new']])->count();
 
+        if($countod >= 1 ){
+            $cek_data_od = 1;
+        }
+        elseif($countod == 0 ){
+            $cek_data_od = 0;
+        }
         if($count1 >= 1){
             $cek_data1 = 1;
         }
@@ -396,7 +403,7 @@ class UserController extends Controller
         elseif($count2 == 0){
             $cek_data2 = 0;
         }
-        return view('users.BAKBB.edit',compact('layanan1','layanan2','order_data','cek_data1','cek_data2','cek_order_data','fb','data','nama_user','count'));
+        return view('users.BAKBB.edit',compact('layanan1','layanan2','cek_data_od','order_data','cek_data1','cek_data2','cek_order_data','fb','data','nama_user','count'));
     }
     public function update_data(Request $request,$id)
     {

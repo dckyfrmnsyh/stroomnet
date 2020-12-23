@@ -90,7 +90,7 @@
             <?php echo terbilang(Date::parse($list_order->order_data->tanggal_kesepakatan)->format('Y')); ?> (
             {{Date::parse($list_order->order_data->tanggal_kesepakatan)->format('d')}}-{{Date::parse($list_order->order_data->tanggal_kesepakatan)->format('m')}}-{{Date::parse($list_order->order_data->tanggal_kesepakatan)->format('Y')}}),
             telah dilakukan
-            kesepakatan biaya berlangganan permintaan layanan baru atas Jaringan Telekomunikasi oleh dan antara :
+            kesepakatan biaya berlangganan permintaan {{$list_order->order_data->tipe}} atas Jaringan Telekomunikasi oleh dan antara :
         </p>
         <table style="font-size: 8pt">
             <tr>
@@ -101,23 +101,23 @@
             <tr>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Diwakili Oleh</td>
                 <td style="padding-left: 7pt;">:</td>
-                <td>Agus Widya Santoso</td>
+                <td>{{$icons->nama_pj}}</td>
             </tr>
             <tr>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Jabatan</td>
                 <td style="padding-left: 7pt;">:</td>
-                <td>Plt General Manager SBU Regional Jawa Bagian Timur</td>
+                <td>{{$icons->jabatan_pj}}</td>
             </tr>
             <tr>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Alamat Kantor</td>
                 <td style="padding-left: 7pt;">:</td>
-                <td>Jl. Ketintang Baru 1 No. 1-3 Surabaya 60231</td>
+                <td>{{$icons->alamat}}</td>
             </tr>
             <tr>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nomor Telepon & Faksimile
                 </td>
                 <td style="padding-left: 7pt;">:</td>
-                <td>Telp (031) 827 3399 / 827 0033, Fax(031) 828 6611</td>
+                <td>Telp {{$icons->no_telp}}, Fax {{$icons->no_fax}}</td>
             </tr>
             <tr>
                 <td style="padding-right: 50pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>PIHAK KEDUA</b></td>
@@ -127,12 +127,12 @@
             <tr>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Diwakili Oleh</td>
                 <td style="padding-left: 7pt;">:</td>
-                <td>{{$fb->penanggung_jawab}}</td>
+                <td>{{$list_order->order_data->nama_pj}}</td>
             </tr>
             <tr>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Jabatan</td>
                 <td style="padding-left: 7pt;">:</td>
-                <td>{{$fb->jabatan_pj}}</td>
+                <td>{{$list_order->order_data->jabatan_pj}}</td>
             </tr>
             <tr>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Alamat Kantor</td>
@@ -483,7 +483,7 @@
                     </tr>
                     <tr>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;</td>
-                        <td>Seluruh biaya belum termasuk PPN dan pajak-pajak lainnya serta biaya di lokasi gedung
+                        <td>Seluruh biaya {{$list_order->order_data->status_biaya}} termasuk PPN dan pajak-pajak lainnya serta biaya di lokasi gedung
                             (tergantung perijinan lokasi gedung);</td>
                     </tr>
                     <tr>
@@ -493,7 +493,7 @@
                     </tr>
                     <tr>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;</td>
-                        <td>Penagihan Biaya Berlangganan dilakukan per bulan dan ditagihkan di awal pemakaian layanan
+                        <td>Penagihan Biaya Berlangganan dilakukan per bulan dan ditagihkan di {{$list_order->order_data->status_tagihan}} pemakaian layanan
                         </td>
                     </tr>
                     <tr>
@@ -554,7 +554,7 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <th>&nbsp;&nbsp;&nbsp;&nbsp;(Agus Widya Santoso)</th>
+                <th>&nbsp;&nbsp;&nbsp;&nbsp;( {{$icons->nama_pj}} )</th>
                 <th>&nbsp;</th>
                 <th>&nbsp;&nbsp;&nbsp;&nbsp;( {{$fb->penanggung_jawab}} )</th>
             </tr>

@@ -62,8 +62,10 @@
                                                 else if($setbtn[$listC->id] >= 1){
                                                     echo "<a href='/Admin/customer/show/FB/$listC->id'  class='btn btn-sm btn-warning'><i class='fa fa-eye'></i> FB</a>";
                                                     echo' ';
-                                                    echo "<a href='/Admin/customer/download/FB/$listC->id'  class='btn btn-sm btn-primary' target='_blank'><i class='fa fa-download'></i> Download</a>";
-                                                }  
+                                                    if($fb[$listC->id] == 'ya'){
+                                                        echo "<a href='/Admin/customer/download/FB/$listC->id'  class='btn btn-sm btn-primary' target='_blank'><i class='fa fa-download'></i> Download</a>";
+                                                    }  
+                                                }
                                             ?>
                                         </td>
                                     </tr>
