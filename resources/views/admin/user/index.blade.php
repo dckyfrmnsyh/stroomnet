@@ -60,6 +60,8 @@
                                         <td><span class="badge badge-complete">Admin</span></td>
                                         @elseif($listC->hasRole('sales'))
                                         <td><span class="badge badge-pending">Sales</span></td>
+                                        @elseif($listC->hasRole('customer'))
+                                        <td><span class="badge badge-warning">Customer</span></td>
                                         @endif
                                         <td>
                                             <a href="/Admin/user/delete/{{$listC->id}}" class="btn btn-sm btn-danger">

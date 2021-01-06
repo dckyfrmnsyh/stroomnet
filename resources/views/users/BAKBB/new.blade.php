@@ -106,6 +106,17 @@
                                                 class="form-control">
                                         </div>
                                     </div>
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-md">
+                                            <label>Status Publish</label>
+                                        </div>
+                                        <div class="col-md">
+                                            <select name="status_publish" id="status_publish" class="form-control">
+                                                <option value="ya">Ya</option>
+                                                <option value="tidak">Tidak</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <!-- end of tgl mulai penagihan -->
                                 </div>
                                 <div class="modal-footer">
@@ -119,14 +130,19 @@
                     <table class="table table-hover table-bordered" style="width:95%">
                         <thead>
                             <tr>
-                                <th>Tanggal Kesepakatan</th>
-                                <th>Tipe</th>
-                                <th>Nomor Perjanjian</th>
-                                <th>No. Pihak pertama</th>
-                                <th>No. Pihak kedua</th>
-                                <th>Jangka Waktu Berlangganan</th>
-                                <th>Catatan Penagihan</th>
-                                <th>Tanggal Mulai Penagihan</th>
+                            <th>Tanggal Kesepakatan</th>
+                                        <th>Tipe</th>
+                                        <th>Nomor Perjanjian</th>
+                                        <th>Nama Penanggung Jawab</th>
+                                        <th>Jabatan Penanggung Jawab</th>
+                                        <th>No. Pihak pertama</th>
+                                        <th>No. Pihak kedua</th>
+                                        <th>Jangka Waktu Berlangganan</th>
+                                        <th>Status Biaya</th>
+                                        <th>Status Penagihan</th>
+                                        <th>Catatan Penagihan</th>
+                                        <th>Tanggal Mulai Penagihan</th>
+                                        <th>Status Publish</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -135,11 +151,16 @@
                                 <td>{{ $data->tanggal_kesepakatan}}</td>
                                 <td>{{ $data->tipe}}</td>
                                 <td>{{ $data->nomor }}</td>
+                                <td>{{ $data->nama_pj }}</td>
+                                <td>{{ $data->jabatan_pj }}</td>
                                 <td>{{ $data->no_pihak_pertama }}</td>
                                 <td>{{ $data->no_pihak_kedua }}</td>
                                 <td>{{ $data->jangka_berlangganan }} Bulan</td>
+                                <td>{{ $data->status_biaya }} </td>
+                                <td>{{ $data->status_tagihan }} </td>
                                 <td>{{ $data->catatan_penagihan }}</td>
                                 <td>{{ $data->tanggal_penagihan }}</td>
+                                <td>{{ $data->status_publish }}</td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -16,10 +16,18 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 class FBExport implements FromView,WithStyles,ShouldAutoSize
 {
     use Exportable;
+
+    private $from, $to;
+
+    public function __construct(String $from, String $to) {
+
+        $this->from = $from;
+        $this->to = $to;
+    }
     
     public function view(): View
     {
-        $fb = FB::all();   
+        $fb = FB::whereBetween('created_at', [$this->from, $this->to])->get();  
 
         foreach($fb as $item){
             $user = User::where('id',$item->user_login)->first();

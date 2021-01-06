@@ -389,7 +389,7 @@
 
             </table>
             @elseif($count2 == 0)
-            <table border="1" style="border-collapse: collapse; font-size: 7pt; width: 95%; margin-left:20px">
+            <table border="1" style="page-break-inside: avoid;border-collapse: collapse; font-size: 7pt; width: 95%; margin-left:20px">
                 <tr>
                     <th style="height: 50px;">No</th>
                     <th>Originating</th>

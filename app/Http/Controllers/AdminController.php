@@ -760,6 +760,29 @@ class AdminController extends Controller
             public function user_delete( $id){
                 $user = User::where('id','=',$id)->first();
                 $user->delete();
+                
+                $fb = FB::where('user_id',$user->id)->first();
+                $countfb = FB::where('user_id',$user->id)->count();
+                if($countfb != 0){
+                    $list_order = ListOrder::where('fb_id',$fb->id)->first();
+                    $count_list = ListOrder::where('fb_id',$fb->id)->count();
+                    if($count_list != 0){
+                        $order_layanan = OrderLayanan::where('list_id',$list_order->id)->first();
+                        $count_layanan = OrderLayanan::where('list_id',$list_order->id)->count();
+                        if($count_layanan != 0){
+                            $order_layanan->delete();
+                        }
+
+                        $order_data = OrderData::where('list_id',$list_order->id)->first();
+                        $count_data = OrderData::where('list_id',$list_order->id)->count();
+                        if($count_data != 0){
+                            $order_data->delete();
+                        }
+                        $list_order->delete();
+                    }
+                    $fb->delete();
+                }
+                
                 return redirect()->back();
             }
 

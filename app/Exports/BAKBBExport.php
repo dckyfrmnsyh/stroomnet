@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Concerns\Exportable;
 
 use App\User;
 use App\Models\ListOrder;
+use App\Models\OrderData;
 use App\Models\OrderLayanan;
 
 use Maatwebsite\Excel\Concerns\WithStyles;
@@ -17,17 +18,23 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 class BAKBBExport implements FromView,WithStyles,ShouldAutoSize
 {
     use Exportable;
+
+    public function __construct(String $from, String $to) {
+
+        $this->from = $from;
+        $this->to = $to;
+    }
     
     public function view(): View
     {
-        $bakbb = ListOrder::orderBy('created_at', 'DESC')->get();   
+        $bakbb = OrderData::whereBetween('tanggal_kesepakatan', [$this->from, $this->to])->get(); 
         $count_layanan =2;
 
         foreach($bakbb as $item){
-            $layanan1[$item->id] = OrderLayanan::where([['list_id', $item->id],['tipe','exist']])->get();
-            $layanan2[$item->id] = OrderLayanan::where([['list_id', $item->id],['tipe','new']])->get();
-            $user = User::where('id',$item->order_data->user_login)->first();
-            $nama_user[$item->id] = $user->name;
+            $layanan1[$item->list_id] = OrderLayanan::where([['list_id', $item->list_id],['tipe','exist']])->get();
+            $layanan2[$item->list_id] = OrderLayanan::where([['list_id', $item->list_id],['tipe','new']])->get();
+            $user = User::where('id',$item->user_login)->first();
+            $nama_user[$item->list_id] = $user->name;
         }
 
         return view('admin.download.excel.bakbb', compact('layanan1','nama_user','layanan2','count_layanan','bakbb'));

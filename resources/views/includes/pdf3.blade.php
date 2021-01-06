@@ -461,7 +461,7 @@
                 @endforeach
             </tr>
             <tr>
-                <td style="text-align: center;">Plt. GM SBU Regional JBT</td>
+                <td style="text-align: center;">{{$icons->jabatan_pj}}</td>
                 <td>&nbsp;</td>
                 @foreach($fb as $c)
                 <td style="text-align: center;">{{$c->jabatan_penanggung_jawab}}</td>

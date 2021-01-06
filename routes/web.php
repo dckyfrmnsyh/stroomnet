@@ -153,6 +153,7 @@ Route::group(['middleware'=>['role:admin']],function(){
     Route::get('/Admin/user/edit/{id}', 'AdminController@user_edit')->name('customer.user_edit');
     Route::post('/Admin/user/update/{id}', 'AdminController@user_update')->name('customer.user_update');
     Route::get('/Admin/user/delete/{id}', 'AdminController@user_delete')->name('customer.user_delete');
+    Route::get('/Admin/customer/delete/{id}', 'AdminController@user_delete')->name('customer.user_delete');
 });
 
 // Only Customer route

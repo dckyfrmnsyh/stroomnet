@@ -32,7 +32,47 @@
             <div class="col-lg-12">
                 <div class="card" style="margin-top:10px;">
                     <div class="card-body">
-                        <h4 class="box-title">List Order Customer <a href="/excel/bakbb" class="float-right btn btn-sm btn-success"><i class='fa fa-folder-open'></i> Export BAKBB to Excel</a></h4>
+                        <h4 class="box-title">List Order Customer 
+                            <a data-toggle="modal" data-target="#myModal1" href="#" class="float-right btn btn-sm btn-success">
+                                <i class='fa fa-download'></i> 
+                                Export BAKBB to Excel
+                            </a>
+                        </h4>
+                        <!-- The Modal -->
+                        <div class="modal" id="myModal1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Filter berdasarkan tanggal kesepakatan</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <form action="/excel/bakbb" method="get">
+                                        {{ csrf_field() }}
+                                        <div class="modal-body">
+                                            <div class="form-group row">
+                                                <label class="col-md-3 form-control-label">Start Date:</label>
+                                                <div class="col-md-9">
+                                                    <input class="form-control" type="date" id="from" name="from" width="276" required />
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="form-group row">
+                                                <label class="col-md-3 form-control-label">End Date:</label>
+                                                <div class="col-md-9">
+                                                    <input class="form-control" type="date" id="to"  name="to" width="276" required />
+                                                </div>
+                                            </div>
+                                            <!-- end of tgl mulai penagihan -->
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary"><i class='fa fa-download'></i>  Export BAKBB to Excel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body--">
                         <div class="table-responsive table-stats order-table ov-h">

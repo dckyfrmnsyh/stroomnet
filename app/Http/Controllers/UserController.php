@@ -92,6 +92,7 @@ class UserController extends Controller
 
             'nomor_fb' => $request->nomor_fb,
             'tgl_billing' => $request->tgl_billing,
+            'status' => $request->status,
             'virtual_account' => $request->virtual_account,
 
             'nama_customer' => $request->nama_customer,
@@ -185,6 +186,7 @@ class UserController extends Controller
 
         $data->nomor_fb = $request->nomor_fb;
         $data->tgl_billing = $request->tgl_billing;
+        $data->status = $request->status;
         $data->virtual_account = $request->virtual_account;
 
         $data->nama_customer = $request->nama_customer;
@@ -357,6 +359,7 @@ class UserController extends Controller
             'jangka_berlangganan' => $request->jangka_berlangganan,
             'catatan_penagihan' => $request->catatan_penagihan,
             'tanggal_penagihan' => $request->tanggal_penagihan,
+            'status_publish' => $request->status_publish,
             'created_at' => Carbon::now(),
         ]);
         return redirect()->back();
@@ -416,6 +419,7 @@ class UserController extends Controller
         $data->jangka_berlangganan = $request->jangka_berlangganan;
         $data->catatan_penagihan = $request->catatan_penagihan;
         $data->tanggal_penagihan = $request->tanggal_penagihan;
+        $data->status_publish = $request->status_publish;
         $data->updated_at = Carbon::now();
         $data->save();
         return redirect()->back();

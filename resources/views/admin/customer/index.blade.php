@@ -32,7 +32,47 @@
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
-                        <div class="box-title">List Customer <a href="/excel/fb" class="float-right btn btn-sm btn-success"><i class='fa fa-folder-open'></i> Export FB to Excel</a></div>
+                        <div class="box-title">List Customer 
+                            <a data-toggle="modal" data-target="#myModal1" href="#" class="float-right btn btn-sm btn-success">
+                                <i class='fa fa-download'></i> 
+                                Export FB to Excel
+                            </a>
+                        </div>
+                        <!-- The Modal -->
+                        <div class="modal" id="myModal1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Filter berdasarkan tanggal kesepakatan</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <form action="/excel/fb" method="get">
+                                        {{ csrf_field() }}
+                                        <div class="modal-body">
+                                            <div class="form-group row">
+                                                <label class="col-md-3 form-control-label">Start Date:</label>
+                                                <div class="col-md-9">
+                                                    <input class="form-control" type="date" id="from" name="from" width="276" required />
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="form-group row">
+                                                <label class="col-md-3 form-control-label">End Date:</label>
+                                                <div class="col-md-9">
+                                                    <input class="form-control" type="date" id="to"  name="to" width="276" required />
+                                                </div>
+                                            </div>
+                                            <!-- end of tgl mulai penagihan -->
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary"><i class='fa fa-download'></i>  Export FB to Excel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body--">
                         <div class="table-stats order-table ov-h">
@@ -67,6 +107,9 @@
                                                     }  
                                                 }
                                             ?>
+                                            @if(auth()->user()->hasRole('admin'))
+                                            <a href='/Admin/customer/delete/{{$listC->id}}'  class='btn btn-sm btn-danger'><i class='fa fa-trash'></i> Delete</a>
+                                            @endif
                                         </td>
                                     </tr>
                                     @empty
@@ -122,3 +165,17 @@
 </div>
 <!-- .animated -->
 @endsection
+@push('before-script')
+
+<script>
+    function edit() {
+        var y = document.getElementById("formt");
+        if (y.style.display === "none") {
+            y.style.display = "inline-block";
+        } else {
+            y.style.display = "none";
+        }
+    }
+</script>
+
+@endpush

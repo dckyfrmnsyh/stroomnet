@@ -332,7 +332,7 @@
                 <td colspan="3"><b>Nomor Rekening </b></td>
                 <td>&nbsp;</td>
                 <td colspan="3" style="text-align: center;">
-                    <b>Virtual Account :</b><br>
+                    <b>Virtual Account : {{$fb->virtual_account}}</b><br>
                     <div style="text-align: center;">
                         <b>
                             BANK MANDIRI KCP PLN KANTOR PUSAT, Jakarta
@@ -456,7 +456,7 @@
                 <td colspan="3"><b>Nomor Rekening </b></td>
                 <td>&nbsp;</td>
                 <td colspan="3" style="text-align: center;">
-                    <b>Virtual Account :</b><br>
+                    <b>Virtual Account : {{$fb->virtual_account}}</b><br>
                     <div style="text-align: center;">
                         <b>
                             BANK MANDIRI KCP PLN KANTOR PUSAT, Jakarta
