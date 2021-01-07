@@ -495,7 +495,7 @@
         });
         $('#districts').on('change', function (e) {
             var id = e.target.value;
-            $.get('{{ url('users/alamat desa')}}/' + id,
+            $.get('{{ url('users/alamat/desa')}}/' + id,
                 function (data) {
                     console.log(id);
                     console.log(data);

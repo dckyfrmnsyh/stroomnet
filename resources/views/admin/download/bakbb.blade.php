@@ -596,6 +596,16 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
                     <th>( {{$icons->nama_pj}} )</th>
                     <th>&nbsp;</th>
                     <th>( {{$fb->penanggung_jawab}} )</th>
