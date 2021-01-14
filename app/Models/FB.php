@@ -9,7 +9,7 @@ class FB extends Model
     protected $table = 'fb';
 
     public $timestamps = true;
-
+    protected $primaryKey = 'id';
     protected $casts = [
         'created_at' => 'datetime:d/m/Y', // Change your format
         'updated_at' => 'datetime:d/m/Y',
@@ -76,6 +76,6 @@ class FB extends Model
     }
     public function list_order()
     {
-        return $this->hasMany('App\Models\ListOrder', 'fb_id','id');
+        return $this->hasMany(ListOrder::class);
     }
 }

@@ -192,6 +192,7 @@
                             <table class="table table-hover table-bordered" style="">
                             <thead>
                                     <tr>
+                                        <th>Nama Sales</th>
                                         <th>Tanggal Kesepakatan</th>
                                         <th>Tipe</th>
                                         <th>Nomor Perjanjian</th>
@@ -209,6 +210,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <td>{{ $nama_sales}}</td>
                                         <td>{{ $order_data->tanggal_kesepakatan}}</td>
                                         <td>{{ $order_data->tipe}}</td>
                                         <td>{{ $order_data->nomor }}</td>

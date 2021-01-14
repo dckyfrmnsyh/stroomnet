@@ -39,6 +39,8 @@
             <th>Telephone Teknis</th>
             <th>Email Teknis</th>
             <th>Created By</th>
+            <th>Sales</th>
+            <th>Created At</th>
         </tr>
     </thead>
     <tbody>
@@ -88,6 +90,8 @@
             <td>({{ $data->code_telp_teknis }}) {{ $data->no_telp_teknis }}</td>
             <td>{{ $data->email_teknis }}</td>
             <td>{{$nama_user[$data->id]}}</td>
+            <td>{{$nama_sales[$data->id]}}</td>
+            <td>{{$data->created_at}}</td>
         </tr>
     @endforeach
     </tbody>

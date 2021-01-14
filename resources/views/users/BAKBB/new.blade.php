@@ -15,12 +15,12 @@
             <div class="card-body">
                 <!-- Button to Open the Modal -->
                 @if($cek_order_data == 0)
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modaldataorder">
                     <i class="fa fa-plus"></i> Create Data
                 </button>
                 @endif
                 <!-- The Modal -->
-                <div class="modal" id="myModal1">
+                <div class="modal" id="modaldataorder">
                     <div class="modal-dialog">
                         <div class="modal-content">
 
@@ -49,6 +49,23 @@
                                         </div>
                                         <div class="col-md">
                                             <input type="text" class="form-control" id="nomor" name="nomor">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-md">
+                                            <label>Nama Penanggung Jawab</label>
+                                        </div>
+                                        <div class="col-md">
+                                            <input type="text" value ="{{$fb->penanggung_jawab}}" class="form-control" id="nama_pj" name="nama_pj">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-md">
+                                            <label>Jabatan Penanggung Jawab</label>
+                                        </div>
+                                        <div class="col-md">
+                                            <input type="text" value ="{{$fb->jabatan_pj}}" class="form-control" id="jabatan_pj" name="jabatan_pj">
                                         </div>
                                     </div>
                                     <div class="form-group row justify-content-center">
@@ -92,6 +109,30 @@
                                     </div>
 
                                     <div class="form-group row justify-content-center">
+                                        <div class="col-md">
+                                            <label>Status Biaya</label>
+                                        </div>
+                                        <div class="col-md">
+                                            <select name="status_biaya" id="status_biaya" class="form-control">
+                                                <option value="belum">Belum Termasuk PPN</option>
+                                                <option value="sudah">Sudah Termasuk PPN</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-md">
+                                            <label>Status Penagihan</label>
+                                        </div>
+                                        <div class="col-md">
+                                            <select name="status_tagihan" id="status_tagihan" class="form-control">
+                                                <option value="awal">Awal Pemakaian Layanan</option>
+                                                <option value="akhir">Akhir Pemakaian Layanan</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row justify-content-center">
                                         <div class="text-center col-md-12">
                                             <label>Tanggal Mulai Penagihan</label>
                                         </div>
@@ -130,24 +171,26 @@
                     <table class="table table-hover table-bordered" style="width:95%">
                         <thead>
                             <tr>
-                            <th>Tanggal Kesepakatan</th>
-                                        <th>Tipe</th>
-                                        <th>Nomor Perjanjian</th>
-                                        <th>Nama Penanggung Jawab</th>
-                                        <th>Jabatan Penanggung Jawab</th>
-                                        <th>No. Pihak pertama</th>
-                                        <th>No. Pihak kedua</th>
-                                        <th>Jangka Waktu Berlangganan</th>
-                                        <th>Status Biaya</th>
-                                        <th>Status Penagihan</th>
-                                        <th>Catatan Penagihan</th>
-                                        <th>Tanggal Mulai Penagihan</th>
-                                        <th>Status Publish</th>
+                                <th>Nama Sales</th>
+                                <th>Tanggal Kesepakatan</th>
+                                <th>Tipe</th>
+                                <th>Nomor Perjanjian</th>
+                                <th>Nama Penanggung Jawab</th>
+                                <th>Jabatan Penanggung Jawab</th>
+                                <th>No. Pihak pertama</th>
+                                <th>No. Pihak kedua</th>
+                                <th>Jangka Waktu Berlangganan</th>
+                                <th>Status Biaya</th>
+                                <th>Status Penagihan</th>
+                                <th>Catatan Penagihan</th>
+                                <th>Tanggal Mulai Penagihan</th>
+                                <th>Status Publish</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($order_data as $data)
                             <tr>
+                                <td>{{ $nama_sales}}</td>
                                 <td>{{ $data->tanggal_kesepakatan}}</td>
                                 <td>{{ $data->tipe}}</td>
                                 <td>{{ $data->nomor }}</td>

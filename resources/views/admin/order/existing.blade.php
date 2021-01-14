@@ -37,8 +37,8 @@
 <div class="animated fadeIn">
     <!-- Orders -->
     <div class="orders">
-        <div class="row justify-content-center">
-            <div class="col-md">
+        <div class="row">
+            <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
 						<h1 class="text-center">Order Data <br> {{$fb->nama_customer}} </h1>
@@ -209,6 +209,7 @@
                             <table class="table table-hover table-bordered" style="width:95%">
                             <thead>
                                     <tr>
+                                        <th>Nama Sales</th>
                                         <th>Tanggal Kesepakatan</th>
                                         <th>Tipe</th>
                                         <th>Nomor Perjanjian</th>
@@ -227,6 +228,7 @@
                                 <tbody>
                                     @foreach($order_data as $data)
                                     <tr>
+                                        <td>{{ $nama_sales}}</td>
                                         <td>{{ $data->tanggal_kesepakatan}}</td>
                                         <td>{{ $data->tipe}}</td>
                                         <td>{{ $data->nomor }}</td>
@@ -248,7 +250,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md">
+            <div class="col-md-8">
                 @if($cek_order_data == 1)
                 <div class="card">
                     <div class="card-header">
@@ -408,7 +410,7 @@
                 </div>
 				@endif
             </div>
-            <div class="col-md">
+            <div class="col-md-8">
                 @if($cek_order_data == 1)
                 <div class="card">
                     <div class="card-header">
@@ -568,7 +570,7 @@
                 </div>
 				@endif
             </div>
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <div class="">
                     <div class="" style="float: right;">
                         <a class="btn btn-success" id="button_next" onclick="konfirmasi()">Selanjutnya</a>

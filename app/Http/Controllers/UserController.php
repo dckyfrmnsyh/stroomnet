@@ -77,8 +77,9 @@ class UserController extends Controller
         $count_fb = FB::where('user_id',Auth::id())->count();
         $customer = User::find(Auth::id());
         $provinces = Province::pluck('name', 'id');
+        $sales = User::role('sales')->pluck('name', 'id');
 
-        return view('users.FB.create',compact('customer','data','provinces','count_fb'));
+        return view('users.FB.create',compact('sales','customer','data','provinces','count_fb'));
     }
     public function storefb(Request $request){
         $provinsi = Province::where('id',$request->provinsi)->first();
@@ -89,6 +90,7 @@ class UserController extends Controller
         $customer = FB::insert([
             'user_id' => Auth::id(),
             'user_login' => Auth::id(),
+            'id_sales' => $request->sales,
 
             'nomor_fb' => $request->nomor_fb,
             'tgl_billing' => $request->tgl_billing,
@@ -152,6 +154,9 @@ class UserController extends Controller
         return redirect()->route('users.profile');
     }
     public function editfb(){
+        $sales = User::role('sales')->pluck('name', 'id');
+        $salescek = User::where('id',$data->id_sales)->first();
+        $nama_sales = $salescek->name;
         $data = FB::where('user_id',Auth::id())->first();
         $customer = FB::where('user_id',Auth::id())->first();
         $fb = FB::where('user_id',Auth::id())->get();
@@ -170,7 +175,7 @@ class UserController extends Controller
             ['district_id',$kecamatan->id],
             ['name',$data->desa],
             ])->first();
-        return view('users.FB.edit',compact('fb','customer','data','count_fb','provinces','desa','kecamatan','kota','provinsi'));
+        return view('users.FB.edit',compact('nama_sales','fb','customer','data','count_fb','provinces','desa','kecamatan','kota','provinsi'));
     }
 
     public function updatefb(Request $request){
@@ -183,6 +188,7 @@ class UserController extends Controller
 
         $data->user_id = Auth::id();
         $data->user_login = Auth::id();
+        $data->id_sales = $request->sales;
 
         $data->nomor_fb = $request->nomor_fb;
         $data->tgl_billing = $request->tgl_billing;
@@ -258,11 +264,13 @@ class UserController extends Controller
         $count = OrderData::where('list_id', '=', $list_id)->count();
         if($count >= 1){
             $cek_order_data = 1;
+            $salescek = User::where('id',$fb->id_sales)->first();
+            $nama_sales = $salescek->name;
         }
         elseif($count == 0){
             $cek_order_data = 0;
         }
-        return view('users.BAKBB.new',compact('fb','layanan','test','list_id','order_data','cek_order_data'));
+        return view('users.BAKBB.new',compact('nama_sales','fb','layanan','test','list_id','order_data','cek_order_data'));
     }
 
     public function bakbb_exist(Request $request){
@@ -276,11 +284,13 @@ class UserController extends Controller
         $count = OrderData::where('list_id', '=', $list_id)->count();
         if($count >= 1){
             $cek_order_data = 1;
+            $salescek = User::where('id',$fb->id_sales)->first();
+            $nama_sales = $salescek->name;
         }
         elseif($count == 0){
             $cek_order_data = 0;
         }
-        return view('users.BAKBB.existing',compact('fb','layanan1','layanan2','test','list_id','order_data','cek_order_data'));
+        return view('users.BAKBB.existing',compact('nama_sales','fb','layanan1','layanan2','test','list_id','order_data','cek_order_data'));
     }
 
     public function store_new(Request $request){

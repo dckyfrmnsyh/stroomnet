@@ -9,7 +9,7 @@
 
 @section('breadcrumbs')
 <div class="breadcrumbs-inner">
-    <div class="row m-0">
+    <div class="row">
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-4">
             <div class="page-header float-right">
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
@@ -25,6 +25,12 @@
                         <li><a href="/Admin/order">List Order Customer</a></li>
                         <li class="active">Edit Order Customer</li>
                     </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="page-header float-right">
+                <div class="page-title">
                 </div>
             </div>
         </div>
@@ -36,8 +42,8 @@
 <div class="animated fadeIn">
     <!-- Orders -->
     <div class="orders">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
+        <div class="row ">
+            <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
 						<h1 class="text-center">Order Data <br> {{$fb->nama_customer}} </h1>
@@ -221,6 +227,7 @@
                             <table class="table table-hover table-bordered" style="">
                             <thead>
                                     <tr>
+                                        <th>Nama Sales</th>
                                         <th>Tanggal Kesepakatan</th>
                                         <th>Tipe</th>
                                         <th>Nomor Perjanjian</th>
@@ -238,6 +245,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <td>{{ $nama_sales}}</td>
                                         <td>{{ $order_data->tanggal_kesepakatan}}</td>
                                         <td>{{ $order_data->tipe}}</td>
                                         <td>{{ $order_data->nomor }}</td>
@@ -258,7 +266,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-8">
                 @if($cek_data_od == 0)
                 <div class="card">
                     <div class="card-header">
@@ -418,7 +426,7 @@
                 </div>
 				@endif
             </div>
-            <div class="col-md-10">
+            <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
                         <h1 class="text-center">Order Layanan Baru</h1>
@@ -576,7 +584,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-8">
                 <div class="">
                     <div class="" style="float: right;">
                         <a class="btn btn-success" id="button_next" onclick="konfirmasi()">Selanjutnya</a>

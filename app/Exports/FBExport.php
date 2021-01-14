@@ -32,8 +32,10 @@ class FBExport implements FromView,WithStyles,ShouldAutoSize
         foreach($fb as $item){
             $user = User::where('id',$item->user_login)->first();
             $nama_user[$item->id] = $user->name;
+            $sales = User::where('id',$item->id_sales)->first();
+            $nama_sales[$item->id] = $sales->name;
         }
-        return view('admin.download.excel.fb', compact('nama_user','fb'));
+        return view('admin.download.excel.fb', compact('nama_sales','nama_user','fb'));
     }
     public function styles(Worksheet $sheet)
     {

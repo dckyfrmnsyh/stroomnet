@@ -28,6 +28,8 @@
             <th>Biaya Instalasi Baru</th>
             <th>Status Publish</th>
             <th>Created By</th>
+            <th>Sales</th>
+            <th>Created At</th>
         </tr>
     </thead>
     <tbody>
@@ -133,6 +135,8 @@
             </td>
             <td>{{ ucfirst($item->status_publish) }}</td>
             <td>{{$nama_user[$item->list_id]}}</td>
+            <td>{{$nama_sales[$item->list_id]}}</td>
+            <td>{{$item->created_at}}</td>
         </tr>
     @endforeach
     </tbody>

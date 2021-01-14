@@ -169,7 +169,8 @@ class AdminController extends Controller
                 $customer = User::find($id);
                 
                 $provinces = Province::pluck('name', 'id');
-                return view('admin.customer.createfb',compact('customer','provinces'));
+                $sales = User::role('sales')->pluck('name', 'id');
+                return view('admin.customer.createfb',compact('customer','provinces','sales'));
             }
             public function storefb(Request $request, $id){
                 $provinsi = Province::where('id',$request->provinsi)->first();
@@ -180,6 +181,7 @@ class AdminController extends Controller
                 $customer = FB::insert([
                     'user_id' => $id,
                     'user_login' => Auth::id(),
+                    'id_sales' => $request->sales,
 
                     'nomor_fb' => $request->nomor_fb,
                     'tgl_billing' => $request->tgl_billing,
@@ -245,7 +247,10 @@ class AdminController extends Controller
 
             public function showfb(Request $request, $id){
                 $customer = User::find($id);
+                $sales = User::role('sales')->pluck('name', 'id');
                 $data = FB::where('user_id','=',$customer->id)->first();
+                $salescek = User::where('id',$data->id_sales)->first();
+                $nama_sales = $salescek->name;
                 $provinces = Province::pluck('name', 'id');
                 $icons = DB::table('data_pihak_icons')->first();
                 $provinsi = Province::where('name',$data->provinsi)->first();
@@ -264,7 +269,7 @@ class AdminController extends Controller
 
                 $fb = FB::where('user_id',$id)->get();
 
-                return view('admin.customer.showfb',compact('fb','icons','data','customer','provinces','desa','kecamatan','kota','provinsi'));
+                return view('admin.customer.showfb',compact('nama_sales','sales','fb','icons','data','customer','provinces','desa','kecamatan','kota','provinsi'));
             }
             public function updatefb(Request $request, $id){
                 $provinsi = Province::where('id',$request->provinsi)->first();
@@ -277,6 +282,7 @@ class AdminController extends Controller
 
                 $data->user_id = $id;
                 $data->user_login = Auth::id();
+                $data->id_sales = $request->sales;
 
                 $data->nomor_fb = $request->nomor_fb;
                 $data->tgl_billing = $request->tgl_billing;
@@ -345,21 +351,22 @@ class AdminController extends Controller
     // Menu Order
         // --BAKBB-- //
             public function order(Request $request){
-                $data = FB::where('user_login', '=', Auth::id())->orderBy('created_at', 'DESC')->paginate(10);   
+                $data = FB::where('id_sales', '=', Auth::id())->get();
+                
+                $list_order = ListOrder::with(['fb' => function ($query) {
+                    $query->where('user_login', Auth::id());
+                }])->orderBy('created_at', 'DESC')->paginate(10);
 
-                foreach($data as $item){
-                    $user = User::where('id',$item->user_login)->first();
-                    $nama_user[$item->id] = $user->name;
-                }
                 $request->session()->forget('list_order_id');
-                return view('admin.order.index',compact('data','nama_user'));
+                return view('admin.order.index',compact('list_order','data','nama_user','nama_customer'));
             }
             public function view_order_all(Request $request){
-                $data = FB::orderBy('created_at', 'DESC')->paginate(20);   
+                
 
+                $data =  ListOrder::with('fb')->orderBy('created_at', 'DESC')->paginate(10);
                 foreach($data as $item){
-                    $user = User::where('id',$item->user_login)->first();
-                    $nama_user[$item->id] = $user->name;
+                    $user = User::where('id',$item->order_data->user_login)->first();
+                    $nama_user[$item->order_data->id] = $user->name;
                 }
                 $request->session()->forget('list_order_id');
                 return view('admin.order.viewall',compact('data','nama_user'));
@@ -370,17 +377,18 @@ class AdminController extends Controller
                 $count = OrderData::where('list_id', '=', $id)->count();
                 $item = ListOrder::where('id', '=', $id)->first();
                 $fb = FB::where('id', '=', $item->fb_id)->first();
+                $order_data1 = OrderData::where('list_id', '=', $id)->get();
+                $order_data = OrderData::where('list_id', '=', $id)->first();
+                $sales = User::role('sales')->pluck('name', 'id');
                 if($count >= 1){
                     $cek_order_data = 1;
                 }
                 elseif($count == 0){
                     $cek_order_data = 0;
                 }
-                foreach($data as $item){
-                    $user = User::where('id',$item->user_login)->first();
-                    $nama_user[$item->id] = $user->name;
-                }
-                $order_data = OrderData::where('list_id', '=', $id)->first();
+                $salescek = User::where('id',$fb->id_sales)->first();
+                $nama_sales = $salescek->name;
+                
                 $layanan1 = OrderLayanan::where([['list_id', $id],['tipe','exist']])->get();
                 $layanan2 = OrderLayanan::where([['list_id', $id],['tipe','new']])->get();
 
@@ -406,7 +414,7 @@ class AdminController extends Controller
                 elseif($count2 == 0){
                     $cek_data2 = 0;
                 }
-                return view('admin.order.edit',compact('layanan1','cek_data_od','layanan2','order_data','cek_data1','cek_data2','cek_order_data','fb','data','nama_user','count'));
+                return view('admin.order.edit',compact('sales','nama_sales','layanan1','cek_data_od','layanan2','order_data','cek_data1','cek_data2','cek_order_data','fb','data','nama_user','count'));
             }
             public function update_data(Request $request,$id)
             {
@@ -532,6 +540,7 @@ class AdminController extends Controller
                 $fb = FB::where('id', '=', $id)->first();
                 $list_id = Session::get('list_order_id');
                 $data = ListOrder::get();
+                $sales = User::role('sales')->pluck('name', 'id');
                 $order_data = OrderData::where('list_id', '=', $list_id)->get();
                 
                 $layanan = OrderLayanan::where([['list_id', $list_id],['tipe','new']])->get();
@@ -539,11 +548,15 @@ class AdminController extends Controller
                 $count = OrderData::where('list_id', '=', $list_id)->count();
                 if($count >= 1){
                     $cek_order_data = 1;
+                    foreach($order_data as $item){
+                        $salescek = User::where('id',$fb->id_sales)->first();
+                        $nama_sales = $salescek->name;
+                    }
                 }
                 elseif($count == 0){
                     $cek_order_data = 0;
                 }
-                return view('admin.order.new',compact('fb','layanan','test','list_id','order_data','cek_order_data'));
+                return view('admin.order.new',compact('nama_sales','sales','fb','layanan','test','list_id','order_data','cek_order_data'));
             }
 
             public function store_bakbb_new(Request $request, $id){
@@ -617,6 +630,7 @@ class AdminController extends Controller
                 $fb = FB::where('id', '=', $id)->first();
                 $list_id = Session::get('list_order_id');
                 $data = ListOrder::get();
+                $sales = User::role('sales')->pluck('name', 'id');
                 $order_data = OrderData::where('list_id', '=', $list_id)->get();
                 $layanan1 = OrderLayanan::where([['list_id', $list_id],['tipe','exist']])->get();
                 $layanan2 = OrderLayanan::where([['list_id', $list_id],['tipe','new']])->get();
@@ -624,11 +638,13 @@ class AdminController extends Controller
                 $count = OrderData::where('list_id', '=', $list_id)->count();
                 if($count >= 1){
                     $cek_order_data = 1;
+                    $salescek = User::where('id',$fb->id_sales)->first();
+                    $nama_sales = $salescek->name;
                 }
                 elseif($count == 0){
                     $cek_order_data = 0;
                 }
-                return view('admin.order.existing',compact('fb','layanan1','layanan2','test','list_id','order_data','cek_order_data'));
+                return view('admin.order.existing',compact('nama_sales','sales','fb','layanan1','layanan2','test','list_id','order_data','cek_order_data'));
             }
 
             public function store_bakbb_existing(Request $request, $id){

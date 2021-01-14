@@ -46,6 +46,18 @@
                                     <small class="form-text text-muted">ex. 82389343279371</small>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-md-5 col-form-label" for="virtual_account">Pilih Sales</label>
+                                <div class="col-md-6">
+                                    <select name="sales" id="sales" class="form-control">
+                                        <option value="">== Select Sales ==</option>
+                                        @foreach ($sales as $id => $name)
+                                        <option value="{{ $id }}">{{ $name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <small class="form-text text-muted">Sesuaikan Sales</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- tab 2 -->

@@ -51,18 +51,18 @@
                                 <tbody>
                                     
                                     <?php $no=0 ?>
-                                    @foreach($data as $list_data)
-                                        @foreach($list_data->list_order as $list)
+                                        @foreach($list_order as $list)
+                                        @if($list->order_data->user_login == Auth::id())
                                         <?php $no++ ?>
                                         <tr>
                                             <td>{{ $no }}</td>
                                             <td>
-                                                <a>{{$list_data->nama_customer}}</a>
+                                                {{$list->fb['nama_customer']}}
                                             </td>
                                             <td>{{$list->order_data->tipe}}</td>
                                             <td>{{$list->order_data->nomor}}</td>
                                             <td>
-                                                {{$nama_user[$list_data->id]}}
+                                                {{Auth::user()->name}}
                                             </td>
                                             <td>
                                                 <a href="/Admin/order/edit/{{$list->id}}" class="btn btn-sm btn-info"><i class="fa fa-edit"></i> Edit</a>
@@ -73,8 +73,8 @@
                                                 <a href="/Admin/order/delete/{{$list->id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
+                                        @endif
                                         @endforeach
-                                    @endforeach
                                 </tbody>
                             </table>
                         </div> <!-- /.table-stats -->
@@ -82,7 +82,7 @@
                 </div> <!-- /.card -->
             </div>
             <div class="text-center">
-                {{ $data->links() }}
+                {{ $list_order->links() }}
                 <a href="{{route('order.all')}}" class="btn btn-outline-primary">View All</a>
             </div>
         </div>

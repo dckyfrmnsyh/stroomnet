@@ -91,28 +91,26 @@
                                     
                                     <?php $no=0 ?>
                                     @foreach($data as $list_data)
-                                        @foreach($list_data->list_order as $list)
                                         <?php $no++ ?>
                                         <tr>
                                             <td>{{ $no }}</td>
                                             <td>
-                                                <a>{{$list_data->nama_customer}}</a>
+                                                <a>{{$list_data->fb['nama_customer']}}</a>
                                             </td>
-                                            <td>{{$list->order_data->tipe}}</td>
-                                            <td>{{$list->order_data->nomor}}</td>
+                                            <td>{{$list_data->order_data->tipe}}</td>
+                                            <td>{{$list_data->order_data->nomor}}</td>
                                             <td>
-                                                {{$nama_user[$list_data->id]}}
+                                                {{$nama_user[$list_data->order_data->id]}}
                                             </td>
                                             <td>
-                                                <a href="/Admin/order/edit/{{$list->id}}" class="btn btn-sm btn-info"><i class="fa fa-edit"></i> Edit</a>
-                                                <a href="/Admin/order/show/BAKBB/{{$list->id}}" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i> Show</a>
-                                                @if($list->order_data->status_publish == 'ya')
-                                                <a href="/Admin/order/download/BAKBB/{{$list->id}}" class="btn btn-sm btn-success" target="_blank"><i class="fa fa-download"></i> Download</a>
+                                                <a href="/Admin/order/edit/{{$list_data->id}}" class="btn btn-sm btn-info"><i class="fa fa-edit"></i> Edit</a>
+                                                <a href="/Admin/order/show/BAKBB/{{$list_data->id}}" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i> Show</a>
+                                                @if($list_data->order_data->status_publish == 'ya')
+                                                <a href="/Admin/order/download/BAKBB/{{$list_data->id}}" class="btn btn-sm btn-success" target="_blank"><i class="fa fa-download"></i> Download</a>
                                                 @endif
-                                                <a href="/Admin/order/delete/{{$list->id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                                <a href="/Admin/order/delete/{{$list_data->id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
-                                        @endforeach
                                     @endforeach
                                 </tbody>
                             </table>

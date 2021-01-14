@@ -10,6 +10,7 @@ use App\User;
 use App\Models\ListOrder;
 use App\Models\OrderData;
 use App\Models\OrderLayanan;
+use App\Models\FB;
 
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
@@ -34,10 +35,14 @@ class BAKBBExport implements FromView,WithStyles,ShouldAutoSize
             $layanan1[$item->list_id] = OrderLayanan::where([['list_id', $item->list_id],['tipe','exist']])->get();
             $layanan2[$item->list_id] = OrderLayanan::where([['list_id', $item->list_id],['tipe','new']])->get();
             $user = User::where('id',$item->user_login)->first();
+            $list= ListOrder::where('id',$item->list_id)->first();
+            $fb = FB::where('id',$list->fb_id)->first();
+            $sales = User::where('id',$fb->id_sales)->first();
             $nama_user[$item->list_id] = $user->name;
+            $nama_sales[$item->list_id] = $sales->name;
         }
 
-        return view('admin.download.excel.bakbb', compact('layanan1','nama_user','layanan2','count_layanan','bakbb'));
+        return view('admin.download.excel.bakbb', compact('layanan1','nama_sales','nama_user','layanan2','count_layanan','bakbb'));
     }
     public function styles(Worksheet $sheet)
     {

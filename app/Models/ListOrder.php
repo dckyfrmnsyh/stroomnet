@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ListOrder extends Model
 {
     public $incrementing = false;
-
+    protected $primaryKey = 'id';
     /**
      * Sets the UUID value for the primary key field.
      */
@@ -20,7 +20,7 @@ class ListOrder extends Model
 
     public function fb()
     {
-        return $this->belongsTo('App\Models\FB', 'id','fb_id');
+        return $this->belongsTo(FB::class, 'fb_id');
     }
     public function order_layanan()
     {

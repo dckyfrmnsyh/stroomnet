@@ -178,6 +178,7 @@
                             <table class="table table-hover table-bordered" style="width:95%">
                             <thead>
                                     <tr>
+                                        <th>Nama_sales</th>
                                         <th>Tanggal Kesepakatan</th>
                                         <th>Tipe</th>
                                         <th>Nomor Perjanjian</th>
@@ -196,6 +197,7 @@
                                 <tbody>
                                     @foreach($order_data as $data)
                                     <tr>
+                                        <td>{{ $nama_sales}}</td>
                                         <td>{{ $data->tanggal_kesepakatan}}</td>
                                         <td>{{ $data->tipe}}</td>
                                         <td>{{ $data->nomor }}</td>
