@@ -250,7 +250,10 @@ class AdminController extends Controller
                 $sales = User::role('sales')->pluck('name', 'id');
                 $data = FB::where('user_id','=',$customer->id)->first();
                 $salescek = User::where('id',$data->id_sales)->first();
-                $nama_sales = $salescek->name;
+                $salescek1 = User::where('id',$data->id_sales)->count();
+                if($salescek1 == 1){
+                    $nama_sales = $salescek->name;
+                }
                 $provinces = Province::pluck('name', 'id');
                 $icons = DB::table('data_pihak_icons')->first();
                 $provinsi = Province::where('name',$data->provinsi)->first();
@@ -387,7 +390,10 @@ class AdminController extends Controller
                     $cek_order_data = 0;
                 }
                 $salescek = User::where('id',$fb->id_sales)->first();
-                $nama_sales = $salescek->name;
+                $salescek1 = User::where('id',$fb->id_sales)->count();
+                if($salescek1 == 1){
+                    $nama_sales = $salescek->name;
+                }
                 
                 $layanan1 = OrderLayanan::where([['list_id', $id],['tipe','exist']])->get();
                 $layanan2 = OrderLayanan::where([['list_id', $id],['tipe','new']])->get();

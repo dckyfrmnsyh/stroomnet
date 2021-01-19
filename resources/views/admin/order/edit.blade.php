@@ -245,7 +245,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>{{ $nama_sales}}</td>
+                                        <td>{{ $nama_sales ?? 'Sales Belum Disesuaikan Mohon Sesuaikan Sales dengan melakukan edit Data FB'}}</td>
                                         <td>{{ $order_data->tanggal_kesepakatan}}</td>
                                         <td>{{ $order_data->tipe}}</td>
                                         <td>{{ $order_data->nomor }}</td>

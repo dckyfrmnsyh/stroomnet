@@ -105,8 +105,8 @@
                                         <div class="col-md-12">
                                             <select name="sales" id="sales" class="form-control">
                                                 <option 
-                                                value="{{ old('sales') ? old('sales') : $data->id_sales }}">
-                                                {{$nama_sales}}</option>
+                                                value="{{ old('sales') ? old('sales') : $data->id_sales ?? '--Pilih Sales--' }}">
+                                                {{$nama_sales ?? '--Pilih Sales--'}}</option>
                                                 @foreach ($sales as $id => $name)
                                                 <option value="{{ $id }}">{{ $name }}</option>
                                                 @endforeach
