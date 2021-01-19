@@ -81,6 +81,9 @@
                         </div> <!-- /.table-stats -->
                     </div>
                 </div> <!-- /.card -->
+                <div class="row justify-content-center">
+                    {{$user->links()}}
+                </div>
             </div>
             <div class="col-lg-4">
                 <div class="card">

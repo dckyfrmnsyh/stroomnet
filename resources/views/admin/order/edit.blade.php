@@ -43,7 +43,7 @@
     <!-- Orders -->
     <div class="orders">
         <div class="row ">
-            <div class="col-md-8">
+            <div class="col-sm-8">
                 <div class="card">
                     <div class="card-header">
 						<h1 class="text-center">Order Data <br> {{$fb->nama_customer}} </h1>
@@ -266,7 +266,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-sm-8">
                 @if($cek_data_od == 0)
                 <div class="card">
                     <div class="card-header">
@@ -426,7 +426,7 @@
                 </div>
 				@endif
             </div>
-            <div class="col-md-8">
+            <div class="col-sm-8">
                 <div class="card">
                     <div class="card-header">
                         <h1 class="text-center">Order Layanan Baru</h1>
@@ -584,7 +584,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-sm-8">
                 <div class="">
                     <div class="" style="float: right;">
                         <a class="btn btn-success" id="button_next" onclick="konfirmasi()">Selanjutnya</a>

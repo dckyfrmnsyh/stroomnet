@@ -51,6 +51,7 @@
                                     <form action="/excel/bakbb" method="get">
                                         {{ csrf_field() }}
                                         <div class="modal-body">
+                                            <div class="sufee-alert alert with-close alert-warning alert-dismissible fade show">jika ada data yang tidak mempunyai tanggal kesepakatan (Tanggal BAKBB) maka tidak akan terexport</div>
                                             <div class="form-group row">
                                                 <label class="col-md-3 form-control-label">Start Date:</label>
                                                 <div class="col-md-9">

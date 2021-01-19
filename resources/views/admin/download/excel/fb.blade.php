@@ -90,7 +90,9 @@
             <td>({{ $data->code_telp_teknis }}) {{ $data->no_telp_teknis }}</td>
             <td>{{ $data->email_teknis }}</td>
             <td>{{$nama_user[$data->id]}}</td>
-            <td>{{$nama_sales[$data->id]}}</td>
+            <td>
+                    {{$nama_sales[$data->id] ?? 'Sales Belum Disesuaikan Mohon Sesuaikan Sales dengan melakukan edit Data FB'}}
+            </td>
             <td>{{$data->created_at}}</td>
         </tr>
     @endforeach

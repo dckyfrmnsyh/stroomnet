@@ -135,7 +135,7 @@
             </td>
             <td>{{ ucfirst($item->status_publish) }}</td>
             <td>{{$nama_user[$item->list_id]}}</td>
-            <td>{{$nama_sales[$item->list_id]}}</td>
+            <td>{{$nama_sales[$item->list_id] ?? 'Sales Belum Disesuaikan Mohon Sesuaikan Sales dengan melakukan edit Data FB'}}</td>
             <td>{{$item->created_at}}</td>
         </tr>
     @endforeach

@@ -39,7 +39,10 @@ class BAKBBExport implements FromView,WithStyles,ShouldAutoSize
             $fb = FB::where('id',$list->fb_id)->first();
             $sales = User::where('id',$fb->id_sales)->first();
             $nama_user[$item->list_id] = $user->name;
-            $nama_sales[$item->list_id] = $sales->name;
+            $salescek = User::where('id',$fb->id_sales)->count();
+            if($salescek == 1){
+                $nama_sales[$item->list_id] = $sales->name;
+            }
         }
 
         return view('admin.download.excel.bakbb', compact('layanan1','nama_sales','nama_user','layanan2','count_layanan','bakbb'));

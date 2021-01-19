@@ -740,7 +740,7 @@ class AdminController extends Controller
     // Menu User
         // --Akun-- //
             public function user(){
-                $user = User::role(['admin','sales'])->get();
+                $user = User::role(['admin','sales'])->paginate(8);
                 return view('admin.user.index',compact('user'));
             }
             public function user_store(Request $request){

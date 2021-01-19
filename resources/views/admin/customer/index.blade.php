@@ -45,12 +45,13 @@
 
                                     <!-- Modal Header -->
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Filter berdasarkan tanggal kesepakatan</h4>
+                                        <h4 class="modal-title">Filter berdasarkan tanggal kesepakatan </h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <form action="/excel/fb" method="get">
                                         {{ csrf_field() }}
                                         <div class="modal-body">
+                                            <div class="sufee-alert alert with-close alert-warning alert-dismissible fade show">jika ada data yang tidak mempunyai tanggal kesepakatan (Tanggal FB) maka tidak akan terexport</div>
                                             <div class="form-group row">
                                                 <label class="col-md-3 form-control-label">Start Date:</label>
                                                 <div class="col-md-9">
