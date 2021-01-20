@@ -556,7 +556,10 @@ class AdminController extends Controller
                     $cek_order_data = 1;
                     foreach($order_data as $item){
                         $salescek = User::where('id',$fb->id_sales)->first();
-                        $nama_sales = $salescek->name;
+                        $salescek1 = User::where('id',$fb->id_sales)->count();
+                        if($salescek1 == 1){
+                            $nama_sales = $salescek->name;
+                        }
                     }
                 }
                 elseif($count == 0){
@@ -645,7 +648,10 @@ class AdminController extends Controller
                 if($count >= 1){
                     $cek_order_data = 1;
                     $salescek = User::where('id',$fb->id_sales)->first();
-                    $nama_sales = $salescek->name;
+                    $salescek1 = User::where('id',$fb->id_sales)->count();
+                    if($salescek1 == 1){
+                        $nama_sales = $salescek->name;
+                    }
                 }
                 elseif($count == 0){
                     $cek_order_data = 0;

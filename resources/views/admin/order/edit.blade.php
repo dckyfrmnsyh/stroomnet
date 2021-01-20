@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-8">
             <div class="page-header float-right">
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
@@ -25,12 +25,6 @@
                         <li><a href="/Admin/order">List Order Customer</a></li>
                         <li class="active">Edit Order Customer</li>
                     </ol>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="page-header float-right">
-                <div class="page-title">
                 </div>
             </div>
         </div>
@@ -43,7 +37,7 @@
     <!-- Orders -->
     <div class="orders">
         <div class="row ">
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
 						<h1 class="text-center">Order Data <br> {{$fb->nama_customer}} </h1>
@@ -266,7 +260,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 @if($cek_data_od == 0)
                 <div class="card">
                     <div class="card-header">
@@ -426,7 +420,7 @@
                 </div>
 				@endif
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <h1 class="text-center">Order Layanan Baru</h1>
@@ -584,7 +578,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 <div class="">
                     <div class="" style="float: right;">
                         <a class="btn btn-success" id="button_next" onclick="konfirmasi()">Selanjutnya</a>

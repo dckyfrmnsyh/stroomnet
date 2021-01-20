@@ -38,7 +38,7 @@
     <!-- Orders -->
     <div class="orders">
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
 						<h1 class="text-center">Order Data <br> {{$fb->nama_customer}} </h1>
@@ -224,7 +224,7 @@
                                 <tbody>
                                     @foreach($order_data as $data)
                                     <tr>
-                                        <td>{{ $nama_sales}}</td>
+                                        <td>{{ $nama_sales ?? 'Sales Belum Disesuaikan Mohon Sesuaikan Sales dengan melakukan edit Data FB'}}</td>
                                         <td>{{ $data->tanggal_kesepakatan}}</td>
                                         <td>{{ $data->tipe}}</td>
                                         <td>{{ $data->nomor }}</td>
@@ -246,7 +246,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 @if($cek_order_data == 1)
                 <div class="card">
                     <div class="card-header">
@@ -406,7 +406,7 @@
                 </div>
 				@endif
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 <div class="">
                     <div class="" style="float: right;">
                         <a class="btn btn-success" id="button_next" onclick="konfirmasi()">Selanjutnya</a>

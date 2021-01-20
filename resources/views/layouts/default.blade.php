@@ -28,7 +28,7 @@
             @yield('breadcrumbs')
         </div>
 
-        <div class="content">
+        <div class="content" style="max-width:80vw">
             {{-- Content --}}
             @yield('content')
         </div>

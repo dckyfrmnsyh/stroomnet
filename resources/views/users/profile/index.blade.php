@@ -3,7 +3,9 @@
     @include('users.profile.sidebar')
 @endsection
 @section('content')
-<h1 class="mt-4">BAKBB</h1>
+<h1 class="mt-4">BAKBB
+    <a href="/users#daftar" class="btn btn-sm btn-info"><i class="fa fa-plus"></i> Create</a>
+</h1>
 @if($count_fb >= 1)
 <div class="table-responsive">
     <table class="table table-hover table-striped">

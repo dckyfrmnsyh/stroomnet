@@ -155,9 +155,12 @@ class UserController extends Controller
     }
     public function editfb(){
         $sales = User::role('sales')->pluck('name', 'id');
-        $salescek = User::where('id',$data->id_sales)->first();
-        $nama_sales = $salescek->name;
         $data = FB::where('user_id',Auth::id())->first();
+        $salescek = User::where('id',$data->id_sales)->first();
+        $salescek1 = User::where('id',$data->id_sales)->count();
+        if($salescek1 == 1){
+            $nama_sales = $salescek->name;
+        }
         $customer = FB::where('user_id',Auth::id())->first();
         $fb = FB::where('user_id',Auth::id())->get();
         $count_fb = FB::where('user_id',Auth::id())->count();
@@ -175,7 +178,7 @@ class UserController extends Controller
             ['district_id',$kecamatan->id],
             ['name',$data->desa],
             ])->first();
-        return view('users.FB.edit',compact('nama_sales','fb','customer','data','count_fb','provinces','desa','kecamatan','kota','provinsi'));
+        return view('users.FB.edit',compact('sales','nama_sales','fb','customer','data','count_fb','provinces','desa','kecamatan','kota','provinsi'));
     }
 
     public function updatefb(Request $request){
@@ -265,7 +268,10 @@ class UserController extends Controller
         if($count >= 1){
             $cek_order_data = 1;
             $salescek = User::where('id',$fb->id_sales)->first();
-            $nama_sales = $salescek->name;
+            $salescek1 = User::where('id',$fb->id_sales)->count();
+            if($salescek1 == 1){
+                $nama_sales = $salescek->name;
+            }
         }
         elseif($count == 0){
             $cek_order_data = 0;
@@ -285,7 +291,10 @@ class UserController extends Controller
         if($count >= 1){
             $cek_order_data = 1;
             $salescek = User::where('id',$fb->id_sales)->first();
-            $nama_sales = $salescek->name;
+            $salescek1 = User::where('id',$fb->id_sales)->count();
+            if($salescek1 == 1){
+                $nama_sales = $salescek->name;
+            }
         }
         elseif($count == 0){
             $cek_order_data = 0;
@@ -364,9 +373,13 @@ class UserController extends Controller
             'tanggal_kesepakatan' => $request->tanggal_kesepakatan,
             'tipe' => $request->tipe,
             'nomor' => $request->nomor,
+            'nama_pj' => $request->nama_pj,
+            'jabatan_pj' => $request->jabatan_pj,
             'no_pihak_pertama' => $request->no_pihak_pertama,
             'no_pihak_kedua' => $request->no_pihak_kedua,
             'jangka_berlangganan' => $request->jangka_berlangganan,
+            'status_biaya' => $request->status_biaya,
+            'status_tagihan' => $request->status_tagihan,
             'catatan_penagihan' => $request->catatan_penagihan,
             'tanggal_penagihan' => $request->tanggal_penagihan,
             'status_publish' => $request->status_publish,
@@ -424,9 +437,13 @@ class UserController extends Controller
         $data->tanggal_kesepakatan = $request->tanggal_kesepakatan;
         $data->tipe = $request->tipe;
         $data->nomor = $request->nomor;
+        $data->nama_pj = $request->nama_pj;
+        $data->jabatan_pj = $request->jabatan_pj;
         $data->no_pihak_pertama = $request->no_pihak_pertama;
         $data->no_pihak_kedua = $request->no_pihak_kedua;
         $data->jangka_berlangganan = $request->jangka_berlangganan;
+        $data->status_biaya = $request->status_biaya;
+        $data->status_tagihan = $request->status_tagihan;
         $data->catatan_penagihan = $request->catatan_penagihan;
         $data->tanggal_penagihan = $request->tanggal_penagihan;
         $data->status_publish = $request->status_publish;

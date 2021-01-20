@@ -197,7 +197,7 @@
                                 <tbody>
                                     @foreach($order_data as $data)
                                     <tr>
-                                        <td>{{ $nama_sales}}</td>
+                                        <td>{{ $nama_sales?? 'Sales Belum Disesuaikan Mohon Sesuaikan Sales dengan melakukan edit Data FB'}}</td>
                                         <td>{{ $data->tanggal_kesepakatan}}</td>
                                         <td>{{ $data->tipe}}</td>
                                         <td>{{ $data->nomor }}</td>
