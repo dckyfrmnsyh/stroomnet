@@ -44,4 +44,8 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\FB','user_id','id');
     }
+    public function fb_sales()
+    {
+        return $this->hasMany('App\Models\FB','id_sales','id');
+    }
 }

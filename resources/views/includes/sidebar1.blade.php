@@ -14,6 +14,10 @@
                 @endif
 
                 <li class="">
+                    <a href="{{ route('sales.dashboard') }}"><i class="menu-icon fa fa-money"></i>Sales Dashboard </a>
+                </li>
+
+                <li class="">
                     <a href="{{ route('customer') }}"><i class="menu-icon fa fa-user"></i>Customer </a>
                 </li>
 

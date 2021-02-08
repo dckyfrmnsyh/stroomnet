@@ -48,79 +48,6 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $order = DB::table('data_orders')->count();
-        $oldorder = DB::table('data_orders')->count();
-        $total_order = $order+$oldorder;
-        $total_client = DB::table('fb')->count();
-        $total_client_new = DB::table('data_orders')->where('tipe','=','new')->count();
-        $total_client_upgrade = DB::table('data_orders')->where('tipe','=','upgrade')->count();
-        $total_client_downgrade = DB::table('data_orders')->where('tipe','=','downgrade')->count();
-        $total_client_relokasi = DB::table('data_orders')->where('tipe','=','relokasi')->count();
-        $total_client_per = DB::table('data_orders')->where('tipe','=','perpanjangan')->count();
-        $total_client_oldnew = DB::table('data_orders')->where('tipe','=','layanan_baru')->count();
-
-        $tabel = FB::orderBy('id', 'DESC')->paginate(10);
-
-        $allOrder = Order::all();
-        $allOldorder = Oldorder::all();
-        return view('admin.dashboard.index',compact('tabel','total_client','total_client_new',
-        'total_client_upgrade','total_client_downgrade','total_client_relokasi','total_client_per','total_client_oldnew',
-        'total_order','allOrder','allOldorder'));
-    }
-    public function order_2()
-    {
-        $countnew = DB::table('customers')->where('tipe','=','new')->count();
-        $countup = DB::table('customers')->where('tipe','=','upgrade')->count();
-        $countdown = DB::table('customers')->where('tipe','=','downgrade')->count();
-        $countre = DB::table('customers')->where('tipe','=','relokasi')->count();
-        $countper = DB::table('customers')->where('tipe','=','perpanjangan')->count();
-        $countoldnew = DB::table('customers')->where('tipe','=','layanan_baru')->count();
-        $tabel = Customer::orderBy('tgl_hari_ini', 'DESC')->paginate(15);
-        return view('admin.pages.order',compact('tabel','countnew','countup','countdown','countre','countper','countoldnew'));
-    }
-    public function order1()
-    {
-        $orderlist = Customer::where('tipe','=','new')->orderBy('tgl_hari_ini', 'DESC')->paginate(15);
-        return view('admin.pages.order1',compact('orderlist'));
-    }
-    public function order2()
-    {
-        $upgradelist = Customer::where('tipe','=','upgrade')->orderBy('tgl_hari_ini', 'DESC')->paginate(15);
-        return view('admin.pages.order2',compact('upgradelist'));
-    }
-    public function order3()
-    {
-        $downgradelist = Customer::where('tipe','=','downgrade')->orderBy('tgl_hari_ini', 'DESC')->paginate(15);
-        return view('admin.pages.order3',compact('downgradelist'));
-    }
-    public function order4()
-    {
-        $relokasilist = Customer::where('tipe','=','relokasi')->orderBy('tgl_hari_ini', 'DESC')->paginate(15);
-        return view('admin.pages.order4',compact('relokasilist'));
-    }
-    public function order5()
-    {
-        $perpanjanganlist = Customer::where('tipe','=','perpanjangan')->orderBy('tgl_hari_ini', 'DESC')->paginate(15);
-        return view('admin.pages.order5',compact('perpanjanganlist'));
-    }
-    public function order6()
-    {
-        $layanan_barulist = Customer::where('tipe','=','layanan_baru')->orderBy('tgl_hari_ini', 'DESC')->paginate(15);
-        return view('admin.pages.order6',compact('layanan_barulist'));
-    }
-    public function delete_order($id)
-    {
-        $customer = Customer::findOrFail($id);
-        $order = Order::where('customer_id','=',$id);
-        $oldorder = Oldorder::where('customer_id','=',$id);
-        $order->delete();
-        $oldorder->delete();
-        $customer->delete();
-        return redirect()->back();
-    }
-
     // Menu Customer
         // --customer-- //
             public function customer(){
@@ -749,6 +676,40 @@ class AdminController extends Controller
                 ]);
                 return redirect()->back();
             }
+    // Menu Sales Dashboard
+        // --sales dashboard-- //
+        public function sales_dashboard(){
+
+            $from = date('2019-01-01');
+            $to = date('2025-05-02');
+            $sales = User::role('sales')->get();
+            
+            foreach($sales as $s){
+                
+                $revenue[$s->id] = DB::table('users')
+                ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
+                ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                ->whereBetween('list_orders.created_at', [$from, $to])
+                ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
+                ->where([['model_has_roles.role_id',2],['fb.id_sales',$s->id]])
+                ->sum('layanan_orders.biaya_langganan');
+
+                $instalasi[$s->id] = DB::table('users')
+                ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
+                ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                ->whereBetween('list_orders.created_at', [$from, $to])
+                ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
+                ->where([['model_has_roles.role_id',2],['fb.id_sales',$s->id]])
+                ->sum('layanan_orders.biaya_instalasi');
+
+                $total[$s->id] = $revenue[$s->id] + $instalasi[$s->id];
+                
+            }
+
+            return view('admin.sales.index',compact('count_layananq','from','to','salescek','data','sales','revenue','instalasi','total','list_bakbb','nama_sales'));
+        }
     // Menu User
         // --Akun-- //
             public function user(){

@@ -74,8 +74,12 @@ class FB extends Model
     {
         return $this->belongsTo('App\User','id','user_id');
     }
+    public function user_sales()
+    {
+        return $this->belongsTo('App\User','id','id_sales');
+    }
     public function list_order()
     {
-        return $this->hasMany(ListOrder::class);
+        return $this->hasMany(ListOrder::class, 'fb_id', 'id');
     }
 }
