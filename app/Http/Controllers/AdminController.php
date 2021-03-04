@@ -290,6 +290,8 @@ class AdminController extends Controller
                 foreach($list_order as $list){
                     $fbcek = FB::where('id', '=', $list->fb_id)->first();
                     $nama_customer[$list->id] = $fbcek->nama_customer;
+                    $usercek =  User::where('id', '=', $list->order_data->user_login)->first();
+                    $nama_user[$list->order_data->id] = $usercek->name;
                 }
                 $request->session()->forget('list_order_id');
                 return view('admin.order.index',compact('list_order','data','nama_user','nama_customer'));

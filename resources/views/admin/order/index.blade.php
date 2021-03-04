@@ -53,6 +53,7 @@
                                     <?php $no=0 ?>
                                         @foreach($list_order as $list)
                                         <?php $no++ ?>
+                                        @if($list->order_data->user_login == Auth::id())
                                         <tr>
                                             <td>{{ $no }}</td>
                                             <td>
@@ -61,7 +62,7 @@
                                             <td>{{$list->order_data->tipe}}</td>
                                             <td>{{$list->order_data->nomor}}</td>
                                             <td>
-                                                {{Auth::user()->name}}
+                                                {{$nama_user[$list->order_data->id]}}
                                             </td>
                                             <td>
                                                 <a href="/Admin/order/edit/{{$list->id}}" class="btn btn-sm btn-info"><i class="fa fa-edit"></i> Edit</a>
@@ -72,6 +73,7 @@
                                                 <a href="/Admin/order/delete/{{$list->id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
+                                        @endif
                                         @endforeach
                                 </tbody>
                             </table>
