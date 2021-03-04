@@ -79,6 +79,8 @@ Route::group(['middleware'=>['role:sales|admin']],function(){
 
     Route::get('/Admin/order/search', 'AdminController@search')->name('order.search');
     Route::get('/Admin/order/search/action', 'AdminController@action_search')->name('order.action_search');
+    Route::post('/Admin/sales/action', 'AdminController@sales_datefilter')->name('sales_datefilter');
+    Route::get('/Admin/sales/date/filter', 'AdminController@datesalesfilter')->name('datesalesfilter');
 
     Route::get('/Admin/order/create/{id}/BAKBB/new', 'AdminController@bakbb_new')->name('order.bakbb_new');
     Route::post('/Admin/order/store/{id}/BAKBB/new', 'AdminController@store_bakbb_new')->name('order.store_bakbb_new');

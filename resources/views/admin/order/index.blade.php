@@ -56,9 +56,9 @@
                                         <tr>
                                             <td>{{ $no }}</td>
                                             <td>
-                                                {{$list->nama_customer}}
+                                                {{$nama_customer[$list->id]}}
                                             </td>
-                                            <td>{{$list->order_data['tipe']}}</td>
+                                            <td>{{$list->order_data->tipe}}</td>
                                             <td>{{$list->order_data->nomor}}</td>
                                             <td>
                                                 {{Auth::user()->name}}

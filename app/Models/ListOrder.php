@@ -28,6 +28,6 @@ class ListOrder extends Model
     }
     public function order_data()
     {
-        return $this->hasOne('App\Models\OrderData', 'list_id','id');
+        return $this->hasOne('App\Models\OrderData', 'list_id');
     }
 }

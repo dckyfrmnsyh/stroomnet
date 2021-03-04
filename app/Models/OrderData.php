@@ -10,6 +10,6 @@ class OrderData extends Model
 
     public function list_order()
     {
-        return $this->belongsTo('App\Models\ListOrder', 'id','list_id');
+        return $this->belongsTo('App\Models\ListOrder','list_id', 'id');
     }
 }

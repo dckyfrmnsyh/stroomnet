@@ -284,15 +284,18 @@ class AdminController extends Controller
                 $data = FB::where('id_sales', '=', Auth::id())->get();
                 
                 $list_order = ListOrder::with(['fb' => function ($query) {
-                    $query->where('user_login', Auth::id());
+                    $query->where('user_login','=', Auth::id());
                 }])->orderBy('created_at', 'DESC')->paginate(10);
 
+                foreach($list_order as $list){
+                    $fbcek = FB::where('id', '=', $list->fb_id)->first();
+                    $nama_customer[$list->id] = $fbcek->nama_customer;
+                }
                 $request->session()->forget('list_order_id');
                 return view('admin.order.index',compact('list_order','data','nama_user','nama_customer'));
             }
             public function view_order_all(Request $request){
                 
-
                 $data =  ListOrder::with('fb')->orderBy('created_at', 'DESC')->paginate(10);
                 foreach($data as $item){
                     $user = User::where('id',$item->order_data->user_login)->first();
@@ -680,35 +683,91 @@ class AdminController extends Controller
         // --sales dashboard-- //
         public function sales_dashboard(){
 
-            $from = date('2019-01-01');
-            $to = date('2025-05-02');
             $sales = User::role('sales')->get();
             
-            foreach($sales as $s){
-                
-                $revenue[$s->id] = DB::table('users')
-                ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
-                ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
-                ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
-                ->whereBetween('list_orders.created_at', [$from, $to])
-                ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
-                ->where([['model_has_roles.role_id',2],['fb.id_sales',$s->id]])
-                ->sum('layanan_orders.biaya_langganan');
 
-                $instalasi[$s->id] = DB::table('users')
-                ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
-                ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
-                ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
-                ->whereBetween('list_orders.created_at', [$from, $to])
-                ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
-                ->where([['model_has_roles.role_id',2],['fb.id_sales',$s->id]])
-                ->sum('layanan_orders.biaya_instalasi');
+            return view('admin.sales.index',compact('sales'));
+        }
+        public function datesalesfilter(Request $request){
+            if($request->ajax()){
 
-                $total[$s->id] = $revenue[$s->id] + $instalasi[$s->id];
-                
+                $mm = $request->get('mm');
+                $yy = $request->get('yy');
+                $bulan = (string)$mm;
+                $tahun = (string)$yy;
+                if($mm != '' && $yy != ''){
+
+                    $sales = User::role('sales')->get();
+                    
+                    foreach($sales as $s){
+                        
+                        $revenue[$s->id] = DB::table('users')
+                        ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                        ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
+                        ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                        ->whereMonth('list_orders.created_at', $bulan)
+                        ->whereYear('list_orders.created_at', $tahun)
+                        ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
+                        ->where([['model_has_roles.role_id',2],['fb.id_sales',$s->id]])
+                        ->sum('layanan_orders.biaya_langganan');
+        
+                        $instalasi[$s->id] = DB::table('users')
+                        ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                        ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
+                        ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                        ->whereMonth('list_orders.created_at', $bulan)
+                        ->whereYear('list_orders.created_at', $tahun)
+                        ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
+                        ->where([['model_has_roles.role_id',2],['fb.id_sales',$s->id]])
+                        ->sum('layanan_orders.biaya_instalasi');
+        
+                        $total[$s->id] = $revenue[$s->id] + $instalasi[$s->id];
+                    }
+                }else{
+                    $sales = User::role('sales')->get();
+                    
+                    foreach($sales as $s){
+                        
+                        $revenue[$s->id] = DB::table('users')
+                        ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                        ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
+                        ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                        ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
+                        ->where([['model_has_roles.role_id',2],['fb.id_sales',$s->id]])
+                        ->sum('layanan_orders.biaya_langganan');
+        
+                        $instalasi[$s->id] = DB::table('users')
+                        ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                        ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
+                        ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                        ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
+                        ->where([['model_has_roles.role_id',2],['fb.id_sales',$s->id]])
+                        ->sum('layanan_orders.biaya_instalasi');
+        
+                        $total[$s->id] = $revenue[$s->id] + $instalasi[$s->id];
+                    }
+                }
+
+                if($mm != '' && $yy != ''){
+                    $json = array(
+                        'bulan'  => $mm,
+                        'tahun'  => $yy,
+                        'revenue'  => $revenue,
+                        'instalasi'  => $instalasi,
+                        'total'  => $total
+                    );
+                }else{
+                    $json = array(
+                        'bulan'  => 0,
+                        'tahun'  => '',
+                        'revenue'  => $revenue,
+                        'instalasi'  => $instalasi,
+                        'total'  => $total
+                    );
+                }
+
+                    echo json_encode($json);
             }
-
-            return view('admin.sales.index',compact('count_layananq','from','to','salescek','data','sales','revenue','instalasi','total','list_bakbb','nama_sales'));
         }
     // Menu User
         // --Akun-- //
