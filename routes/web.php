@@ -98,6 +98,7 @@ Route::group(['middleware'=>['role:sales|admin']],function(){
     Route::get('/excel/user', 'ExcelController@user');
     Route::get('/excel/fb', 'ExcelController@fb');
     Route::get('/excel/bakbb', 'ExcelController@bakbb');
+    Route::get('/excel/sales/dashboard', 'ExcelController@sales_dashboard');
 });
 
 // Only Sales route

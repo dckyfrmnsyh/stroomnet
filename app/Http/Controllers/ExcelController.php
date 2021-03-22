@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Exports\ExportExcel;
 use App\Exports\FBExport;
 use App\Exports\BAKBBExport;
+use App\Exports\SalesDashboard;
 use Maatwebsite\Excel\Facades\Excel;
 
 use Carbon;
@@ -26,5 +27,10 @@ class ExcelController extends Controller
         $from = Carbon::parse($request->get('from'));
         $to = Carbon::parse($request->get('to'));
         return (new BAKBBExport($from, $to))->download('BAKBB.xlsx');
+    }
+    public function sales_dashboard(Request $request){
+        $bulan = $request->get('month1');
+        $tahun = $request->get('year');
+        return (new SalesDashboard($bulan, $tahun))->download('Sales.xlsx');
     }
 }

@@ -22,7 +22,8 @@
         "maatwebsite/excel": "^3.1",
         "nesbot/carbon": "^2.42",
         "ramsey/uuid": "^4.1",
-        "spatie/laravel-permission": "^3.18"
+        "spatie/laravel-permission": "^3.18",
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

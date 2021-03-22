@@ -6,7 +6,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>Order</h1>
+                    <h1>Sales Dashboard</h1>
                 </div>
             </div>
         </div>
@@ -14,8 +14,8 @@
             <div class="page-header float-right">
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
-                        <li><a href="#">Order</a></li>
-                        <li class="active">List Order Customer</li>
+                        <li><a href="#">Sales Dashboard</a></li>
+                        <li class="active">Sales Dashboard</li>
                     </ol>
                 </div>
             </div>
@@ -30,12 +30,16 @@
     <div class="orders">
         <div class="row justify-content-center">
             <div class="col-lg-12">
-                <a href="{{route('order.search')}}" class="btn btn-md btn-primary"><i class="fa fa-plus"></i> Create</a>
                 <div class="card" style="margin-top:10px;">
                     <div class="card-body">
                         <div class="row justify-content-between" style="margin-bottom:-20px">
                             <div class="col-4">
-                                <h4 class="box-title">List Order Customer</h4>
+                                <h4 class="box-title">List Order Customer
+                                    <a  data-toggle="modal" data-target="#myModal1" href="#" class="btn btn-sm btn-success">
+                                        <i class='fa fa-download'></i> 
+                                        Export to Excel
+                                    </a>
+                                </h4>
                             </div>
                             <div class="col-4">
                                 <div class="row form-group">
@@ -54,7 +58,7 @@
                                         <option value='12'>December</option>
                                     </select>
                                     <select name="dropdownYear" class="col-4 form-control" id="dropdownYear" style="width: 120px;" onchange="getProjectReportFunc()"></select>
-                                    <button type="submit" id="test" class="col-4 btn btn-primary btn-sm"> Filter</button>
+                                    <button id="test" class="col-4 btn btn-primary btn-sm"> Filter</button>
                                 </div>
                             </div>
                         </div>
@@ -83,6 +87,45 @@
         </div>
     </div>
     <!-- /.orders -->
+    <!-- The Modal -->
+    <div class="modal" id="myModal1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Export to Excel</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <form action="/excel/sales/dashboard" method="get">
+                    {{ csrf_field() }}
+                    <div class="modal-body">
+                        <div class="sufee-alert alert with-close alert-warning alert-dismissible fade show">Pilih bulan dan tahun terlebih dahulu</div>
+                        <div class="form-group row justify-content-center">
+                            <select class="col-4 form-control" style="width: 120px;" id="month1" name="month1">
+                                <option value='1' selected>January</option>
+                                <option value='2'>February</option>
+                                <option value='3'>March</option>
+                                <option value='4'>April</option>
+                                <option value='5'>May</option>
+                                <option value='6'>June</option>
+                                <option value='7'>July</option>
+                                <option value='8'>August</option>
+                                <option value='9'>September</option>
+                                <option value='10'>October</option>
+                                <option value='11'>November</option>
+                                <option value='12'>December</option>
+                            </select>
+                            <select name="year" class="col-4 form-control" id="year" style="width: 120px;"></select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"><i class='fa fa-download'></i>  Export to Excel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- .animated -->
 @endsection
@@ -95,6 +138,18 @@
 <script>
     $(document).ready(function () {
         $('#dropdownYear').each(function() {
+            var year = (new Date()).getFullYear();
+            var current = year;
+            year = 2019;
+            for (var i = 0; i < 6; i++) {
+                if ((year+i) == current)
+                    $(this).append('<option selected value="' + (year + i) + '">' + (year + i) + '</option>');
+                else
+                    $(this).append('<option value="' + (year + i) + '">' + (year + i) + '</option>');
+            }
+
+        });
+        $('#year').each(function() {
             var year = (new Date()).getFullYear();
             var current = year;
             year = 2019;
