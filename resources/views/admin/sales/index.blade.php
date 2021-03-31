@@ -34,7 +34,7 @@
                     <div class="card-body">
                         <div class="row justify-content-between" style="margin-bottom:-20px">
                             <div class="col-4">
-                                <h4 class="box-title">List Order Customer
+                                <h4 class="box-title">Sales dashboard
                                     <a  data-toggle="modal" data-target="#myModal1" href="#" class="btn btn-sm btn-success">
                                         <i class='fa fa-download'></i> 
                                         Export to Excel

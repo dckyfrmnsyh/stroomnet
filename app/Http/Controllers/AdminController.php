@@ -284,7 +284,7 @@ class AdminController extends Controller
                 $data = FB::where('id_sales', '=', Auth::id())->get();
                 
                 $list_order = ListOrder::with(['fb' => function ($query) {
-                    $query->where('user_login','=', Auth::id());
+                    $query->where('id_sales','=', Auth::id());
                 }])->orderBy('created_at', 'DESC')->paginate(10);
 
                 foreach($list_order as $list){
@@ -294,7 +294,65 @@ class AdminController extends Controller
                     $nama_user[$list->order_data->id] = $usercek->name;
                 }
                 $request->session()->forget('list_order_id');
-                return view('admin.order.index',compact('list_order','data','nama_user','nama_customer'));
+
+                // tambahan count data dan linechart
+                $revenue = DB::table('users')
+                    ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                    ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
+                    ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                    ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
+                    ->where([['model_has_roles.role_id',2],['fb.id_sales',Auth::id()]])
+                    ->sum('layanan_orders.biaya_langganan');
+                // count orderan by id sales count layanan orders
+                $xx = FB::where('id_sales',Auth::id())->get();
+                if($xx != null){
+                    foreach($xx as $row){
+                        $yy[$row->id] = ListOrder::where('fb_id',$row->id)->count();
+                        $terjual    =array_sum($yy);
+                    }
+                }
+                // count orderan by id sales count fb
+                $customer = FB::where('id_sales',Auth::id())->count();
+
+                //line chart pendapatan
+                for($i=0; $i<12; $i++){
+                    $lc_revenue[$i] = DB::table('users')
+                        ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                        ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
+                        ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                        ->whereMonth('list_orders.created_at', $i)
+                        ->whereYear('list_orders.created_at', Carbon::now()->year)
+                        ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
+                        ->where([['model_has_roles.role_id',2],['fb.id_sales',Auth::id()]])
+                        ->sum('layanan_orders.biaya_langganan');
+                }
+
+                //if admin
+                // tambahan count data dan linechart
+                $revenue1 = DB::table('users')
+                    ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                    ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
+                    ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                    ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
+                    ->sum('layanan_orders.biaya_langganan');
+                // count orderan by id sales count layanan orders
+                $terjual1 = ListOrder::count();
+                // count orderan by id sales count fb
+                $customer1 = FB::count();
+
+                //line chart pendapatan
+                for($i=0; $i<12; $i++){
+                    $lc_revenue1[$i] = DB::table('users')
+                        ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                        ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
+                        ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                        ->whereMonth('list_orders.created_at', $i)
+                        ->whereYear('list_orders.created_at', Carbon::now()->year)
+                        ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
+                        ->sum('layanan_orders.biaya_langganan');
+                }
+                    // dd($list_order);
+                return view('admin.order.index',compact('list_order','data','nama_user','nama_customer','revenue','customer','terjual','lc_revenue','revenue1','customer1','terjual1','lc_revenue1'));
             }
             public function view_order_all(Request $request){
                 
