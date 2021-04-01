@@ -30,6 +30,7 @@
     <div class="orders">
         <div class="row justify-content-center">
             <div class="col-lg-12">
+            <a href="{{route('order.search')}}" class="btn btn-md btn-primary"><i class="fa fa-plus"></i> Create</a>
                 <div class="card" style="margin-top:10px;">
                     <div class="card-body">
                         <h4 class="box-title">List Order Customer 
@@ -84,6 +85,7 @@
                                         <th>Nama Customer</th>
                                         <th>Tipe</th>
                                         <th>Nomor</th>
+                                        <th>Nama Sales</th>
                                         <th>Created By</th>
                                         <th>Action</th>
                                     </tr>
@@ -100,6 +102,9 @@
                                             </td>
                                             <td>{{$list_data->order_data->tipe}}</td>
                                             <td>{{$list_data->order_data->nomor}}</td>
+                                            <td>
+                                                {{$nama_sales[$list_data->order_data->id]}}
+                                            </td>
                                             <td>
                                                 {{$nama_user[$list_data->order_data->id]}}
                                             </td>

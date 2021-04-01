@@ -280,13 +280,13 @@ class AdminController extends Controller
 
     // Menu Order
         // --BAKBB-- //
-            public function order(Request $request){
+            public function beranda(Request $request){
                 $data = FB::where('id_sales', '=', Auth::id())->get();
                 
                 $list_order = ListOrder::with(['fb' => function ($query) {
                     $query->where('id_sales','=', Auth::id());
                 }])->orderBy('created_at', 'DESC')->paginate(10);
-
+        // dd($list_order);
                 foreach($list_order as $list){
                     $fbcek = FB::where('id', '=', $list->fb_id)->first();
                     $nama_customer[$list->id] = $fbcek->nama_customer;
@@ -359,10 +359,12 @@ class AdminController extends Controller
                 $data =  ListOrder::with('fb')->orderBy('created_at', 'DESC')->paginate(10);
                 foreach($data as $item){
                     $user = User::where('id',$item->order_data->user_login)->first();
+                    $sales = User::where('id',$item->fb->id_sales)->first();
                     $nama_user[$item->order_data->id] = $user->name;
+                    $nama_sales[$item->order_data->id] = $sales->name;
                 }
                 $request->session()->forget('list_order_id');
-                return view('admin.order.viewall',compact('data','nama_user'));
+                return view('admin.order.viewall',compact('data','nama_user','nama_sales'));
             }
             public function edit_list_order(Request $request,$id)
             {

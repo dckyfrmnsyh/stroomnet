@@ -62,8 +62,8 @@ Route::group(['middleware'=>['role:sales|admin']],function(){
     Route::get('/Admin/customer/acc_edit/{id}', 'AdminController@acc_edit')->name('customer.acc_edit');
     Route::get('/Admin/customer/download/FB/{id}', 'PDFController@fb')->name('customer.down_fb');
 
-    Route::get('/Admin/order', 'AdminController@order')->name('order');
-    Route::get('/Admin/order/all', 'AdminController@view_order_all')->name('order.all');
+    Route::get('/Admin/beranda', 'AdminController@beranda')->name('beranda');
+    Route::get('/Admin/order', 'AdminController@view_order_all')->name('order.all');
 
     Route::get('/Admin/order/edit/{id}', 'AdminController@edit_list_order')->name('order.edit');
     Route::post('/Admin/order/update/{id}/data', 'AdminController@update_data')->name('order.update_data');
