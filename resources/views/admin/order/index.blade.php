@@ -155,15 +155,14 @@
         data: {
             labels: [ "January", "February", "March", "April", "May", "June",
                     "July", "August", "September", "October", "November", "December" ],
-            type: 'line',
             defaultFontFamily: 'Montserrat',
             datasets: [ {
-                label: "Pendapatan (Rp.)",
+                label: "Pendapatan = (Rp.)",
                 data: lc_revenue,
                 borderColor: "rgba(255, 51, 51, 0.9)",
-                    borderWidth: "0",
-                    backgroundColor: "rgba(255, 0, 0, 0.5)"
-                    } ]
+                borderWidth: 1,
+                backgroundColor: "rgba(255, 0, 0, 0.5)"
+                } ]
         },
         options: {
             responsive: true,
@@ -171,9 +170,6 @@
             tooltips: {
                 mode: 'index',
                 titleFontSize: 12,
-                titleFontColor: '#000',
-                bodyFontColor: '#000',
-                backgroundColor: '#fff',
                 titleFontFamily: 'Montserrat',
                 bodyFontFamily: 'Montserrat',
                 cornerRadius: 3,
@@ -190,8 +186,8 @@
                 xAxes: [ {
                     display: true,
                     gridLines: {
-                        display: false,
-                        drawBorder: false
+                        display: true,
+                        drawBorder: true
                     },
                     scaleLabel: {
                         display: false,
@@ -201,8 +197,8 @@
                 yAxes: [ {
                     display: true,
                     gridLines: {
-                        display: false,
-                        drawBorder: false
+                        display: true,
+                        drawBorder: true
                     },
                     scaleLabel: {
                         display: true,
@@ -230,15 +226,14 @@
         data: {
             labels: [ "January", "February", "March", "April", "May", "June",
                     "July", "August", "September", "October", "November", "December" ],
-            type: 'line',
             defaultFontFamily: 'Montserrat',
             datasets: [ {
                 label: "Pendapatan (Rp.)",
                 data: lc_revenue1,
                 borderColor: "rgba(255, 51, 51, 0.9)",
-                    borderWidth: "0",
-                    backgroundColor: "rgba(255, 0, 0, 0.5)"
-                    } ]
+                borderWidth: 1,
+                backgroundColor: "rgba(255, 0, 0, 0.5)"
+                } ]
         },
         options: {
             responsive: true,
@@ -246,9 +241,6 @@
             tooltips: {
                 mode: 'index',
                 titleFontSize: 12,
-                titleFontColor: '#000',
-                bodyFontColor: '#000',
-                backgroundColor: '#fff',
                 titleFontFamily: 'Montserrat',
                 bodyFontFamily: 'Montserrat',
                 cornerRadius: 3,
@@ -265,8 +257,8 @@
                 xAxes: [ {
                     display: true,
                     gridLines: {
-                        display: false,
-                        drawBorder: false
+                        display: true,
+                        drawBorder: true
                     },
                     scaleLabel: {
                         display: false,
@@ -276,8 +268,8 @@
                 yAxes: [ {
                     display: true,
                     gridLines: {
-                        display: false,
-                        drawBorder: false
+                        display: true,
+                        drawBorder: true
                     },
                     scaleLabel: {
                         display: true,

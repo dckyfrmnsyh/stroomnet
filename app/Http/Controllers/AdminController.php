@@ -320,7 +320,7 @@ class AdminController extends Controller
                         ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
                         ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
                         ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
-                        ->whereMonth('list_orders.created_at', $i)
+                        ->whereMonth('list_orders.created_at', $i+1)
                         ->whereYear('list_orders.created_at', Carbon::now()->year)
                         ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
                         ->where([['model_has_roles.role_id',2],['fb.id_sales',Auth::id()]])
@@ -346,12 +346,12 @@ class AdminController extends Controller
                         ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
                         ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
                         ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
-                        ->whereMonth('list_orders.created_at', $i)
+                        ->whereMonth('list_orders.created_at', $i+1)
                         ->whereYear('list_orders.created_at', Carbon::now()->year)
                         ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
                         ->sum('layanan_orders.biaya_langganan');
                 }
-                    // dd($list_order);
+                    // dd($lc_revenue);
                 return view('admin.order.index',compact('list_order','data','nama_user','nama_customer','revenue','customer','terjual','lc_revenue','revenue1','customer1','terjual1','lc_revenue1'));
             }
             public function view_order_all(Request $request){

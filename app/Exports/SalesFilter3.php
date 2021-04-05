@@ -17,21 +17,19 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class SalesDashboard implements FromView,WithStyles,ShouldAutoSize
+class SalesFilter3 implements FromView,WithStyles,ShouldAutoSize
 {
     use Exportable;
 
-    public function __construct(int $bulan, int $tahun) {
+    public function __construct( int $tahun) {
 
-        $this->bulan = $bulan;
         $this->tahun = $tahun;
     }
     
     public function view(): View
     {
-        $bulan = (string)$this->bulan;
         $tahun = (string)$this->tahun;
-        if($bulan != '' && $tahun != ''){
+        if($tahun != 0){
 
             $sales = User::role('sales')->get();
             
@@ -41,7 +39,6 @@ class SalesDashboard implements FromView,WithStyles,ShouldAutoSize
                 ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
                 ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
                 ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
-                ->whereMonth('list_orders.created_at', $bulan)
                 ->whereYear('list_orders.created_at', $tahun)
                 ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
                 ->where([['model_has_roles.role_id',2],['fb.id_sales',$s->id]])
@@ -51,7 +48,6 @@ class SalesDashboard implements FromView,WithStyles,ShouldAutoSize
                 ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
                 ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
                 ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
-                ->whereMonth('list_orders.created_at', $bulan)
                 ->whereYear('list_orders.created_at', $tahun)
                 ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
                 ->where([['model_has_roles.role_id',2],['fb.id_sales',$s->id]])
@@ -59,7 +55,6 @@ class SalesDashboard implements FromView,WithStyles,ShouldAutoSize
 
                 $total[$s->id] = $revenue[$s->id] + $instalasi[$s->id];
 
-                $bulan = $this->bulan;
             }
         }else{
             $sales = User::role('sales')->get();
@@ -84,12 +79,11 @@ class SalesDashboard implements FromView,WithStyles,ShouldAutoSize
 
                 $total[$s->id] = $revenue[$s->id] + $instalasi[$s->id];
 
-                $bulan = 0;
-                $tahun = '';
+                $tahun = 'All years';
             }
         }
 
-        return view('admin.download.excel.sales_dashboard', compact('bulan','tahun','revenue','instalasi','total','sales'));
+        return view('admin.download.excel.sales_filter3', compact('tahun','revenue','instalasi','total','sales'));
     }
     public function styles(Worksheet $sheet)
     {

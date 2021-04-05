@@ -97,32 +97,71 @@
                     <h4 class="modal-title">Export to Excel</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <form action="/excel/sales/dashboard" method="get">
-                    {{ csrf_field() }}
                     <div class="modal-body">
-                        <div class="sufee-alert alert with-close alert-warning alert-dismissible fade show">Pilih bulan dan tahun terlebih dahulu</div>
-                        <div class="form-group row justify-content-center">
-                            <select class="col-4 form-control" style="width: 120px;" id="month1" name="month1">
-                                <option value='1' selected>January</option>
-                                <option value='2'>February</option>
-                                <option value='3'>March</option>
-                                <option value='4'>April</option>
-                                <option value='5'>May</option>
-                                <option value='6'>June</option>
-                                <option value='7'>July</option>
-                                <option value='8'>August</option>
-                                <option value='9'>September</option>
-                                <option value='10'>October</option>
-                                <option value='11'>November</option>
-                                <option value='12'>December</option>
-                            </select>
-                            <select name="year" class="col-4 form-control" id="year" style="width: 120px;"></select>
+                        <!-- Nav tabs -->
+                        <ul class="nav justify-content-center nav-tabs">
+                            <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#home">Month & Year Filter</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#menu1">Month range Filter </a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#menu2">All Month Filter </a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div id="home" class="container tab-pane active"><br>
+                                <form action="/excel/sales/dashboard" method="get">
+                                    {{ csrf_field() }}
+                                    <div class="sufee-alert alert with-close alert-warning alert-dismissible fade show">Pilih bulan dan tahun terlebih dahulu</div>
+                                    <div class="form-group row justify-content-center">
+                                        <select class="col-4 form-control" style="width: 120px;" id="month1" name="month1">
+                                            <option value='1' selected>January</option>
+                                            <option value='2'>February</option>
+                                            <option value='3'>March</option>
+                                            <option value='4'>April</option>
+                                            <option value='5'>May</option>
+                                            <option value='6'>June</option>
+                                            <option value='7'>July</option>
+                                            <option value='8'>August</option>
+                                            <option value='9'>September</option>
+                                            <option value='10'>October</option>
+                                            <option value='11'>November</option>
+                                            <option value='12'>December</option>
+                                        </select>
+                                        <select name="year" class="col-4 form-control" id="year" style="width: 120px;"></select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary float-right"><i class='fa fa-download'></i>  Export to Excel</button>
+                                </form>
+                            </div>
+                            <div id="menu1" class="container tab-pane fade"><br>
+                            <form action="/excel/sales/filter2" method="get">
+                                {{ csrf_field() }}
+                                <div class="sufee-alert alert with-close alert-warning alert-dismissible fade show">Pilih tanggal awal dan akhir </div>
+                                <div class="form-group row justify-content-center">
+                                    <label for="date1" class="col-6">Tanggal Awal</label>
+                                    <label for="date2" class="col-6">Tanggal Akhir</label>
+                                    <input class="col-6 form-control" type="date" name="date1" value="" required/>                                        
+                                    <input class="col-6 form-control" type="date" name="date2" value=""required/>                                        
+                                </div>
+                                <button type="submit" class="btn btn-primary float-right"><i class='fa fa-download'></i>  Export to Excel</button>
+                            </form>
+                            </div>
+                            <div id="menu2" class="container tab-pane fade"><br>
+                            <form action="/excel/sales/filter3" method="get">
+                                {{ csrf_field() }}
+                                <div class="sufee-alert alert with-close alert-warning alert-dismissible fade show">Pilih "All Years" untuk export seluruh data atau pilih berdasarkan spesifik tahun</div>
+                                <div class="form-group row justify-content-center">
+                                    <select name="year01" class="col-4 form-control" id="year01" style="width: 120px;"></select>
+                                </div>
+                                <button type="submit" class="btn btn-primary float-right"><i class='fa fa-download'></i>  Export to Excel</button>
+                            </form>
+                            </div>
                         </div>
+                        
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary"><i class='fa fa-download'></i>  Export to Excel</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -141,7 +180,8 @@
             var year = (new Date()).getFullYear();
             var current = year;
             year = 2019;
-            for (var i = 0; i < 6; i++) {
+            var length = (current-year)+3;
+            for (var i = 0; i < length; i++) {
                 if ((year+i) == current)
                     $(this).append('<option selected value="' + (year + i) + '">' + (year + i) + '</option>');
                 else
@@ -153,7 +193,22 @@
             var year = (new Date()).getFullYear();
             var current = year;
             year = 2019;
-            for (var i = 0; i < 6; i++) {
+            var length = (current-year)+3;
+            for (var i = 0; i < length; i++) {
+                if ((year+i) == current)
+                    $(this).append('<option selected value="' + (year + i) + '">' + (year + i) + '</option>');
+                else
+                    $(this).append('<option value="' + (year + i) + '">' + (year + i) + '</option>');
+            }
+
+        });
+        $('#year01').each(function() {
+            var year = (new Date()).getFullYear();
+            var current = year;
+            year = 2019;
+            var length = (current-year)+3;
+            $(this).append('<option value="' + (0) + '">' + 'All Years'+ '</option>');
+            for (var i = 0; i < length; i++) {
                 if ((year+i) == current)
                     $(this).append('<option selected value="' + (year + i) + '">' + (year + i) + '</option>');
                 else
