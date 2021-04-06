@@ -49,27 +49,27 @@
                                 @error('jabatan_pj') <div class="text-muted">{{ $message }}</div> @enderror
                             </div>
                             <div class="form-group">
-                                <label for="alamat" class="form-control-label">Jabatan Penanggung jawab</label>
+                                <label for="alamat" class="form-control-label">Alamat Kantor</label>
                                 <input type="text" name="alamat" value="{{ old('alamat') ? old('alamat') : $data->alamat }}"
                                     class="form-control @error('alamat') is-invalid @enderror" />
                                 @error('alamat') <div class="text-muted">{{ $message }}</div> @enderror
                             </div>
                             <div class="form-group">
-                                <label for="no_telp" class="form-control-label">Jabatan Penanggung jawab</label>
+                                <label for="no_telp" class="form-control-label">Nomor Telephone</label>
                                 <input type="text" name="no_telp" value="{{ old('no_telp') ? old('no_telp') : $data->no_telp }}"
                                     class="form-control @error('no_telp') is-invalid @enderror" />
                                 @error('no_telp') <div class="text-muted">{{ $message }}</div> @enderror
                             </div>
                             <div class="form-group">
-                                <label for="no_fax" class="form-control-label">Jabatan Penanggung jawab</label>
+                                <label for="no_fax" class="form-control-label">Nomor Faximile</label>
                                 <input type="text" name="no_fax" value="{{ old('no_fax') ? old('no_fax') : $data->no_fax }}"
                                     class="form-control @error('no_fax') is-invalid @enderror" />
                                 @error('no_fax') <div class="text-muted">{{ $message }}</div> @enderror
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary btn-sm float-right">
-                                <i class="fa fa-dot-circle-o"></i> Update
+                            <button type="submit" class="btn btn-lg btn-primary  float-right">
+                                <i class="fa fa-lg fa-dot-circle-o"></i> Update
                             </button>
                         </div>
                     </form>

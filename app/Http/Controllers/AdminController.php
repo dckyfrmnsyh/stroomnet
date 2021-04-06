@@ -905,13 +905,14 @@ class AdminController extends Controller
                 ]);
             }
             public function data_icon_update(Request $request){
-                $data = DB::table('data_pihak_icons')->first();
-                $data->nama_pj = $request->nama_pj;
-                $data->jabatan_pj = $request->jabatan_pj;
-                $data->alamat = $request->alamat;
-                $data->no_telp = $request->no_telp;
-                $data->no_fax = $request->no_fax;
-                $data->save();
-                return redirect()->route('data.icons');
+                 DB::table('data_pihak_icons')->where('id', 1)->update([
+                    'nama_pj' => $request->nama_pj,
+                    'jabatan_pj' => $request->jabatan_pj,
+                    'alamat'=> $request->alamat,
+                    'no_telp' => $request->no_telp,
+                    'no_fax'=> $request->no_fax,
+                    'updated_at'=> Carbon::now()
+                ]);
+                return redirect()->back();
             }
 }       
