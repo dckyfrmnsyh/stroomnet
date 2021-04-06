@@ -99,14 +99,14 @@
                 </div>
                     <div class="modal-body">
                         <!-- Nav tabs -->
-                        <ul class="nav justify-content-center nav-tabs">
-                            <li class="nav-item">
+                        <ul class="nav row justify-content-center nav-tabs">
+                            <li class="nav-item col-sm">
                             <a class="nav-link active" data-toggle="tab" href="#home">Month & Year Filter</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item col-sm">
                             <a class="nav-link" data-toggle="tab" href="#menu1">Month range Filter </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item col-sm">
                             <a class="nav-link" data-toggle="tab" href="#menu2">All Month Filter </a>
                             </li>
                         </ul>
