@@ -42,6 +42,7 @@ Route::group(['middleware'=>['role:sales|admin']],function(){
 
     // *sales dashboard
     Route::get('/Admin/sales/dashboard', 'AdminController@sales_dashboard')->name('sales.dashboard');
+    Route::get('/Admin/sales/detail/{bulan}/{id}/{tahun}', 'AdminController@sales_detail');
 
     // *pdf
     Route::get('/Admin/pdf/new/{id}', 'PDFController@newbakbb');
@@ -64,6 +65,8 @@ Route::group(['middleware'=>['role:sales|admin']],function(){
 
     Route::get('/Admin/beranda', 'AdminController@beranda')->name('beranda');
     Route::get('/Admin/order', 'AdminController@view_order_all')->name('order.all');
+
+    Route::get('/Admin/order/sales/filter', 'AdminController@order_sales_filter')->name('order_sales_filter');
 
     Route::get('/Admin/order/edit/{id}', 'AdminController@edit_list_order')->name('order.edit');
     Route::post('/Admin/order/update/{id}/data', 'AdminController@update_data')->name('order.update_data');

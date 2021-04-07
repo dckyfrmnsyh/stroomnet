@@ -441,7 +441,7 @@
                     icon: "success"
                     //timer: 3000
                 }).then(function () {
-                    window.location = "{{route('order')}}";
+                    window.location = "{{route('order.all')}}";
                 })
             }
         })

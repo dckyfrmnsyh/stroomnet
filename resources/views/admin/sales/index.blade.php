@@ -240,10 +240,16 @@
                     const monthNames = ["All Month","January", "February", "March", "April", "May", "June",
                     "July", "August", "September", "October", "November", "December"
                     ];
+                    var tahuncek=0;
+                    if(values.tahun == ''){
+                        tahuncek=1;
+                    }else{
+                        tahuncek =values.tahun;
+                    }
                     @foreach($sales as $row)
                         output += '<tr>';
                         output += '<td>' + i++ + '</td>';
-                        output += '<td>' + '{{$row->name}}' + '</td>';
+                        output += '<td>' + '<a href="/Admin/sales/detail/'+values.bulan+'/'+'{{$row->id}}'+'/'+tahuncek+'">{{$row->name}}</a>' + '</td>';
                         output += '<td>' + monthNames[values.bulan]+' '+values.tahun + '</td>';
                         output += '<td>' + convertToRupiah(values.revenue[{{$row->id}}]) + '</td>';
                         output += '<td>' + convertToRupiah(values.instalasi[{{$row->id}}]) + '</td>';

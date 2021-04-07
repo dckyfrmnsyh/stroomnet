@@ -6,7 +6,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>Order</h1>
+                    <h1>Sales Dashboard</h1>
                 </div>
             </div>
         </div>
@@ -14,8 +14,8 @@
             <div class="page-header float-right">
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
-                        <li><a href="#">Order</a></li>
-                        <li class="active">List Order Customer</li>
+                        <li><a href="#">Sales Dashboard</a></li>
+                        <li class="active">Detail Sales</li>
                     </ol>
                 </div>
             </div>
@@ -30,24 +30,9 @@
     <div class="orders">
         <div class="row justify-content-center">
             <div class="col-lg-12">
-            <a href="{{route('order.search')}}" class="btn btn-md btn-primary"><i class="fa fa-plus"></i> Create</a>
                 <div class="card" style="margin-top:10px;">
                     <div class="card-body">
-                        <h4 class="box-title">
-                        <div class="row form-group">
-                            List Order Customer 
-                            <small> &nbsp; by &nbsp; </small>
-                            <select name="sales" id="sales" class="form-control" style="width: 150px;">
-                                <option value=''>All Sales</option>
-                                @foreach ($sales as $id => $name)
-                                <option value="{{ $id }}">{{ $name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                            <a data-toggle="modal" data-target="#myModal1" href="#" class="float-right btn btn-sm btn-success" style="margin-top: -50px;">
-                                <i class='fa fa-download'></i> 
-                                Export BAKBB to Excel
-                            </a>
+                        <h4 class="box-title">List Order Customer
                         </h4>
                         <!-- The Modal -->
                         <div class="modal" id="myModal1">
@@ -91,7 +76,7 @@
                             <table class="table ">
                                 <thead>
                                     <tr>
-                                        <th id="cek">#</th>
+                                        <th>#</th>
                                         <th>Nama Customer</th>
                                         <th>Tipe</th>
                                         <th>Nomor</th>
@@ -101,7 +86,33 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    
+                                    <?php $no=0 ?>
+                                    @foreach($data as $list_data)
+                                        <?php $no++ ?>
+                                        <tr>
+                                            <td>{{ $no }}</td>
+                                            <td>
+                                                <a>{{$list_data->nama_customer}}</a>
+                                            </td>
+                                            <td>{{$list_data->tipe}}</td>
+                                            <td>{{$list_data->nomor}}</td>
+                                            <td>
+                                                {{$nama_sales}}
+                                            </td>
+                                            <td>
+                                                {{$nama_created[$list_data->list_id]}}
+                                            </td>
+                                            <td>
+                                                <a href="/Admin/order/edit/{{$list_data->list_id}}" class="btn btn-sm btn-info"><i class="fa fa-edit"></i> Edit</a>
+                                                <a href="/Admin/order/show/BAKBB/{{$list_data->list_id}}" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i> Show</a>
+                                                @if($list_data->status_publish == 'ya')
+                                                <a href="/Admin/order/download/BAKBB/{{$list_data->list_id}}" class="btn btn-sm btn-success" target="_blank"><i class="fa fa-download"></i> Download</a>
+                                                @endif
+                                                <a href="/Admin/order/delete/{{$list_data->list_id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div> <!-- /.table-stats -->
@@ -109,6 +120,7 @@
                 </div> <!-- /.card -->
             </div>
             <div class="text-center">
+                {{ $data->links() }}
             </div>
         </div>
     </div>
@@ -116,35 +128,3 @@
 </div>
 <!-- .animated -->
 @endsection
-@push('after-script')
-<script>
-$(document).ready(function () {
-    var empt = '';
-    fetch_data();
-    function fetch_data(id_sales = ''){
-        $.ajax({
-            url: '/Admin/order/sales/filter',
-            method: 'GET',
-            data: {
-                id_sales:id_sales
-            },
-            dataType: 'json',
-            success: function (data) {
-                $('tbody').empty();
-                var yes = data.table_data;
-                Object.keys(yes).forEach(function(k){
-                    $('tbody').append(k + ' - ' + yes[k]);
-                });
-            }
-        })
-    }
-
-    $(document).on('change', '#sales', function (){
-        var id_sales = $('#sales').val();
-        console.log(id_sales);
-        fetch_data(id_sales);
-        
-    });
-});
-</script>
-@endpush

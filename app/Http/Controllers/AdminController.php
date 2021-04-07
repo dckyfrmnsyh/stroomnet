@@ -355,16 +355,81 @@ class AdminController extends Controller
                 return view('admin.order.index',compact('list_order','data','nama_user','nama_customer','revenue','customer','terjual','lc_revenue','revenue1','customer1','terjual1','lc_revenue1'));
             }
             public function view_order_all(Request $request){
-                
-                $data =  ListOrder::with('fb')->orderBy('created_at', 'DESC')->paginate(10);
-                foreach($data as $item){
-                    $user = User::where('id',$item->order_data->user_login)->first();
-                    $sales = User::where('id',$item->fb->id_sales)->first();
-                    $nama_user[$item->order_data->id] = $user->name;
-                    $nama_sales[$item->order_data->id] = $sales->name;
-                }
+                $sales = User::role('sales')->pluck('name', 'id');
                 $request->session()->forget('list_order_id');
-                return view('admin.order.viewall',compact('data','nama_user','nama_sales'));
+                return view('admin.order.viewall',compact('sales'));
+            }
+            public function order_sales_filter(Request $request){
+                if($request->ajax()){
+                    $id_sales = $request->get('id_sales');
+                    $sales = User::role('sales')->pluck('id');
+                    
+                    if($id_sales != '' ){
+                        $data = DB::table('users')
+                            ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                            ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
+                            ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                            ->leftJoin('data_orders', 'list_orders.id', '=', 'data_orders.list_id')
+                            ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
+                            ->where([['model_has_roles.role_id',2],['fb.id_sales',$id_sales]])
+                            ->select('data_orders.user_login AS do_created_by', 'fb.id_sales AS sales', 'data_orders.nomor', 'data_orders.tipe', 'data_orders.list_id', 'data_orders.status_publish', 'fb.nama_customer')
+                            ->paginate(10);
+
+                        foreach($data as $row){
+                            $xx = User::where('id',$row->do_created_by)->first();
+                            $nama_created[$row->list_id] = $xx->name;
+                            $sales = User::where('id',$row->sales)->first();
+                            $nama_sales[$row->list_id] = $sales->name;
+                        }
+                    }else{
+                        $data = DB::table('fb')
+                            ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                            ->leftJoin('data_orders', 'list_orders.id', '=', 'data_orders.list_id')
+                            ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
+                            ->select('data_orders.user_login AS do_created_by', 'fb.id_sales AS sales', 'data_orders.nomor', 'data_orders.tipe', 'data_orders.list_id', 'data_orders.status_publish', 'fb.nama_customer')
+                            ->paginate(10);
+
+                            foreach($data as $row){
+                                $xx = User::where('id',$row->do_created_by)->first();
+                                $nama_created[$row->list_id] = $xx->name;
+                                $sales = User::where('id',$row->sales)->first();
+                                $nama_sales[$row->list_id] = $sales->name;
+                            }
+                    }
+                    $total_row = $data->count();
+                    if($total_row > 0){
+                        $x = 0;
+                        foreach($data as $row){
+                            $output[$x++] = '
+                            <tr>
+                            <td>'.'#'.'</td>
+                            <td>'.$row->nama_customer.'</td>
+                            <td>'.$row->tipe.'</td>
+                            <td>'.$row->nomor.'</td>
+                            <td>'.$nama_sales[$row->list_id].'</td>
+                            <td>'.$nama_created[$row->list_id].'</td>
+                            <td>'."<a href='/Admin/order/edit/$row->list_id' class='btn btn-sm btn-info'><i class='fa fa-edit'></i> Edit</a>
+                            <a href='/Admin/order/show/BAKBB/$row->list_id' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i> Show</a>
+                            <a href='/Admin/order/download/BAKBB/$row->list_id' class='btn btn-sm btn-success' target='_blank'><i class='fa fa-download'></i> Download</a>
+                            <a href='/Admin/order/delete/$row->list_id' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></a>".'</td>
+                            </tr>
+                            ';
+                        }
+                    }
+                    else{
+                        $output[0] = '
+                        <tr>
+                            <td align="center" class="text-center justify-content-center" colspan="7">No Data Found</td>
+                        </tr>
+                        ';
+                    }
+                    $json = array(
+                    'table_data'  => $output,
+                    'total'  => $total_row,
+                    );
+
+                    echo json_encode($json);
+                }
             }
             public function edit_list_order(Request $request,$id)
             {
@@ -830,6 +895,50 @@ class AdminController extends Controller
 
                     echo json_encode($json);
             }
+        }
+        public function sales_detail($bulan,$id,$tahun){
+
+            if($bulan != 0){
+                $bulan = (string)$bulan;
+                $tahun = (string)$tahun;
+                $data = DB::table('users')
+                ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
+                ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                ->whereMonth('list_orders.created_at', $bulan)
+                ->whereYear('list_orders.created_at', $tahun)
+                ->leftJoin('data_orders', 'list_orders.id', '=', 'data_orders.list_id')
+                ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
+                ->where([['model_has_roles.role_id',2],['fb.id_sales',$id],['layanan_orders.biaya_langganan','>',0]])
+                ->select('data_orders.user_login AS do_created_by', 'data_orders.nomor', 'data_orders.tipe', 'data_orders.list_id', 'data_orders.status_publish', 'fb.nama_customer')
+                ->paginate(10);
+    
+                foreach($data as $row){
+                    $xx = User::where('id',$row->do_created_by)->first();
+                    $nama_created[$row->list_id] = $xx->name;
+                }
+                $sales = User::where('id',$id)->first();
+                $nama_sales = $sales->name;
+            }else{
+                $data = DB::table('users')
+                ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
+                ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                ->leftJoin('data_orders', 'list_orders.id', '=', 'data_orders.list_id')
+                ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
+                ->where([['model_has_roles.role_id',2],['fb.id_sales',$id],['layanan_orders.biaya_langganan','>',0]])
+                ->select('data_orders.user_login AS do_created_by', 'data_orders.nomor', 'data_orders.tipe', 'data_orders.list_id', 'data_orders.status_publish', 'fb.nama_customer')
+                ->paginate(10);
+    
+                foreach($data as $row){
+                    $xx = User::where('id',$row->do_created_by)->first();
+                    $nama_created[$row->list_id] = $xx->name;
+                }
+                $sales = User::where('id',$id)->first();
+                $nama_sales = $sales->name;
+            }
+            // dd($data);
+            return view('admin.sales.detail',compact('data','nama_sales','nama_created'));
         }
     // Menu User
         // --Akun-- //
