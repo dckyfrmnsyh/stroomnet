@@ -34,15 +34,18 @@
                 <div class="card" style="margin-top:10px;">
                     <div class="card-body">
                         <h4 class="box-title">
-                        <div class="row form-group">
+                        <div class="row">
                             List Order Customer 
-                            <small> &nbsp; by &nbsp; </small>
+                            <small> &nbsp; by &nbsp; </small>&nbsp;&nbsp;&nbsp;&nbsp;   
+                            <form class="row form-group" action="{{route('order.filter')}}" method="get">
                             <select name="sales" id="sales" class="form-control" style="width: 150px;">
-                                <option value=''>All Sales</option>
+                                <option value=''>==Pilih Sales==</option>
                                 @foreach ($sales as $id => $name)
                                 <option value="{{ $id }}">{{ $name }}</option>
                                 @endforeach
-                            </select>
+                            </select>&nbsp;&nbsp;
+                            <button type="submit" class="btn btn-sm btn-info"><i class='fa fa-filter'></i>  Filter</button>
+                            </form>
                         </div>
                             <a data-toggle="modal" data-target="#myModal1" href="#" class="float-right btn btn-sm btn-success" style="margin-top: -50px;">
                                 <i class='fa fa-download'></i> 
@@ -101,14 +104,37 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                @if($total_row > 0)
+                                <?php $no = 1 ?>
+                                    @foreach($data as $row)
+                                        <tr>
+                                            <td>{{$no++}}</td>
+                                            <td>{{$row->nama_customer}}</td>
+                                            <td>{{$row->tipe}}</td>
+                                            <td>{{$row->nomor}}</td>
+                                            <td>{{$nama_created[$row->list_id]}}</td>
+                                            <td>{{$nama_sales[$row->list_id]}}</td>
+                                            <td>
+                                                <a href='/Admin/order/edit/{{$row->list_id}}' class='btn btn-sm btn-info'><i class='fa fa-edit'></i> Edit</a>
+                                                <a href='/Admin/order/show/BAKBB/{{$row->list_id}}' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i> Show</a>
+                                                <a href='/Admin/order/download/BAKBB/{{$row->list_id}}' class='btn btn-sm btn-success' target='_blank'><i class='fa fa-download'></i> Download</a>
+                                                <a href='/Admin/order/delete/{{$row->list_id}}' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                        <tr>
+                                            <td colspan="7" class="text-center">Not Found</td>
+                                        </tr>
+                                @endif
                                 </tbody>
                             </table>
                         </div> <!-- /.table-stats -->
                     </div>
                 </div> <!-- /.card -->
             </div>
-            <div class="text-center">
+            <div class="text-center " id="paginate">
+            {{$data->appends(request()->query())->links()}}
             </div>
         </div>
     </div>
@@ -118,33 +144,39 @@
 @endsection
 @push('after-script')
 <script>
-$(document).ready(function () {
-    var empt = '';
-    fetch_data();
-    function fetch_data(id_sales = ''){
-        $.ajax({
-            url: '/Admin/order/sales/filter',
-            method: 'GET',
-            data: {
-                id_sales:id_sales
-            },
-            dataType: 'json',
-            success: function (data) {
-                $('tbody').empty();
-                var yes = data.table_data;
-                Object.keys(yes).forEach(function(k){
-                    $('tbody').append(k + ' - ' + yes[k]);
-                });
-            }
-        })
-    }
+// $(document).ready(function () {
+//     var empt = '';
+//     fetch_data();
+//     function fetch_data(id_sales = ''){
+//         $.ajax({
+//             url: '/Admin/order/sales/filter',
+//             method: 'GET',
+//             data: {
+//                 id_sales:id_sales
+//             },
+//             dataType: 'json',
+//             success: function (data) {
+//                 $('tbody').empty();
+//                 var obj = JSON.parse(JSON.stringify(data))
+//                 var yes = obj.table_data;
+//                 console.log(yes);
+//                 $('#paginate').html(obj.link);
+//                 Object.keys(yes).forEach(function(k){
+//                     $('tbody').append(k + ' - ' + yes[k]);
+//                 });
+//             },error: function(xhr, status, error) {
+//             var err = eval("(" + xhr.responseText + ")");
+//             alert(err.Message);
+//             }
+//         })
+//     }
 
-    $(document).on('change', '#sales', function (){
-        var id_sales = $('#sales').val();
-        console.log(id_sales);
-        fetch_data(id_sales);
+//     $(document).on('change', '#sales', function (){
+//         var id_sales = $('#sales').val();
+//         console.log(id_sales);
+//         fetch_data(id_sales);
         
-    });
-});
+//     });
+// });
 </script>
 @endpush

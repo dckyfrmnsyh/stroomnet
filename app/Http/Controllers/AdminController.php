@@ -282,17 +282,28 @@ class AdminController extends Controller
         // --BAKBB-- //
             public function beranda(Request $request){
                 $data = FB::where('id_sales', '=', Auth::id())->get();
-                
-                $list_order = ListOrder::with(['fb' => function ($query) {
-                    $query->where('id_sales','=', Auth::id());
-                }])->orderBy('created_at', 'DESC')->paginate(10);
-        // dd($list_order);
-                foreach($list_order as $list){
-                    $fbcek = FB::where('id', '=', $list->fb_id)->first();
-                    $nama_customer[$list->id] = $fbcek->nama_customer;
-                    $usercek =  User::where('id', '=', $list->order_data->user_login)->first();
-                    $nama_user[$list->order_data->id] = $usercek->name;
-                }
+                $sales = User::role('sales')->get();
+                //         foreach($sales as $xx){
+                            
+                //             $fb[$xx->id] = FB::where('id_sales',$xx->id)->get();
+                //             foreach($fb[$xx->id] as $row){
+                //                 $list_order[$xx->id]  = $row->list_order;
+                //             }
+                //             $data[$xx->id] = DB::table('fb')
+                //                 ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                //                 ->leftJoin('data_orders', 'list_orders.id', '=', 'data_orders.list_id')
+                //                     ->select('data_orders.user_login AS do_created_by', 'fb.id_sales AS sales', 'data_orders.nomor', 'data_orders.tipe', 'data_orders.list_id', 'data_orders.status_publish', 'fb.nama_customer')
+                //                     ->where([['fb.id_sales',$xx->id]])->whereNotNull('list_orders.id')
+                //                     ->paginate(10);
+                            
+                //         }
+                // dd($data);
+                // foreach($list_order as $list){
+                //     $fbcek = FB::where('id', '=', $list->fb_id)->first();
+                //     $nama_customer[$list->id] = $fbcek->nama_customer;
+                //     $usercek =  User::where('id', '=', $list->order_data->user_login)->first();
+                //     $nama_user[$list->order_data->id] = $usercek->name;
+                // }
                 $request->session()->forget('list_order_id');
 
                 // tambahan count data dan linechart
@@ -356,8 +367,40 @@ class AdminController extends Controller
             }
             public function view_order_all(Request $request){
                 $sales = User::role('sales')->pluck('name', 'id');
+                $data = DB::table('fb')
+                        ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                        ->leftJoin('data_orders', 'list_orders.id', '=', 'data_orders.list_id')
+                        ->select('data_orders.user_login AS do_created_by', 'fb.id_sales AS sales', 'data_orders.nomor', 'data_orders.tipe', 'data_orders.list_id', 'data_orders.status_publish', 'fb.nama_customer')
+                        ->whereNotNull('list_orders.id')
+                        ->orderBy('list_orders.id', 'desc')
+                        ->paginate(10);
+                $total_row = $data->count();
+                foreach($data as $row){
+                    $xx = User::where('id',$row->do_created_by)->first();
+                    $nama_created[$row->list_id] = $xx->name;
+                    $sales1 = User::where('id',$row->sales)->first();
+                    $nama_sales[$row->list_id] = $sales1->name;
+                }
                 $request->session()->forget('list_order_id');
-                return view('admin.order.viewall',compact('sales'));
+                return view('admin.order.viewall',compact('sales','data','total_row','nama_created','nama_sales'));
+            }
+            public function filter_order(Request $request){
+                $data = DB::table('fb')
+                        ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                        ->leftJoin('data_orders', 'list_orders.id', '=', 'data_orders.list_id')
+                        ->select('data_orders.user_login AS do_created_by', 'fb.id_sales AS sales', 'data_orders.nomor', 'data_orders.tipe', 'data_orders.list_id', 'data_orders.status_publish', 'fb.nama_customer')
+                        ->where([['fb.id_sales',$request->sales]])
+                        ->whereNotNull('list_orders.id')
+                        ->orderBy('list_orders.id', 'desc')
+                        ->paginate(5);
+                $total_row = $data->count();
+                foreach($data as $row){
+                    $xx = User::where('id',$row->do_created_by)->first();
+                    $nama_created[$row->list_id] = $xx->name;
+                    $sales = User::where('id',$row->sales)->first();
+                    $nama_sales[$row->list_id] = $sales->name;
+                }
+                return view('admin.order.detailbysales',compact('data','total_row','nama_created','nama_sales'));
             }
             public function order_sales_filter(Request $request){
                 if($request->ajax()){
@@ -365,16 +408,15 @@ class AdminController extends Controller
                     $sales = User::role('sales')->pluck('id');
                     
                     if($id_sales != '' ){
-                        $data = DB::table('users')
-                            ->leftJoin('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
-                            ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
-                            ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
-                            ->leftJoin('data_orders', 'list_orders.id', '=', 'data_orders.list_id')
-                            ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
-                            ->where([['model_has_roles.role_id',2],['fb.id_sales',$id_sales]])
+                        $data = DB::table('fb')
+                        ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
+                        ->leftJoin('data_orders', 'list_orders.id', '=', 'data_orders.list_id')
                             ->select('data_orders.user_login AS do_created_by', 'fb.id_sales AS sales', 'data_orders.nomor', 'data_orders.tipe', 'data_orders.list_id', 'data_orders.status_publish', 'fb.nama_customer')
-                            ->paginate(10);
-
+                            ->where([['fb.id_sales',$id_sales]])
+                            ->whereNotNull('list_orders.id')
+                            ->orderBy('list_orders.id', 'desc')
+                            ->paginate(1);
+                            
                         foreach($data as $row){
                             $xx = User::where('id',$row->do_created_by)->first();
                             $nama_created[$row->list_id] = $xx->name;
@@ -385,10 +427,10 @@ class AdminController extends Controller
                         $data = DB::table('fb')
                             ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
                             ->leftJoin('data_orders', 'list_orders.id', '=', 'data_orders.list_id')
-                            ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
                             ->select('data_orders.user_login AS do_created_by', 'fb.id_sales AS sales', 'data_orders.nomor', 'data_orders.tipe', 'data_orders.list_id', 'data_orders.status_publish', 'fb.nama_customer')
-                            ->paginate(10);
-
+                            ->whereNotNull('list_orders.id')
+                            ->paginate(1);
+                            
                             foreach($data as $row){
                                 $xx = User::where('id',$row->do_created_by)->first();
                                 $nama_created[$row->list_id] = $xx->name;
@@ -400,7 +442,7 @@ class AdminController extends Controller
                     if($total_row > 0){
                         $x = 0;
                         foreach($data as $row){
-                            $output[$x++] = '
+                            $output[$x]= '
                             <tr>
                             <td>'.'#'.'</td>
                             <td>'.$row->nama_customer.'</td>
@@ -414,6 +456,7 @@ class AdminController extends Controller
                             <a href='/Admin/order/delete/$row->list_id' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></a>".'</td>
                             </tr>
                             ';
+                            $x+=1;
                         }
                     }
                     else{
@@ -426,6 +469,7 @@ class AdminController extends Controller
                     $json = array(
                     'table_data'  => $output,
                     'total'  => $total_row,
+                    'link'  => (string)$data->appends(request()->query())->links(),
                     );
 
                     echo json_encode($json);
@@ -908,9 +952,9 @@ class AdminController extends Controller
                 ->whereMonth('list_orders.created_at', $bulan)
                 ->whereYear('list_orders.created_at', $tahun)
                 ->leftJoin('data_orders', 'list_orders.id', '=', 'data_orders.list_id')
-                ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
-                ->where([['model_has_roles.role_id',2],['fb.id_sales',$id],['layanan_orders.biaya_langganan','>',0]])
+                ->where([['model_has_roles.role_id',2],['fb.id_sales',$id]])
                 ->select('data_orders.user_login AS do_created_by', 'data_orders.nomor', 'data_orders.tipe', 'data_orders.list_id', 'data_orders.status_publish', 'fb.nama_customer')
+                ->whereNotNull('list_orders.id')
                 ->paginate(10);
     
                 foreach($data as $row){
@@ -925,9 +969,9 @@ class AdminController extends Controller
                 ->leftJoin('fb', 'users.id', '=', 'fb.id_sales')
                 ->leftJoin('list_orders', 'fb.id', '=', 'list_orders.fb_id')
                 ->leftJoin('data_orders', 'list_orders.id', '=', 'data_orders.list_id')
-                ->leftJoin('layanan_orders', 'list_orders.id', '=', 'layanan_orders.list_id')
-                ->where([['model_has_roles.role_id',2],['fb.id_sales',$id],['layanan_orders.biaya_langganan','>',0]])
+                ->where([['model_has_roles.role_id',2],['fb.id_sales',$id]])
                 ->select('data_orders.user_login AS do_created_by', 'data_orders.nomor', 'data_orders.tipe', 'data_orders.list_id', 'data_orders.status_publish', 'fb.nama_customer')
+                ->whereNotNull('list_orders.id')
                 ->paginate(10);
     
                 foreach($data as $row){
@@ -937,8 +981,9 @@ class AdminController extends Controller
                 $sales = User::where('id',$id)->first();
                 $nama_sales = $sales->name;
             }
+            $total_row = $data->count();
             // dd($data);
-            return view('admin.sales.detail',compact('data','nama_sales','nama_created'));
+            return view('admin.sales.detail',compact('data','nama_sales','nama_created','total_row'));
         }
     // Menu User
         // --Akun-- //

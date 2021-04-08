@@ -30,6 +30,7 @@
     <div class="orders">
         <div class="row justify-content-center">
             <div class="col-lg-12">
+            <a href="{{route('sales.dashboard')}}" class="btn btn-md btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
                 <div class="card" style="margin-top:10px;">
                     <div class="card-body">
                         <h4 class="box-title">List Order Customer
@@ -86,7 +87,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+                                @if($total_row > 0)
                                     <?php $no=0 ?>
                                     @foreach($data as $list_data)
                                         <?php $no++ ?>
@@ -113,6 +114,11 @@
                                             </td>
                                         </tr>
                                     @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="7" class="text-center">Not Found</td>
+                                    </tr>
+                                @endif
                                 </tbody>
                             </table>
                         </div> <!-- /.table-stats -->

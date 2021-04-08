@@ -65,6 +65,7 @@ Route::group(['middleware'=>['role:sales|admin']],function(){
 
     Route::get('/Admin/beranda', 'AdminController@beranda')->name('beranda');
     Route::get('/Admin/order', 'AdminController@view_order_all')->name('order.all');
+    Route::get('/Admin/order/filter', 'AdminController@filter_order')->name('order.filter');
 
     Route::get('/Admin/order/sales/filter', 'AdminController@order_sales_filter')->name('order_sales_filter');
 
