@@ -112,8 +112,8 @@
                                             <td>{{$row->nama_customer}}</td>
                                             <td>{{$row->tipe}}</td>
                                             <td>{{$row->nomor}}</td>
-                                            <td>{{$nama_created[$row->list_id]}}</td>
                                             <td>{{$nama_sales[$row->list_id]}}</td>
+                                            <td>{{$nama_created[$row->list_id]}}</td>
                                             <td>
                                                 <a href='/Admin/order/edit/{{$row->list_id}}' class='btn btn-sm btn-info'><i class='fa fa-edit'></i> Edit</a>
                                                 <a href='/Admin/order/show/BAKBB/{{$row->list_id}}' class='btn btn-sm btn-warning'><i class='fa fa-eye'></i> Show</a>
